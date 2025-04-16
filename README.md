@@ -7,7 +7,7 @@ Este proyecto consiste en una herramienta de web scraping desarrollada en Python
 - Extracción automatizada de datos de listados de Airbnb
 - Análisis de precios por zona, temporada y tipo de alojamiento
 - Visualización de datos con gráficos interactivos
-- Exportación de datos a diferentes formatos (CSV, JSON, Excel)
+- Exportación de datos a (CSV)
 - Monitoreo de cambios de precios a lo largo del tiempo
 
 ## 🔧 Requisitos previos
