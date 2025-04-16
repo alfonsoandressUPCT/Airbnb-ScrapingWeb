@@ -1,7 +1,5 @@
 # Airbnb-ScrapingWeb
 
-# Airbnb-ScrapingWeb
-
 ## 📋 Descripción
 Este proyecto consiste en una herramienta de web scraping desarrollada en Python para extraer y analizar datos de alojamientos de Airbnb. Permite recopilar información como precios, ubicaciones, valoraciones, disponibilidad y características de las propiedades, facilitando análisis de mercado e investigaciones sobre tendencias en el sector turístico.
 
