@@ -26,7 +26,7 @@ url = 'https://www.airbnb.es'
 
 browser.get(url)
 
-time.sleep(0.5)
+time.sleep(2)
 ## **Eliminación de Mensaje de Cookies**
 cockies_botton = browser.find_element(By.XPATH, "//button[contains(text(), 'Solo las necesarias')]")
 
@@ -43,10 +43,10 @@ soup
 print("\n-----Bienvenido a la web scraping de Airbnb-----")
 
 print("\n\t Introduce el país donde desea viajar")
-pais = input('País: ').capitalize()
+pais = input('\t\nPaís: ').capitalize()
 
 print("\n\t Introduce la ciudad donde desea viajar")
-ciudad = input("Ciudad: ").capitalize()
+ciudad = input("\t\nCiudad: ").capitalize()
 
 meses = {
     "01": "Enero", 
@@ -67,7 +67,7 @@ def definir_fechas():
     while True:
         try:
             fecha_entrada_in = input("\n\t Introduce la fecha de entrada (dd/mm/aaaa): ")
-            dia_entrada_semana = str(input("¿Qué día de la semana es? (Lunes, Martes, Miércoles, Jueves, Viernes, Sábado, Domingo): "))
+            dia_entrada_semana = str(input("\n\t¿Qué día de la semana es? (Lunes, Martes, Miércoles, Jueves, Viernes, Sábado, Domingo): "))
             entrada = datetime.strptime(fecha_entrada_in, "%d/%m/%Y")
             fecha_entrada = fecha_entrada_in.split("/")
 
@@ -77,7 +77,7 @@ def definir_fechas():
             año_entrada = str(fecha_entrada[2])
 
             fecha_salida_in = input("\n\t Introduce la fecha de salida (dd/mm/aaaa): ")
-            dia_salida_semana = str(input("¿Qué día de la semana es? (Lunes, Martes, Miércoles, Jueves, Viernes, Sábado, Domingo): "))
+            dia_salida_semana = str(input("\n\t¿Qué día de la semana es? (Lunes, Martes, Miércoles, Jueves, Viernes, Sábado, Domingo): "))
             salida = datetime.strptime(fecha_salida_in, "%d/%m/%Y")
             fecha_salida = fecha_salida_in.split("/")
 
@@ -96,22 +96,26 @@ def definir_fechas():
 fecha_entrada, fecha_salida, dia_entrada, dia_entrada_semana, mes_entrada, mes_entrada_nombre, año_entrada, dia_salida, dia_salida_semana, mes_salida, mes_salida_nombre, año_salida = definir_fechas()
 
 print("\n\t Introduce el número de adultos")
-numero_adultos = int(input("Adultos: "))
+numero_adultos = int(input("\n\tAdultos: "))
 
 print("\n\t Introduce el número de niños")
-numero_niños = int(input("Niños: "))
+numero_niños = int(input("\t\nNiños: "))
 
 print("\n\t Introduce el número de bebés")
-numero_bebes = int(input("Bebés: "))
+numero_bebes = int(input("\t\nBebés: "))
 
 print("\n\t Introduce el número de mascotas")
-numero_mascotas = int(input("Mascotas: "))
+numero_mascotas = int(input("\t\nMascotas: "))
+
+time.sleep(5)
 ## **Selección del Destino del Viaje**
 Destino = f"{ciudad}, {pais}"
 
 campo_destino = browser.find_element(By.ID, "bigsearch-query-location-input")
 campo_destino.send_keys(Destino)
 campo_destino.send_keys(Keys.ENTER)
+
+time.sleep(5)
 ## **Selección de Fechas del Viaje**
 translator = Translator(to_lang="en", from_lang="es")
 
@@ -125,7 +129,7 @@ while mes_actual != mes_año:
     time.sleep(1)
     mes_actual = browser.find_element(By.XPATH, '//h2[contains(@class, "h19aqaok")]').text
 
-time.sleep(0.5)
+time.sleep(3)
 
 dia_entrada_semana_traducido = translator.translate(dia_entrada_semana)
 mes_entrada_traducido = translator.translate(mes_entrada_nombre)
@@ -135,7 +139,7 @@ tarjeta_fecha = f"{dia_entrada}, {dia_entrada_semana_traducido}, {mes_entrada_tr
 date_button = browser.find_element(By.XPATH, f"//button[@aria-label='{tarjeta_fecha}']") 
 date_button.click()
 
-time.sleep(0.5)
+time.sleep(3)
 
 dia_salida_semana_traducido = translator.translate(dia_salida_semana)
 mes_salida_traducido = translator.translate(mes_salida_nombre)
@@ -170,6 +174,8 @@ for n in range(0, numero_mascotas):
 ## **Realización de la Búsqueda de Ubicaciones para el Viaje**
 search_button = browser.find_element(By.XPATH, "//button[@data-testid='structured-search-input-search-button']")
 search_button.click()
+
+time.sleep(5)
 ## **Obtención de Links de los Alojamientos en una Página**
 data = []
 
@@ -192,7 +198,7 @@ for link in links:
         url = "https://" + url
 
     browser.get(url)
-    time.sleep(2)
+    time.sleep(3)
 
     try:
         # Cierra el botón del traductor si aparece
@@ -201,14 +207,14 @@ for link in links:
     except:
         pass  # Si no aparece, continúa
 
-    time.sleep(0.5)
+    time.sleep(1)
 
     try:
         nombre = browser.find_element(By.XPATH, "//h1[contains(@class, 'hpipapi')]").text
     except:
         nombre = url.find_element(By.XPATH, ".//meta[@itemprop='name']").get_attribute("content")
 
-    time.sleep(0.5)
+    time.sleep(1)
 
     try:
         spans = browser.find_elements(By.XPATH, "//span[contains(text(),'€')]")
@@ -220,7 +226,7 @@ for link in links:
     except:
         precio_noche = "No disponible"
 
-    time.sleep(0.5)
+    time.sleep(1)
 
     try:
         spans_total = browser.find_elements(By.XPATH, "//span[@class='_j1kt73']")
@@ -232,7 +238,7 @@ for link in links:
     except:
         precio_total = "No disponible"
 
-    time.sleep(0.5)
+    time.sleep(1)
 
     try:
         servicios_elements = browser.find_elements(By.CSS_SELECTOR, 'div._19xnuo97 > div > div:first-child')
@@ -240,7 +246,7 @@ for link in links:
     except:
         servicios = "No disponible"
 
-    time.sleep(0.5)
+    time.sleep(1)
 
     data.append({
         'Nombre': nombre,
