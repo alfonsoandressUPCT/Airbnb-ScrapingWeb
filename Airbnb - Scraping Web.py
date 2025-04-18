@@ -7,6 +7,8 @@ import random
 import time
 import pandas as pd
 import numpy as np
+import os
+from datetime import datetime
 from translate import Translator
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -18,19 +20,19 @@ ssl._create_default_https_context = ssl._create_unverified_context
 ## **Apertura del Navegador en el Sitio Web**
 browser = uc.Chrome()
 
-time.sleep(8)
+time.sleep(3)
 
 url = 'https://www.airbnb.es'
 
 browser.get(url)
 
-time.sleep(3)
+time.sleep(0.5)
 ## **Eliminación de Mensaje de Cookies**
 cockies_botton = browser.find_element(By.XPATH, "//button[contains(text(), 'Solo las necesarias')]")
 
 cockies_botton.click()
 
-time.sleep(3)
+time.sleep(0.5)
 ## **Extracción del HTML**
 html = browser.page_source
 
@@ -38,8 +40,6 @@ soup = bs(html, 'lxml')
 
 soup
 ## **Selección del Datos del Viaje**
-from datetime import datetime
-
 print("\n-----Bienvenido a la web scraping de Airbnb-----")
 
 print("\n\t Introduce el país donde desea viajar")
@@ -66,20 +66,20 @@ meses = {
 def definir_fechas():
     while True:
         try:
-            fecha_entrada = input("\n\t Introduce la fecha de entrada (dd/mm/aaaa): ")
+            fecha_entrada_in = input("\n\t Introduce la fecha de entrada (dd/mm/aaaa): ")
             dia_entrada_semana = str(input("¿Qué día de la semana es? (Lunes, Martes, Miércoles, Jueves, Viernes, Sábado, Domingo): "))
-            entrada = datetime.strptime(fecha_entrada, "%d/%m/%Y")
-            fecha_entrada = fecha_entrada.split("/")
+            entrada = datetime.strptime(fecha_entrada_in, "%d/%m/%Y")
+            fecha_entrada = fecha_entrada_in.split("/")
 
             dia_entrada = str(fecha_entrada[0])
             mes_entrada = str(fecha_entrada[1])
             mes_entrada_nombre = meses[mes_entrada].lower()
             año_entrada = str(fecha_entrada[2])
 
-            fecha_salida = input("\n\t Introduce la fecha de salida (dd/mm/aaaa): ")
+            fecha_salida_in = input("\n\t Introduce la fecha de salida (dd/mm/aaaa): ")
             dia_salida_semana = str(input("¿Qué día de la semana es? (Lunes, Martes, Miércoles, Jueves, Viernes, Sábado, Domingo): "))
-            salida = datetime.strptime(fecha_salida, "%d/%m/%Y")
-            fecha_salida = fecha_salida.split("/")
+            salida = datetime.strptime(fecha_salida_in, "%d/%m/%Y")
+            fecha_salida = fecha_salida_in.split("/")
 
             dia_salida = str(fecha_salida[0])
             mes_salida = fecha_salida[1]
@@ -89,7 +89,7 @@ def definir_fechas():
             if salida <= entrada:
                 print("❌ La fecha de salida no puede ser anterior o igual a la de entrada. Inténtalo de nuevo.")
             else:
-                return fecha_entrada, fecha_salida, dia_entrada, dia_entrada_semana, mes_entrada, mes_entrada_nombre, año_entrada, dia_salida, dia_salida_semana, mes_salida, mes_salida_nombre, año_salida
+                return fecha_entrada_in, fecha_salida_in, dia_entrada, dia_entrada_semana, mes_entrada, mes_entrada_nombre, año_entrada, dia_salida, dia_salida_semana, mes_salida, mes_salida_nombre, año_salida
         except ValueError:
             print("❌ Formato de fecha inválido. Usa el formato dd/mm/aaaa.")
 
@@ -125,7 +125,7 @@ while mes_actual != mes_año:
     time.sleep(1)
     mes_actual = browser.find_element(By.XPATH, '//h2[contains(@class, "h19aqaok")]').text
 
-time.sleep(3)
+time.sleep(0.5)
 
 dia_entrada_semana_traducido = translator.translate(dia_entrada_semana)
 mes_entrada_traducido = translator.translate(mes_entrada_nombre)
@@ -135,7 +135,7 @@ tarjeta_fecha = f"{dia_entrada}, {dia_entrada_semana_traducido}, {mes_entrada_tr
 date_button = browser.find_element(By.XPATH, f"//button[@aria-label='{tarjeta_fecha}']") 
 date_button.click()
 
-time.sleep(3)
+time.sleep(0.5)
 
 dia_salida_semana_traducido = translator.translate(dia_salida_semana)
 mes_salida_traducido = translator.translate(mes_salida_nombre)
@@ -192,7 +192,7 @@ for link in links:
         url = "https://" + url
 
     browser.get(url)
-    time.sleep(8)
+    time.sleep(2)
 
     try:
         # Cierra el botón del traductor si aparece
@@ -201,14 +201,14 @@ for link in links:
     except:
         pass  # Si no aparece, continúa
 
-    time.sleep(3)
+    time.sleep(0.5)
 
     try:
         nombre = browser.find_element(By.XPATH, "//h1[contains(@class, 'hpipapi')]").text
     except:
         nombre = url.find_element(By.XPATH, ".//meta[@itemprop='name']").get_attribute("content")
 
-    time.sleep(3)
+    time.sleep(0.5)
 
     try:
         spans = browser.find_elements(By.XPATH, "//span[contains(text(),'€')]")
@@ -220,7 +220,7 @@ for link in links:
     except:
         precio_noche = "No disponible"
 
-    time.sleep(3)
+    time.sleep(0.5)
 
     try:
         spans_total = browser.find_elements(By.XPATH, "//span[@class='_j1kt73']")
@@ -232,7 +232,7 @@ for link in links:
     except:
         precio_total = "No disponible"
 
-    time.sleep(3)
+    time.sleep(0.5)
 
     try:
         servicios_elements = browser.find_elements(By.CSS_SELECTOR, 'div._19xnuo97 > div > div:first-child')
@@ -240,7 +240,7 @@ for link in links:
     except:
         servicios = "No disponible"
 
-    time.sleep(3)
+    time.sleep(0.5)
 
     data.append({
         'Nombre': nombre,
@@ -276,10 +276,20 @@ def formatear_servicios(servicios):
     return "No disponible"
 
 df['Servicios'] = df['Servicios'].apply(formatear_servicios)
-
-df
 ## **Exportación de Datos a un CSV**
-df.to_csv(f'output/Alojamientos. {ciudad}. {fecha_entrada} - {fecha_salida}.csv', index=False, encoding='utf-8')
+# Asegurarse de que el directorio exista
+os.makedirs('output', exist_ok=True)
+
+# Limpiar la fecha para evitar errores con '/'
+fecha_entrada_str = fecha_entrada.replace('/', '-')
+fecha_salida_str = fecha_salida.replace('/', '-')
+
+# Guardar el archivo
+df.to_csv(
+    f'output/Alojamientos. {ciudad}. {fecha_entrada_str} - {fecha_salida_str}.csv',
+    index=False,
+    encoding='utf-8'
+)
 ## **Finalización del Proyecto y Cierre del Navegador**
 browser.close()
 browser.quit()
