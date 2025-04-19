@@ -8,6 +8,7 @@ import time
 import pandas as pd
 import numpy as np
 import os
+import re
 from datetime import datetime
 from translate import Translator
 from selenium import webdriver
@@ -115,7 +116,7 @@ campo_destino = browser.find_element(By.ID, "bigsearch-query-location-input")
 campo_destino.send_keys(Destino)
 campo_destino.send_keys(Keys.ENTER)
 
-time.sleep(5)
+time.sleep(2)
 ## **Selección de Fechas del Viaje**
 translator = Translator(to_lang="en", from_lang="es")
 
@@ -246,6 +247,33 @@ for link in links:
     except:
         servicios = "No disponible"
 
+    scroll_pause_time = 0.5  # Tiempo de pausa entre desplazamientos
+    screen_height = browser.execute_script("return window.innerHeight;")  # Altura de la ventana
+    scroll_position = 0
+    while True:
+        # Desplázate hacia abajo
+        browser.execute_script(f"window.scrollTo(0, {scroll_position});")
+        scroll_position += screen_height  # Incrementa la posición de desplazamiento
+        time.sleep(scroll_pause_time)  # Pausa para permitir la carga del contenido
+
+        # Verifica si se ha llegado al final de la página
+        new_scroll_height = browser.execute_script("return document.body.scrollHeight;")
+        if scroll_position >= new_scroll_height:
+            break
+
+    try:
+        url_element = browser.find_element(By.XPATH, "//a[@title='Informar a Google acerca de errores en las imágenes o en el mapa de carreteras']")
+        url_coordenadas = url_element.get_attribute("href")
+
+        match = re.search(r"@([-\d.]+),([-\d.]+)", url_coordenadas)
+
+        lat = match.group(1)  # Latitud
+        lon = match.group(2)  # Longitud
+        coordenadas = (lat, lon)
+
+    except:
+        coordenadas = "No Disponibles"
+
     time.sleep(1)
 
     data.append({
@@ -253,12 +281,15 @@ for link in links:
         'Precio por noche': precio_noche,
         'Precio total': precio_total,
         'Servicios': servicios,
+        'Coordenadas': coordenadas,
         'URL': url
     })
+## **Cierre del Navegador**
+browser.close()
+browser.quit()
 ## **Creación de Dataframe con Datos Extraídos de cada Alojamiento**
-# Convertir el diccionario 'data' a un DataFrame
 df = pd.DataFrame(data)
-
+## **Cálculo de Precio por Viajero**
 # Limpiar el precio y convertirlo a float
 def extraer_precio(precio_str):
     if isinstance(precio_str, str) and '€' in precio_str:
@@ -273,8 +304,13 @@ df['Precio por noche por viajero'] = df['Precio por noche'].apply(lambda x: extr
 
 df['Precio total por viajero'] = df['Precio total'].apply(lambda x: extraer_precio(x) / numero_adultos if extraer_precio(x) is not None else "No Disponible")
                                                           
-df = df[['Nombre', 'Precio por noche', 'Precio por noche por viajero', 'Precio total', 'Precio total por viajero', 'Servicios', 'URL']]
-
+df = df[['Nombre', 'Precio por noche', 'Precio por noche por viajero', 'Precio total', 'Precio total por viajero', 'Coordenadas','Servicios', 'URL']]
+## **Limpieza y Ordenación de Datos**
+### **Eliminación de Filas No Disponibles**
+indices = df[df.eq("No Disponible").any(axis=1)].index.tolist()
+df = df.drop(indices)
+df = df.reset_index(drop=True)
+### **Formateo de Servicios con Viñetas**
 # Formatear los servicios con viñetas
 def formatear_servicios(servicios):
     if servicios and isinstance(servicios, str):
@@ -282,6 +318,25 @@ def formatear_servicios(servicios):
     return "No disponible"
 
 df['Servicios'] = df['Servicios'].apply(formatear_servicios)
+
+for col in df.columns:
+    df = df[~df[col].astype(str).str.contains("No disponible", case=False)]
+
+### **Aproximación y Redondeo de Precios**
+columnas_a_redondear = ['Precio por noche por viajero', 'Precio total por viajero']
+
+for columna in columnas_a_redondear:
+    # Aseguramos que son numéricos
+    df[columna] = pd.to_numeric(df[columna], errors='coerce')
+    
+    # Redondeamos hacia arriba y convertimos a enteros
+    df[columna] = np.ceil(df[columna]).astype(int)
+    
+    # Añadimos el símbolo de euro como string
+    df[columna] = df[columna].astype(str) + ' €'
+### **Formateo de Coordenadas**
+# Convertir las coordenadas a dos valores float separados por coma, sin paréntesis ni comillas
+df['Coordenadas'] = df['Coordenadas'].apply(lambda x: ', '.join(map(str, eval(x))))
 ## **Exportación de Datos a un CSV**
 # Asegurarse de que el directorio exista
 os.makedirs('output', exist_ok=True)
@@ -296,6 +351,5 @@ df.to_csv(
     index=False,
     encoding='utf-8'
 )
-## **Finalización del Proyecto y Cierre del Navegador**
-browser.close()
-browser.quit()
+## **Finalización del Proyecto**
+print("El proceso ha terminado. El archivo se ha guardado en la carpeta 'output'.")
