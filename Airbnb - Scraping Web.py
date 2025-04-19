@@ -40,75 +40,49 @@ html = browser.page_source
 soup = bs(html, 'lxml') 
 
 soup
-## **Selección del Datos del Viaje**
-print("\n-----Bienvenido a la web scraping de Airbnb-----")
+## **Lectura de Datos desde el Fichero**
+def cargar_variables(ruta):
+    variables = {}
+    with open(ruta, 'r') as f:
+        for linea in f:
+            if '=' in linea:
+                clave, valor = linea.strip().split('=', 1)
+                clave = clave.strip()
+                valor = valor.strip()
+                try:
+                    valor = eval(valor)
+                except:
+                    pass
+                variables[clave] = valor
+    return variables
 
-print("\n\t Introduce el país donde desea viajar")
-pais = input('\t\nPaís: ').capitalize()
+variables = cargar_variables('input/input.txt')
 
-print("\n\t Introduce la ciudad donde desea viajar")
-ciudad = input("\t\nCiudad: ").capitalize()
+for clave, valor in variables.items():
+    globals()[clave] = valor
 
-meses = {
-    "01": "Enero", 
-    "02": "Febrero", 
-    "03": "Marzo", 
-    "04": "Abril",
-    "05": "Mayo", 
-    "06": "Junio", 
-    "07": "Julio", 
-    "08": "Agosto",
-    "09": "Septiembre", 
-    "10": "Octubre", 
-    "11": "Noviembre", 
-    "12": "Diciembre"
-}
+fecha_entrada_objetivo = datetime.strptime(fecha_entrada, "%d/%m/%Y")
+fecha_salida_objetivo = datetime.strptime(fecha_salida, "%d/%m/%Y")
 
-def definir_fechas():
-    while True:
-        try:
-            fecha_entrada_in = input("\n\t Introduce la fecha de entrada (dd/mm/aaaa): ")
-            dia_entrada_semana = str(input("\n\t¿Qué día de la semana es? (Lunes, Martes, Miércoles, Jueves, Viernes, Sábado, Domingo): "))
-            entrada = datetime.strptime(fecha_entrada_in, "%d/%m/%Y")
-            fecha_entrada = fecha_entrada_in.split("/")
+dia_entrada = str(fecha_entrada[0:2])
 
-            dia_entrada = str(fecha_entrada[0])
-            mes_entrada = str(fecha_entrada[1])
-            mes_entrada_nombre = meses[mes_entrada].lower()
-            año_entrada = str(fecha_entrada[2])
+dia_entrada_nombre = fecha_entrada_objetivo.strftime("%A")
 
-            fecha_salida_in = input("\n\t Introduce la fecha de salida (dd/mm/aaaa): ")
-            dia_salida_semana = str(input("\n\t¿Qué día de la semana es? (Lunes, Martes, Miércoles, Jueves, Viernes, Sábado, Domingo): "))
-            salida = datetime.strptime(fecha_salida_in, "%d/%m/%Y")
-            fecha_salida = fecha_salida_in.split("/")
+mes_entrada = str(fecha_entrada[3:5])
 
-            dia_salida = str(fecha_salida[0])
-            mes_salida = fecha_salida[1]
-            mes_salida_nombre = meses[mes_salida].lower()
-            año_salida = str(fecha_salida[2])
+mes_entrada_nombre = fecha_entrada_objetivo.strftime("%B")
 
-            if salida <= entrada:
-                print("❌ La fecha de salida no puede ser anterior o igual a la de entrada. Inténtalo de nuevo.")
-            else:
-                return fecha_entrada_in, fecha_salida_in, dia_entrada, dia_entrada_semana, mes_entrada, mes_entrada_nombre, año_entrada, dia_salida, dia_salida_semana, mes_salida, mes_salida_nombre, año_salida
-        except ValueError:
-            print("❌ Formato de fecha inválido. Usa el formato dd/mm/aaaa.")
+año_entrada = str(fecha_entrada[6:10])
 
-fecha_entrada, fecha_salida, dia_entrada, dia_entrada_semana, mes_entrada, mes_entrada_nombre, año_entrada, dia_salida, dia_salida_semana, mes_salida, mes_salida_nombre, año_salida = definir_fechas()
+dia_salida = str(fecha_salida[0:2])
 
-print("\n\t Introduce el número de adultos")
-numero_adultos = int(input("\n\tAdultos: "))
+dia_salida_nombre = fecha_salida_objetivo.strftime("%A")
 
-print("\n\t Introduce el número de niños")
-numero_niños = int(input("\t\nNiños: "))
+mes_salida = str(fecha_salida[3:5])
 
-print("\n\t Introduce el número de bebés")
-numero_bebes = int(input("\t\nBebés: "))
+mes_salida_nombre = fecha_salida_objetivo.strftime("%B")
 
-print("\n\t Introduce el número de mascotas")
-numero_mascotas = int(input("\t\nMascotas: "))
-
-time.sleep(5)
+año_salida = str(fecha_salida[6:10])
 ## **Selección del Destino del Viaje**
 Destino = f"{ciudad}, {pais}"
 
@@ -118,9 +92,11 @@ campo_destino.send_keys(Keys.ENTER)
 
 time.sleep(2)
 ## **Selección de Fechas del Viaje**
-translator = Translator(to_lang="en", from_lang="es")
+translator = Translator(to_lang="es", from_lang="en")
 
-mes_año = f"{mes_entrada_nombre} {año_entrada}"
+mes_entrada_nombre_español = Translator(to_lang="es").translate(mes_entrada_nombre).lower()
+
+mes_año = f"{mes_entrada_nombre_español} {año_entrada}"
 
 mes_actual = browser.find_element(By.XPATH, '//h2[contains(@class, "h19aqaok")]').text
 
@@ -132,22 +108,16 @@ while mes_actual != mes_año:
 
 time.sleep(3)
 
-dia_entrada_semana_traducido = translator.translate(dia_entrada_semana)
-mes_entrada_traducido = translator.translate(mes_entrada_nombre)
+tarjeta_fecha_entrada = f"{dia_entrada}, {dia_entrada_nombre}, {mes_entrada_nombre} {año_entrada}. Disponible. Selecciona este día como fecha de llegada." # Texto único del atributo aria-label 
 
-tarjeta_fecha = f"{dia_entrada}, {dia_entrada_semana_traducido}, {mes_entrada_traducido} {año_entrada}. Disponible. Selecciona este día como fecha de llegada." # Texto único del atributo aria-label 
-
-date_button = browser.find_element(By.XPATH, f"//button[@aria-label='{tarjeta_fecha}']") 
+date_button = browser.find_element(By.XPATH, f"//button[@aria-label='{tarjeta_fecha_entrada}']") 
 date_button.click()
 
 time.sleep(3)
 
-dia_salida_semana_traducido = translator.translate(dia_salida_semana)
-mes_salida_traducido = translator.translate(mes_salida_nombre)
+tarjeta_fecha_salida = f"{dia_salida}, {dia_salida_nombre}, {mes_salida_nombre} {año_salida}. Disponible. Selecciona este día como fecha de salida." # Texto único del atributo aria-label 
 
-tarjeta_fecha = f"{dia_salida}, {dia_salida_semana_traducido}, {mes_salida_traducido} {año_salida}. Disponible. Selecciona este día como fecha de salida." # Texto único del atributo aria-label 
-
-date_button = browser.find_element(By.XPATH, f"//button[@aria-label='{tarjeta_fecha}']") 
+date_button = browser.find_element(By.XPATH, f"//button[@aria-label='{tarjeta_fecha_salida}']") 
 date_button.click()
 ## **Selección de Viajeros del Viaje**
 viajeros_button = browser.find_element(By.XPATH, "//div[div[text()='Viajeros']]/div[text()='Añade viajeros']")
