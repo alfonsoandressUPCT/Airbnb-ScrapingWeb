@@ -1,0 +1,15 @@
+pais = 'X'
+
+ciudad = 'X'
+
+fecha_entrada = 'dd/mm/yyyy'
+
+fecha_salida = 'dd/mm/yyyy'
+
+numero_adultos = X
+
+numero_niños = X
+
+numero_bebes = X
+
+numero_mascotas = X
