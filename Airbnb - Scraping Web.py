@@ -605,7 +605,7 @@ os.makedirs('output', exist_ok=True)
 
 # Guardar el archivo
 df.to_csv(
-    f'output/Alojamientos. {ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}.csv',
+    f'output/Análisis de Datos/Alojamientos. {ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}.csv',
     index=False,
     encoding='utf-8'
 )
