@@ -630,26 +630,37 @@ mapa.save(f'output/Análisis Geográfico/Mapa. {ciudad}. {numero_total_persona
 ## **7. Creación de un Agente de Inteligencia Artificial para las Conclusiones Finales**
 ### **7.1 Lectura del Prompt**
 def cargar_prompt():
-    with open('agente IA/input/prompt/prompt.txt', "r") as f:
+    with open('agente IA/input/prompt/prompt.rtf', "r") as f:
         return f.read()
 ### **7.2 Carga de Imágenes**
-origen = list()
+imagenes = list()
 
 origen_imagen_economia_1 = "output/Análisis Económico/Diagrama Caja - Precios.png"
 origen_imagen_economia_2 = "output/Análisis Económico/Histograma - Precios.png"
 origen_imagen_servicios = "output/Análisis de Servicios/Frecuencia - Servicios.png"
 
-origen.append(origen_imagen_economia_1)
-origen.append(origen_imagen_economia_2)
-origen.append(origen_imagen_servicios)
+imagenes.append(origen_imagen_economia_1)
+imagenes.append(origen_imagen_economia_2)
+imagenes.append(origen_imagen_servicios)
 
-destino = "agente IA/input/images/"
+destino_imagenes = "agente IA/input/images/"
 
 for imagen in origen:
     if os.path.exists(imagen):
         shutil.copy(imagen, destino)
     else:
         print(f"Imagen no encontrada: {imagen}")
+
+origen_tabla_datos = f"output/Análisis de Datos/Alojamientos. {ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}.csv"
+
+destino_data = "agente IA/input/data/"
+
+if os.path.exists(origen_tabla_datos):
+    shutil.copy(origen_tabla_datos, destino_data)
+else:
+    print(f"Tabla de datos no encontrada: {origen_tabla_datos}")
+
+
 ### **7.3 Generar Texto de LLM**
 def generar_texto_llm(prompt):
     modelo = Ollama(model="llama3")
