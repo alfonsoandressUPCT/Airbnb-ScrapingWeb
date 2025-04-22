@@ -19,13 +19,12 @@ import undetected_chromedriver as uc
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
 ## **Inicio del Proyecto**
-print("Bienvenido a Scraping-Web de Airbnb")
-print("Comenzamos con el proyecto")
-print()
+print("\nBienvenido a Scraping-Web de Airbnb")
+print("Comenzamos con el proyecto\n")
 contador_inicio = time.time()
 print("En proceso...")
 ## **Apertura del Navegador en el Sitio Web**
-browser = uc.Chrome(headless=True)
+browser = uc.Chrome(headless=False)
 
 time.sleep(3)
 
@@ -43,9 +42,7 @@ time.sleep(0.5)
 ## **Extracción del HTML**
 html = browser.page_source
 
-soup = bs(html, 'lxml') 
-
-soup
+soup = bs(html, 'lxml')
 ## **Lectura de Datos desde el Fichero**
 def cargar_variables(ruta):
     variables = {}
@@ -189,7 +186,7 @@ for link in links:
     try:
         nombre = browser.find_element(By.XPATH, "//h1[contains(@class, 'hpipapi')]").text
     except:
-        nombre = url.find_element(By.XPATH, ".//meta[@itemprop='name']").get_attribute("content")
+        nombre = "No disponible"
 
     time.sleep(1)
 
@@ -237,6 +234,8 @@ for link in links:
         if scroll_position >= new_scroll_height:
             break
 
+    time.sleep(2)
+
     try:
         url_element = browser.find_element(By.XPATH, "//a[@title='Informar a Google acerca de errores en las imágenes o en el mapa de carreteras']")
         url_coordenadas = url_element.get_attribute("href")
@@ -244,11 +243,13 @@ for link in links:
         match = re.search(r"@([-\d.]+),([-\d.]+)", url_coordenadas)
 
         lat = match.group(1)  # Latitud
+        latitud = float(lat)  # Convertir a float
         lon = match.group(2)  # Longitud
+        longitud = float(lon)  # Convertir a float
 
     except:
-        lat = "No Disponible"
-        lon = "No Disponible"
+        latitud = "No Disponible"
+        longitud = "No Disponible"
 
     time.sleep(2)
 
@@ -257,8 +258,8 @@ for link in links:
         'Precio por noche': precio_noche,
         'Precio total': precio_total,
         'Servicios': servicios,
-        'latitud': lat,
-        'longitud': lon,
+        'Latitud': latitud,
+        'Longitud': longitud,
         'URL': url
     })
 ## **Cierre del Navegador**
@@ -281,7 +282,7 @@ df['Precio por noche por viajero'] = df['Precio por noche'].apply(lambda x: extr
 
 df['Precio total por viajero'] = df['Precio total'].apply(lambda x: extraer_precio(x) / numero_adultos if extraer_precio(x) is not None else "No Disponible")
                                                           
-df = df[['Nombre', 'Precio por noche', 'Precio por noche por viajero', 'Precio total', 'Precio total por viajero', 'Latitud','Longitud','Servicios', 'URL']]
+df = df[['Nombre', 'Precio por noche', 'Precio por noche por viajero', 'Precio total', 'Precio total por viajero', 'Latitud', 'Longitud', 'Servicios', 'URL']]
 ## **Limpieza y Ordenación de Datos**
 ### **Eliminación de Filas No Disponibles**
 indices = df[df.eq("No Disponible").any(axis=1)].index.tolist()
@@ -296,17 +297,26 @@ def formatear_servicios(servicios):
 
 df['Servicios'] = df['Servicios'].apply(formatear_servicios)
 ### **Aproximación y Redondeo de Precios**
-columnas_a_redondear = ['Precio por noche por viajero', 'Precio total por viajero', 'Precio total']
+columnas_a_redondear = ['Precio por noche por viajero', 'Precio total por viajero']
 
 for columna in columnas_a_redondear:
     # Aseguramos que son numéricos
     df[columna] = pd.to_numeric(df[columna], errors='coerce')
     
     # Redondeamos hacia arriba y convertimos a enteros
-    df[columna] = np.ceil(df[columna]).astype(int)
-### **Formateo de Coordenadas**
-df['Latitud'] = df['Latitud'].apply(lambda x: ', '.join(map(float, x)))
-df['Longitud'] = df['Longitud'].apply(lambda x: ', '.join(map(float, x)))
+    df[columna] = np.ceil(df[columna]).astype(float)
+### **Conversión de Datos Económicos a Datos Numéricos**
+# Función para limpiar y convertir los precios a float
+def convertir_a_entero(precio):
+    if isinstance(precio, str):
+        return int(precio.replace("€", "").replace(".", "").replace(",", ".").strip())
+    return precio
+
+# Aplicar la función a las columnas correspondientes
+df["Precio por noche"] = df["Precio por noche"].apply(convertir_a_entero)
+df["Precio total"] = df["Precio total"].apply(convertir_a_entero)
+df["Precio por noche por viajero"] = pd.to_numeric(df["Precio por noche por viajero"]).astype(int)
+df["Precio total por viajero"] = pd.to_numeric(df["Precio total por viajero"]).astype(int)
 ## **Exportación de Datos a un CSV**
 # Asegurarse de que el directorio exista
 os.makedirs('output', exist_ok=True)
@@ -314,18 +324,26 @@ os.makedirs('output', exist_ok=True)
 # Limpiar la fecha para evitar errores con '/'
 fecha_entrada_str = fecha_entrada.replace('/', '-')
 fecha_salida_str = fecha_salida.replace('/', '-')
+numero_total_personas = numero_adultos + numero_niños + numero_bebes + numero_mascotas
 
 # Guardar el archivo
 df.to_csv(
-    f'output/Alojamientos. {ciudad}. {fecha_entrada_str} - {fecha_salida_str}.csv',
+    f'output/Alojamientos. {ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}.csv',
     index=False,
     encoding='utf-8'
 )
 ## **Finalización del Proyecto**
-print("El proceso ha terminado.")
+print("\nEl proceso ha terminado.")
 contador_final = time.time()
 tiempo_total = contador_final - contador_inicio
-print(f"El tiempo transcurrido del proyecto ha sido de: {tiempo_total:.2f} segundos.")
+
+tiempo_total = np.ceil(tiempo_total)
+
+minutos = int(tiempo_total // 60)
+segundos = int(tiempo_total % 60)
+
+tiempo = f"{minutos} minutos y {segundos} segundos"
+
+print(f"El tiempo transcurrido del proyecto ha sido de: {tiempo}.")
 print("El archivo CSV se ha guardado en la carpeta 'output'.")
-print()
-print("Gracias por usar el programa.")
+print("\nGracias por usar el programa.")
