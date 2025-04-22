@@ -18,8 +18,14 @@ import undetected_chromedriver as uc
 
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
+## **Inicio del Proyecto**
+print("Bienvenido a Scraping-Web de Airbnb")
+print("Comenzamos con el proyecto")
+print()
+contador_inicio = time.time()
+print("En proceso...")
 ## **Apertura del Navegador en el Sitio Web**
-browser = uc.Chrome()
+browser = uc.Chrome(headless=True)
 
 time.sleep(3)
 
@@ -56,7 +62,7 @@ def cargar_variables(ruta):
                 variables[clave] = valor
     return variables
 
-variables = cargar_variables('input/input.txt')
+variables = cargar_variables('input/input_ejemplo.txt')
 
 for clave, valor in variables.items():
     globals()[clave] = valor
@@ -239,19 +245,20 @@ for link in links:
 
         lat = match.group(1)  # Latitud
         lon = match.group(2)  # Longitud
-        coordenadas = (lat, lon)
 
     except:
-        coordenadas = "No Disponibles"
+        lat = "No Disponible"
+        lon = "No Disponible"
 
-    time.sleep(1)
+    time.sleep(2)
 
     data.append({
         'Nombre': nombre,
         'Precio por noche': precio_noche,
         'Precio total': precio_total,
         'Servicios': servicios,
-        'Coordenadas': coordenadas,
+        'latitud': lat,
+        'longitud': lon,
         'URL': url
     })
 ## **Cierre del Navegador**
@@ -274,7 +281,7 @@ df['Precio por noche por viajero'] = df['Precio por noche'].apply(lambda x: extr
 
 df['Precio total por viajero'] = df['Precio total'].apply(lambda x: extraer_precio(x) / numero_adultos if extraer_precio(x) is not None else "No Disponible")
                                                           
-df = df[['Nombre', 'Precio por noche', 'Precio por noche por viajero', 'Precio total', 'Precio total por viajero', 'Coordenadas','Servicios', 'URL']]
+df = df[['Nombre', 'Precio por noche', 'Precio por noche por viajero', 'Precio total', 'Precio total por viajero', 'Latitud','Longitud','Servicios', 'URL']]
 ## **Limpieza y Ordenación de Datos**
 ### **Eliminación de Filas No Disponibles**
 indices = df[df.eq("No Disponible").any(axis=1)].index.tolist()
@@ -288,12 +295,8 @@ def formatear_servicios(servicios):
     return "No disponible"
 
 df['Servicios'] = df['Servicios'].apply(formatear_servicios)
-
-for col in df.columns:
-    df = df[~df[col].astype(str).str.contains("No disponible", case=False)]
-
 ### **Aproximación y Redondeo de Precios**
-columnas_a_redondear = ['Precio por noche por viajero', 'Precio total por viajero']
+columnas_a_redondear = ['Precio por noche por viajero', 'Precio total por viajero', 'Precio total']
 
 for columna in columnas_a_redondear:
     # Aseguramos que son numéricos
@@ -301,12 +304,9 @@ for columna in columnas_a_redondear:
     
     # Redondeamos hacia arriba y convertimos a enteros
     df[columna] = np.ceil(df[columna]).astype(int)
-    
-    # Añadimos el símbolo de euro como string
-    df[columna] = df[columna].astype(str) + ' €'
 ### **Formateo de Coordenadas**
-# Convertir las coordenadas a dos valores float separados por coma, sin paréntesis ni comillas
-df['Coordenadas'] = df['Coordenadas'].apply(lambda x: ', '.join(map(str, eval(x))))
+df['Latitud'] = df['Latitud'].apply(lambda x: ', '.join(map(float, x)))
+df['Longitud'] = df['Longitud'].apply(lambda x: ', '.join(map(float, x)))
 ## **Exportación de Datos a un CSV**
 # Asegurarse de que el directorio exista
 os.makedirs('output', exist_ok=True)
@@ -322,4 +322,10 @@ df.to_csv(
     encoding='utf-8'
 )
 ## **Finalización del Proyecto**
-print("El proceso ha terminado. El archivo se ha guardado en la carpeta 'output'.")
+print("El proceso ha terminado.")
+contador_final = time.time()
+tiempo_total = contador_final - contador_inicio
+print(f"El tiempo transcurrido del proyecto ha sido de: {tiempo_total:.2f} segundos.")
+print("El archivo CSV se ha guardado en la carpeta 'output'.")
+print()
+print("Gracias por usar el programa.")
