@@ -1,7 +1,7 @@
 #### **© Alfonso Andrés Giménez Sánchez**. Todos los derechos reservados
 # **AIRBNB. Proyecto de Ciencia de Datos**
 ## **1. Implementación de Librerías y Paquetes**
-### **1.1 Librerías y Paquetes para Web Scraping**
+### **1.1 Web Scraping**
 import requests
 import undetected_chromedriver as uc
 
@@ -9,23 +9,30 @@ from bs4 import BeautifulSoup as bs
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-### **1.2 Librerías y Paquetes para Análisis y Manipulación de Datos**
+### **1.2 Análisis y Manipulación de Datos**
 import pandas as pd
 import numpy as np
 import re
 
 from datetime import datetime
-### **1.3 Librerías y Paquetes para Geolocalización y Visualización en Mapas**
+### **1.3 Geolocalización y Visualización en Mapas**
 import folium
 
 from folium.plugins import MarkerCluster
 from geopy.geocoders import Nominatim
-### **1.4 Librerías y Paquetes para Traducción**
+### **1.4 Traducción**
 from translate import Translator
-### **1.5 Librerías y Paquetes para Visualización de Datos**
+### **1.5 Visualización de Datos**
 import matplotlib.pyplot as plt
 import seaborn as sns
-### **1.6 Librerías y Paquetes para Otras Utilidades**
+### **1.6 Creación de un Agente de Inteligencia Artificial**
+import subprocess
+
+from langchain_core.prompts import PromptTemplate
+from langchain_core.runnables import Runnable
+from langchain_community.llms import Ollama
+from PIL import Image
+### **1.7 Otras Utilidades**
 from collections import Counter
 
 import warnings
@@ -482,7 +489,7 @@ axes[1, 1].set_xlabel('Precio Total por Viajero (€)')
 axes[1, 1].set_ylabel('Frecuencia')
 
 plt.tight_layout()
-plt.savefig('output/Análisis Económico/Histograma.Precios.png')
+plt.savefig('output/Análisis Económico/Histograma - Precios.png')
 plt.close(fig)
 ##### **5.1.7.2 Diagramas de Caja**
 fig, axes = plt.subplots(2, 2, figsize=(15, 10))
@@ -508,7 +515,7 @@ axes[1, 1].set_title('Diagrama de Caja de Precios Totales por Viajero')
 axes[1, 1].set_ylabel('Precio Total por Viajero (€)')
 
 plt.tight_layout()
-plt.savefig('output/Análisis Económico/Diagrama.Caja-Precios.png')
+plt.savefig('output/Análisis Económico/Diagrama Caja - Precios.png')
 plt.close(fig)
 ### **5.2 Análisis de Servicios**
 #### **5.2.1 Extracción de los Servicios**
@@ -541,11 +548,11 @@ servicios_df = servicios_df.sort_values(by='Frecuencia', ascending=False)
 warnings.simplefilter(action='ignore', category=FutureWarning)
 plt.figure(figsize=(12, 6))
 sns.barplot(data=servicios_df.head(20), x='Frecuencia', y='Servicio', palette='crest')
-plt.title('Servicios más comunes en los alojamientos de Torremolinos')
+plt.title(f'Servicios más comunes en los alojamientos de {ciudad}')
 plt.xlabel('Número de alojamientos que lo ofrecen')
 plt.ylabel('Servicio')
 plt.tight_layout()
-plt.savefig('output/Análisis de Servicios/Frecuencia de Servicios.png')
+plt.savefig('output/Análisis de Servicios/Frecuencia - Servicios.png')
 warnings.simplefilter(action='ignore', category=FutureWarning)
 plt.close()
 #### **5.2.5 Cálculo del Número de Servicios por Alojamiento**
@@ -619,8 +626,18 @@ with open('output/Análisis Económico/Medias_Precios.txt', 'w', encoding='utf
     file.write("\n\n")
 ### **6.4 Exportación del Mapa Interactivo**
 mapa.save(f'output/Análisis Geográfico/Mapa. {ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}.html')
-## **7. Conclusiones Finales**
+## **7. Creación de un Agente de Inteligencia Artificial para las Conclusiones Finales**
+### **7.1 Función de Lectura del Prompt**
+def cargar_prompt():
+    with open('agente IA/input/prompt/prompt.txt', "r") as f:
+        return f.read()
+### **7.2 Función de Carga de las Imágenes**
+origen_imagen_economia_1 = "output/Análisis Económico/Diagrama Caja - Precios.png"
+origen_imagen_economia_2 = "output/Análisis Económico/Histograma - Precios.png"
 
+origen_imagen_servicios = "output/Análisis de Servicios/Frecuencia - Servicios.png"
+
+destino = "agente\ IA/input/images/"
 ## **8. Finalización del Proyecto**
 print("\nEl proceso ha terminado.")
 contador_final = time.time()
