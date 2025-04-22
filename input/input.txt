@@ -6,6 +6,8 @@ fecha_entrada = 'dd/mm/yyyy'
 
 fecha_salida = 'dd/mm/yyyy'
 
+numero_pagina = X
+
 numero_adultos = X
 
 numero_niños = X

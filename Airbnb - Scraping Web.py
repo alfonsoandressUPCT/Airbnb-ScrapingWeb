@@ -150,79 +150,131 @@ search_button = browser.find_element(By.XPATH, "//button[@data-testid='structure
 search_button.click()
 
 time.sleep(5)
-## **Obtención de Links de los Alojamientos en una Página**
+## **Extracción de Datos de los Alojamientos**
 data = []
 
-links = list()
+for pagina in range(numero_paginas):
 
-alojamientos = browser.find_elements(By.XPATH, "//div[@itemprop='itemListElement']")
+    url_inicio_alojamientos = browser.current_url
 
-for url in alojamientos:
-    try:
-        url = url.find_element(By.XPATH, ".//meta[@itemprop='url']").get_attribute("content")
-        links.append(url)
-    except Exception as e:
-        print("Error en una tarjeta:", e)
-        continue
-## **Extracción de Datos de los Alojamientos de una Página**
-for link in links:
-    url = link
+    alojamientos = browser.find_elements(By.XPATH, "//div[@itemprop='itemListElement']")
 
-    if not url.startswith("http"):
-        url = "https://" + url
+    links = list()
 
-    browser.get(url)
-    time.sleep(4)
+    for url in alojamientos:
+        try:
+            url = url.find_element(By.XPATH, ".//meta[@itemprop='url']").get_attribute("content")
+            links.append(url)
+        except Exception as e:
+            print("Error en una tarjeta:", e)
+            continue
 
-    try:
-        # Cierra el botón del traductor si aparece
-        traductor_botton = browser.find_element(By.XPATH, "//button[@aria-label='Cerrar']")
-        traductor_botton.click()
-    except:
-        pass  # Si no aparece, continúa
+    for link in links:
+        url = link
+
+        if not url.startswith("http"):
+            url = "https://" + url
+
+        browser.get(url)
+        time.sleep(4)
+
+        try:
+            # Cierra el botón del traductor si aparece
+            traductor_botton = browser.find_element(By.XPATH, "//button[@aria-label='Cerrar']")
+            traductor_botton.click()
+        except:
+            pass  # Si no aparece, continúa
+
+        time.sleep(2)
+
+        try:
+            nombre = browser.find_element(By.XPATH, "//h1[contains(@class, 'hpipapi')]").text
+        except:
+            nombre = "No disponible"
+
+        time.sleep(1)
+
+        try:
+            spans = browser.find_elements(By.XPATH, "//span[contains(text(),'€')]")
+            precios_noche = [s.text for s in spans if "noche" in s.text.lower()]
+            if precios_noche:
+                precio_noche = precios_noche[0].split("€")[0].strip() + " €"
+            else:
+                precio_noche = "No disponible"
+        except:
+            precio_noche = "No disponible"
+
+        time.sleep(1)
+
+        try:
+            spans_total = browser.find_elements(By.XPATH, "//span[@class='_j1kt73']")
+            precios = [s.text for s in spans_total if "€" in s.text]
+            if precios:
+                precio_total = precios[0].split("€")[0].replace(",", "").strip() + " €"
+            else:
+                precio_total = "No disponible"
+        except:
+            precio_total = "No disponible"
+
+        time.sleep(1)
+
+        try:
+            servicios_elements = browser.find_elements(By.CSS_SELECTOR, 'div._19xnuo97 > div > div:first-child')
+            servicios = ", ".join([s.text for s in servicios_elements if s.text.strip()])
+        except:
+            servicios = "No disponible"
+
+        scroll_pause_time = 0.5  # Tiempo de pausa entre desplazamientos
+        screen_height = browser.execute_script("return window.innerHeight;")  # Altura de la ventana
+        scroll_position = 0
+        while True:
+            # Desplázate hacia abajo
+            browser.execute_script(f"window.scrollTo(0, {scroll_position});")
+            scroll_position += screen_height  # Incrementa la posición de desplazamiento
+            time.sleep(scroll_pause_time)  # Pausa para permitir la carga del contenido
+
+            # Verifica si se ha llegado al final de la página
+            new_scroll_height = browser.execute_script("return document.body.scrollHeight;")
+            if scroll_position >= new_scroll_height:
+                break
+
+        time.sleep(2)
+
+        try:
+            url_element = browser.find_element(By.XPATH, "//a[@title='Informar a Google acerca de errores en las imágenes o en el mapa de carreteras']")
+            url_coordenadas = url_element.get_attribute("href")
+
+            match = re.search(r"@([-\d.]+),([-\d.]+)", url_coordenadas)
+
+            lat = match.group(1)  # Latitud
+            latitud = float(lat)  # Convertir a float
+            lon = match.group(2)  # Longitud
+            longitud = float(lon)  # Convertir a float
+
+        except:
+            latitud = "No Disponible"
+            longitud = "No Disponible"
+
+        time.sleep(2)
+
+        data.append({
+            'Nombre': nombre,
+            'Precio por noche': precio_noche,
+            'Precio total': precio_total,
+            'Servicios': servicios,
+            'Latitud': latitud,
+            'Longitud': longitud,
+            'URL': url
+        })
+
+    browser.get(url_inicio_alojamientos)
 
     time.sleep(2)
-
-    try:
-        nombre = browser.find_element(By.XPATH, "//h1[contains(@class, 'hpipapi')]").text
-    except:
-        nombre = "No disponible"
-
-    time.sleep(1)
-
-    try:
-        spans = browser.find_elements(By.XPATH, "//span[contains(text(),'€')]")
-        precios_noche = [s.text for s in spans if "noche" in s.text.lower()]
-        if precios_noche:
-            precio_noche = precios_noche[0].split("€")[0].strip() + " €"
-        else:
-            precio_noche = "No disponible"
-    except:
-        precio_noche = "No disponible"
-
-    time.sleep(1)
-
-    try:
-        spans_total = browser.find_elements(By.XPATH, "//span[@class='_j1kt73']")
-        precios = [s.text for s in spans_total if "€" in s.text]
-        if precios:
-            precio_total = precios[0].split("€")[0].replace(",", "").strip() + " €"
-        else:
-            precio_total = "No disponible"
-    except:
-        precio_total = "No disponible"
-
-    time.sleep(1)
-
-    try:
-        servicios_elements = browser.find_elements(By.CSS_SELECTOR, 'div._19xnuo97 > div > div:first-child')
-        servicios = ", ".join([s.text for s in servicios_elements if s.text.strip()])
-    except:
-        servicios = "No disponible"
 
     scroll_pause_time = 0.5  # Tiempo de pausa entre desplazamientos
     screen_height = browser.execute_script("return window.innerHeight;")  # Altura de la ventana
     scroll_position = 0
+
     while True:
         # Desplázate hacia abajo
         browser.execute_script(f"window.scrollTo(0, {scroll_position});")
@@ -235,33 +287,12 @@ for link in links:
             break
 
     time.sleep(2)
-
-    try:
-        url_element = browser.find_element(By.XPATH, "//a[@title='Informar a Google acerca de errores en las imágenes o en el mapa de carreteras']")
-        url_coordenadas = url_element.get_attribute("href")
-
-        match = re.search(r"@([-\d.]+),([-\d.]+)", url_coordenadas)
-
-        lat = match.group(1)  # Latitud
-        latitud = float(lat)  # Convertir a float
-        lon = match.group(2)  # Longitud
-        longitud = float(lon)  # Convertir a float
-
-    except:
-        latitud = "No Disponible"
-        longitud = "No Disponible"
-
+    
+    boton_siguiente_pagina = browser.find_element(By.XPATH, '//*[@id="site-content"]/div/div[3]/div/div/div/nav/div/a[5]')
+    boton_siguiente_pagina.click()
+    pagina_acutal += 1
+    
     time.sleep(2)
-
-    data.append({
-        'Nombre': nombre,
-        'Precio por noche': precio_noche,
-        'Precio total': precio_total,
-        'Servicios': servicios,
-        'Latitud': latitud,
-        'Longitud': longitud,
-        'URL': url
-    })
 ## **Cierre del Navegador**
 browser.close()
 browser.quit()

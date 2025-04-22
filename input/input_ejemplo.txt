@@ -6,6 +6,8 @@ fecha_entrada = '17/06/2025'
 
 fecha_salida = '19/06/2025'
 
+numero_pagina = 1
+
 numero_adultos = 8
 
 numero_niños = 0
