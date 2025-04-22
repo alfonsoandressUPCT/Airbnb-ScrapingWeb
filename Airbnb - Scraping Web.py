@@ -175,7 +175,7 @@ for link in links:
         url = "https://" + url
 
     browser.get(url)
-    time.sleep(3)
+    time.sleep(4)
 
     try:
         # Cierra el botón del traductor si aparece
@@ -184,7 +184,7 @@ for link in links:
     except:
         pass  # Si no aparece, continúa
 
-    time.sleep(1)
+    time.sleep(2)
 
     try:
         nombre = browser.find_element(By.XPATH, "//h1[contains(@class, 'hpipapi')]").text
