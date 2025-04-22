@@ -40,6 +40,7 @@ import random
 import time
 import os
 import ssl
+import shutil
 
 ssl._create_default_https_context = ssl._create_unverified_context
 ## **2 Inicio del Proyecto**
@@ -627,17 +628,43 @@ with open('output/Análisis Económico/Medias_Precios.txt', 'w', encoding='utf
 ### **6.4 Exportación del Mapa Interactivo**
 mapa.save(f'output/Análisis Geográfico/Mapa. {ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}.html')
 ## **7. Creación de un Agente de Inteligencia Artificial para las Conclusiones Finales**
-### **7.1 Función de Lectura del Prompt**
+### **7.1 Lectura del Prompt**
 def cargar_prompt():
     with open('agente IA/input/prompt/prompt.txt', "r") as f:
         return f.read()
-### **7.2 Función de Carga de las Imágenes**
+### **7.2 Carga de Imágenes**
+origen = list()
+
 origen_imagen_economia_1 = "output/Análisis Económico/Diagrama Caja - Precios.png"
 origen_imagen_economia_2 = "output/Análisis Económico/Histograma - Precios.png"
-
 origen_imagen_servicios = "output/Análisis de Servicios/Frecuencia - Servicios.png"
 
-destino = "agente\ IA/input/images/"
+origen.append(origen_imagen_economia_1)
+origen.append(origen_imagen_economia_2)
+origen.append(origen_imagen_servicios)
+
+destino = "agente IA/input/images/"
+
+for imagen in origen:
+    if os.path.exists(imagen):
+        shutil.copy(imagen, destino)
+    else:
+        print(f"Imagen no encontrada: {imagen}")
+### **7.3 Generar Texto de LLM**
+def generar_texto_llm(prompt):
+    modelo = Ollama(model="llama3")
+    resultado = modelo.invoke(prompt)
+    return resultado
+### **7.4 Guardar el Contenido del LLM en un Fichero .tex**
+os.makedirs('agente IA/output', exist_ok=True) # Crear el directorio si no existe
+
+texto = generar_texto_llm(cargar_prompt())
+with open('agente IA/output/Conclusiones.tex', 'w', encoding='utf-8') as f:
+    f.write(texto)
+### **7.5 Generar Fichero .pdf a partir del Fichero .tex**
+archivo_tex = 'agente IA/output/Conclusiones.tex'
+
+subprocess.run(['pdflatex', '-output-directory=agente IA/output', archivo_tex], check=True)
 ## **8. Finalización del Proyecto**
 print("\nEl proceso ha terminado.")
 contador_final = time.time()
