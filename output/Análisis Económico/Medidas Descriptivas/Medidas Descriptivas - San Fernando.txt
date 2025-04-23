@@ -1,0 +1,26 @@
+
+
+Medias de los Precios de Alojamientos en San Fernando:
+----------------------------------------
+Media del Precio por Noche: 397.55 €
+Media del Precio por Noche por Viajero: 50.10 €
+Media del Precio Total: 1416.95 €
+Media del Precio Total por Viajero: 177.70 €
+
+
+Medianas de los Precios de Alojamientos en San Fernando:
+----------------------------------------
+Mediana del Precio por Noche: 311.50 €
+Mediana del Precio por Noche por Viajero: 39.00 €
+Mediana del Precio Total: 1199.50 €
+Mediana del Precio Total por Viajero: 150.50 €
+
+
+Desviaciones Típicas de los Precios de Alojamientos en San Fernando:
+----------------------------------------
+Desviación Estándar del Precio por Noche: 228.16 €
+Desviación Estándar del Precio por Noche por Viajero: 28.51 €
+Desviación Estándar del Precio Total: 741.24 €
+Desviación Estándar del Precio Total por Viajero: 92.73 €
+
+

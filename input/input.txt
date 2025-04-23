@@ -1,6 +1,6 @@
 pais = 'España'
 
-ciudad = 'Nerja'
+ciudad = 'San Fernando'
 
 fecha_entrada = '17/07/2025'
 
@@ -8,7 +8,7 @@ fecha_salida = '20/07/2025'
 
 numero_pagina = 1
 
-numero_adultos = 6
+numero_adultos = 8
 
 numero_niños = 0
 
