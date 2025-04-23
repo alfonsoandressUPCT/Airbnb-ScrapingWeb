@@ -1,7 +1,12 @@
 #### **© Alfonso Andrés Giménez Sánchez**. Todos los derechos reservados
 # **AIRBNB. Proyecto de Ciencia de Datos**
+print("\nBienvenido a Scraping-Web de Airbnb")
+print("Comenzamos con el proyecto\n")
 ## **1. Implementación de Librerías y Paquetes**
-### **1.1 Web Scraping**
+print("\n1. Implementación de Librerías y Paquetes")
+### **1.1. Web Scraping**
+print("\n\t1.1. Web Scraping")
+print("\n\t\tProceso iniciado")
 import requests
 import undetected_chromedriver as uc
 
@@ -9,23 +14,38 @@ from bs4 import BeautifulSoup as bs
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-### **1.2 Análisis y Manipulación de Datos**
+print("\n\t\tProceso finalizado")
+### **1.2. Análisis y Manipulación de Datos**
+print("\n\t1.2. Análisis y Manipulación de Datos")
+print("\n\t\tProceso iniciado")
 import pandas as pd
 import numpy as np
 import re
 
 from datetime import datetime
-### **1.3 Geolocalización y Visualización en Mapas**
+print("\n\t\tProceso finalizado")
+### **1.3. Geolocalización y Visualización en Mapas**
+print("\n\t1.3. Geolocalización y Visualización en Mapas")
+print("\n\t\tProceso iniciado")
 import folium
 
 from folium.plugins import MarkerCluster
 from geopy.geocoders import Nominatim
-### **1.4 Traducción**
+print("\n\t\tProceso finalizado")
+### **1.4. Traducción**
+print("\n\t1.4. Traducción")
+print("\n\t\tProceso iniciado")
 from translate import Translator
-### **1.5 Visualización de Datos**
+print("\n\t\tProceso finalizado")
+### **1.5. Visualización de Datos**
+print("\n\t1.5. Visualización de Datos")
+print("\n\t\tProceso iniciado")
 import matplotlib.pyplot as plt
 import seaborn as sns
-### **1.6 Creación de un Agente de Inteligencia Artificial**
+print("\n\t\tProceso finalizado")
+### **1.6. Creación de un Agente de Inteligencia Artificial**
+print("\n\t1.6. Creación de un Agente de Inteligencia Artificial")
+print("\n\t\tProceso iniciado")
 import subprocess
 import chromadb
 
@@ -47,7 +67,10 @@ from llama_index.core import Settings
 from llama_index.embeddings.ollama import OllamaEmbedding
 
 from dotenv import load_dotenv
-### **1.7 Otras Utilidades**
+print("\n\t\tProceso finalizado")
+### **1.7. Otras Utilidades**
+print("\n\t1.7. Otras Utilidades")
+print("\n\t\tProceso iniciado")
 from collections import Counter
 
 import warnings
@@ -58,13 +81,15 @@ import ssl
 import shutil
 
 ssl._create_default_https_context = ssl._create_unverified_context
-## **2 Inicio del Proyecto**
-print("\nBienvenido a Scraping-Web de Airbnb")
-print("Comenzamos con el proyecto\n")
+print("\n\t\tProceso finalizado")
+## **2. Inicio del Contador**
+print("\n2. Inicio del Contador")
 contador_inicio = time.time()
-print("En proceso...")
-## **3 Extracción de Datos**
-### **3.1 Apertura del Navegador en el Sitio Web**
+## **3. Extracción de Datos**
+print("\n3. Extracción de Datos")
+### **3.1. Apertura del Navegador en el Sitio Web**
+print("\n\t3.1. Apertura del Navegador en el Sitio Web")
+print("\n\t\tProceso iniciado")
 browser = uc.Chrome(headless=False)
 
 time.sleep(3)
@@ -74,17 +99,26 @@ url = 'https://www.airbnb.es'
 browser.get(url)
 
 time.sleep(2)
-### **3.2 Eliminación de Mensaje de Cookies**
+print("\n\t\tProceso finalizado")
+### **3.2. Eliminación de Mensaje de Cookies**
+print("\n\t3.2. Eliminación de Mensaje de Cookies")
+print("\n\t\tProceso iniciado")
 cockies_botton = browser.find_element(By.XPATH, "//button[contains(text(), 'Solo las necesarias')]")
 
 cockies_botton.click()
 
 time.sleep(0.5)
-### **3.3 Extracción del HTML**
+print("\n\t\tProceso finalizado")
+### **3.3. Extracción del HTML**
+print("\n\t3.3. Extracción del HTML")
+print("\n\t\tProceso iniciado")
 html = browser.page_source
 
 soup = bs(html, 'lxml')
-### **3.4 Lectura de Datos desde el Fichero**
+print("\n\t\tProceso finalizado")
+### **3.4. Lectura de Datos desde el Fichero**
+print("\n\t3.4. Lectura de Datos desde el Fichero")
+print("\n\t\tProceso iniciado")
 def cargar_variables(ruta):
     variables = {}
     with open(ruta, 'r') as f:
@@ -132,7 +166,10 @@ fecha_entrada_str = fecha_entrada.replace('/', '-')
 fecha_salida_str = fecha_salida.replace('/', '-')
 
 numero_total_personas = numero_adultos + numero_niños + numero_bebes + numero_mascotas
-### **3.5 Selección del Destino del Viaje**
+print("\n\t\tProceso finalizado")
+### **3.5. Selección del Destino del Viaje**
+print("\n\t3.5. Selección del Destino del Viaje")
+print("\n\t\tProceso iniciado")
 Destino = f"{ciudad}, {pais}"
 
 campo_destino = browser.find_element(By.ID, "bigsearch-query-location-input")
@@ -140,7 +177,10 @@ campo_destino.send_keys(Destino)
 campo_destino.send_keys(Keys.ENTER)
 
 time.sleep(2)
-### **3.6 Selección de Fechas del Viaje**
+print("\n\t\tProceso finalizado")
+### **3.6. Selección de Fechas del Viaje**
+print("\n\t3.6. Selección de Fechas del Viaje")
+print("\n\t\tProceso iniciado")
 translator = Translator(to_lang="es", from_lang="en")
 
 mes_entrada_nombre_español = Translator(to_lang="es").translate(mes_entrada_nombre).lower()
@@ -168,7 +208,10 @@ tarjeta_fecha_salida = f"{dia_salida}, {dia_salida_nombre}, {mes_salida_nombre} 
 
 date_button = browser.find_element(By.XPATH, f"//button[@aria-label='{tarjeta_fecha_salida}']") 
 date_button.click()
-### **3.7 Selección de Viajeros del Viaje**
+print("\n\t\tProceso finalizado")
+### **3.7. Selección de Viajeros del Viaje**
+print("\n\t3.7. Selección de Viajeros del Viaje")
+print("\n\t\tProceso iniciado")
 viajeros_button = browser.find_element(By.XPATH, "//div[div[text()='Viajeros']]/div[text()='Añade viajeros']")
 viajeros_button.click()
 
@@ -191,12 +234,18 @@ for n in range(0, numero_mascotas):
     increase_pets_button = browser.find_element(By.XPATH, "//button[@data-testid='stepper-pets-increase-button']")
     increase_pets_button.click()
     time.sleep(0.5)
-### **3.8 Realización de la Búsqueda de Ubicaciones para el Viaje**
+print("\n\t\tProceso finalizado")
+### **3.8. Realización de la Búsqueda de Ubicaciones para el Viaje**
+print("\n\t3.8. Realización de la Búsqueda de Ubicaciones para el Viaje")
+print("\n\t\tProceso iniciado")
 search_button = browser.find_element(By.XPATH, "//button[@data-testid='structured-search-input-search-button']")
 search_button.click()
 
 time.sleep(5)
-### **3.9 Extracción de Datos de los Alojamientos**
+print("\n\t\tProceso finalizado")
+### **3.9. Extracción de Datos de los Alojamientos**
+print("\n\t3.9. Extracción de Datos de los Alojamientos")
+print("\n\t\tProceso iniciado")
 data = []
 
 for pagina in range(numero_pagina):
@@ -338,13 +387,23 @@ for pagina in range(numero_pagina):
     boton_siguiente_pagina.click()
     
     time.sleep(2)
-### **3.10 Cierre del Navegador**
+print("\n\t\tProceso finalizado")
+### **3.10. Cierre del Navegador**
+print("\n\t3.10. Cierre del Navegador")
+print("\n\t\tProceso iniciado")
 browser.close()
 browser.quit()
-### **3.11 Creación de Dataframe con Datos Extraídos de cada Alojamiento**
+print("\n\t\tProceso finalizado")
+### **3.11. Creación de Dataframe con Datos Extraídos de cada Alojamiento**
+print("\n\t3.11. Creación de Dataframe con Datos Extraídos de cada Alojamiento")
+print("\n\t\tProceso iniciado")
 df = pd.DataFrame(data)
-## **4 Limpieza y Ordenación de Datos**
-### **4.1 Cálculo de Precio por Viajero**
+print("\n\t\tProceso finalizado")
+## **4. Limpieza y Ordenación de Datos**
+print("\n4. Limpieza y Ordenación de Datos")
+### **4.1. Cálculo de Precio por Viajero**
+print("\n\t4.1. Cálculo de Precio por Viajero")
+print("\n\t\tProceso iniciado")
 # Limpiar el precio y convertirlo a float
 def extraer_precio(precio_str):
     if isinstance(precio_str, str) and '€' in precio_str:
@@ -360,11 +419,17 @@ df['Precio por Noche por Viajero'] = df['Precio por Noche'].apply(lambda x: extr
 df['Precio Total por Viajero'] = df['Precio Total'].apply(lambda x: extraer_precio(x) / numero_adultos if extraer_precio(x) is not None else "No Disponible")
                                                           
 df = df[['Nombre', 'Precio por Noche', 'Precio por Noche por Viajero', 'Precio Total', 'Precio Total por Viajero', 'Latitud', 'Longitud', 'Servicios', 'URL']]
-### **4.2 Eliminación de Filas No Disponibles**
+print("\n\t\tProceso finalizado")
+### **4.2. Eliminación de Filas No Disponibles**
+print("\n\t4.2. Eliminación de Filas No Disponibles")
+print("\n\t\tProceso iniciado")
 indices = df[df.eq("No Disponible").any(axis=1)].index.tolist()
 df = df.drop(indices)
 df = df.reset_index(drop=True)
-### **4.3 Formateo de Servicios con Viñetas**
+print("\n\t\tProceso finalizado")
+### **4.3. Formateo de Servicios con Viñetas**
+print("\n\t4.3. Formateo de Servicios con Viñetas")
+print("\n\t\tProceso iniciado")
 # Formatear los servicios con viñetas
 def formatear_servicios(servicios):
     if servicios and isinstance(servicios, str):
@@ -372,7 +437,10 @@ def formatear_servicios(servicios):
     return "No disponible"
 
 df['Servicios'] = df['Servicios'].apply(formatear_servicios)
-### **4.4 Aproximación y Redondeo de Precios**
+print("\n\t\tProceso finalizado")
+### **4.4. Aproximación y Redondeo de Precios**
+print("\n\t4.4. Aproximación y Redondeo de Precios")
+print("\n\t\tProceso iniciado")
 columnas_a_redondear = ['Precio por Noche por Viajero', 'Precio Total por Viajero']
 
 for columna in columnas_a_redondear:
@@ -381,7 +449,10 @@ for columna in columnas_a_redondear:
     
     # Redondeamos hacia arriba y convertimos a enteros
     df[columna] = np.ceil(df[columna]).astype(float)
-### **4.5 Conversión de Datos Económicos a Datos Numéricos**
+print("\n\t\tProceso finalizado")
+### **4.5. Conversión de Datos Económicos a Datos Numéricos**
+print("\n\t4.5. Conversión de Datos Económicos a Datos Numéricos")
+print("\n\t\tProceso iniciado")
 # Función para limpiar y convertir los precios a float
 def convertir_a_entero(precio):
     if isinstance(precio, str):
@@ -393,11 +464,19 @@ df["Precio por Noche"] = df["Precio por Noche"].apply(convertir_a_entero)
 df["Precio Total"] = df["Precio Total"].apply(convertir_a_entero)
 df["Precio por Noche por Viajero"] = pd.to_numeric(df["Precio por Noche por Viajero"]).astype(int)
 df["Precio Total por Viajero"] = pd.to_numeric(df["Precio Total por Viajero"]).astype(int)
-### **4.6 Capitalización de Nombre de los Títulos**
+print("\n\t\tProceso finalizado")
+### **4.6. Capitalización de Nombre de los Títulos**
+print("\n\t4.6. Capitalización de Nombre de los Títulos")
+print("\n\t\tProceso iniciado")
 df['Nombre'] = df['Nombre'].str.title()
-## **5 Interpretación de Datos**
-### **5.1 Análisis Económico**
-#### **5.1.1 Medias de los Precios**
+print("\n\t\tProceso finalizado")
+## **5. Interpretación de Datos**
+print("\n5. Interpretación de Datos")
+### **5.1. Análisis Económico**
+print("\n\t5.1. Análisis Económico")
+#### **5.1.1. Medias de los Precios**
+print("\n\t\t5.1.1. Medias de los Precios")
+print("\n\t\t\tProceso iniciado")
 media_precio_noche = df['Precio por Noche'].mean()
 media_precio_noche_viajero = df['Precio por Noche por Viajero'].mean()
 media_precio_total = df['Precio Total'].mean()
@@ -411,7 +490,10 @@ medias = (
     f"Media del Precio Total: {media_precio_total:.2f} €\n"
     f"Media del Precio Total por Viajero: {media_precio_total_viajero:.2f} €\n"
 )
-#### **5.1.2 Medianas de los Precios**
+print("\n\t\t\tProceso finalizado")
+#### **5.1.2. Medianas de los Precios**
+print("\n\t\t5.1.2. Medianas de los Precios")
+print("\n\t\t\tProceso iniciado")
 mediana_precio_noche = df['Precio por Noche'].median()
 mediana_precio_noche_viajero = df['Precio por Noche por Viajero'].median()
 mediana_precio_total = df['Precio Total'].median()
@@ -425,7 +507,10 @@ medianas = (
     f"Mediana del Precio Total: {mediana_precio_total:.2f} €\n"
     f"Mediana del Precio Total por Viajero: {mediana_precio_total_viajero:.2f} €\n"
 )
-#### **5.1.3 Desviaciones Estándar de los Precios**
+print("\n\t\t\tProceso finalizado")
+#### **5.1.3. Desviaciones Estándar de los Precios**
+print("\n\t\t5.1.3. Desviaciones Estándar de los Precios")
+print("\n\t\t\tProceso iniciado")
 desviacion_precio_noche = df['Precio por Noche'].std()
 desviacion_precio_noche_viajero = df['Precio por Noche por Viajero'].std()
 desviacion_precio_total = df['Precio Total'].std()
@@ -439,7 +524,10 @@ desviaciones_tipicas = (
     f"Desviación Estándar del Precio Total: {desviacion_precio_total:.2f} €\n"
     f"Desviación Estándar del Precio Total por Viajero: {desviacion_precio_total_viajero:.2f} €\n"
 )
-#### **5.1.4 Modas de los Precios**
+print("\n\t\t\tProceso finalizado")
+#### **5.1.4. Modas de los Precios**
+print("\n\t\t5.1.4. Modas de los Precios")
+print("\n\t\t\tProceso iniciado")
 moda_precio_noche = df['Precio por Noche'].mode()[0]
 df['Moda Precio por Noche'] = df['Precio por Noche'].apply(lambda x: 'X' if x == moda_precio_noche else '')
 
@@ -451,7 +539,10 @@ df['Moda Precio Total'] = df['Precio Total'].apply(lambda x: 'X' if x == moda_pr
 
 moda_precio_total_viajero = df['Precio Total por Viajero'].mode()[0]
 df['Moda Precio Total por Viajero'] = df['Precio Total por Viajero'].apply(lambda x: 'X' if x == moda_precio_total_viajero else '')
-#### **5.1.5 Precios Máximos**
+print("\n\t\t\tProceso finalizado")
+#### **5.1.5. Precios Máximos**
+print("\n\t\t5.1.5. Precios Máximos")
+print("\n\t\t\tProceso iniciado")
 maximo_precio_noche = df['Precio por Noche'].max()
 df['Máximo Precio por Noche'] = df['Precio por Noche'].apply(lambda x: 'X' if x == maximo_precio_noche else '')
 
@@ -463,7 +554,10 @@ df['Máximo Precio Total'] = df['Precio Total'].apply(lambda x: 'X' if x == maxi
 
 maximo_precio_total_viajero = df['Precio Total por Viajero'].max()
 df['Máximo Precio Total por Viajero'] = df['Precio Total por Viajero'].apply(lambda x: 'X' if x == maximo_precio_total_viajero else '')
-#### **5.1.6 Precios Mínimos**
+print("\n\t\t\tProceso finalizado")
+#### **5.1.6. Precios Mínimos**
+print("\n\t\t5.1.6. Precios Mínimos")
+print("\n\t\t\tProceso iniciado")
 minimo_precio_noche = df['Precio por Noche'].min()
 df['Mínimo Precio por Noche'] = df['Precio por Noche'].apply(lambda x: 'X' if x == minimo_precio_noche else '')
 
@@ -475,8 +569,12 @@ df['Mínimo Precio Total'] = df['Precio Total'].apply(lambda x: 'X' if x == mini
 
 minimo_precio_total_viajero = df['Precio Total por Viajero'].min()
 df['Mínimo Precio Total por Viajero'] = df['Precio Total por Viajero'].apply(lambda x: 'X' if x == minimo_precio_total_viajero else '')
-#### **5.1.7 Representación Gráfica de Precios**
-##### **5.1.7.1 Histogramas**
+print("\n\t\t\tProceso finalizado")
+#### **5.1.7. Representación Gráfica de Precios**
+print("\n\t\t5.1.7. Representación Gráfica de Precios")
+##### **5.1.7.1. Histogramas**
+print("\n\t\t\t5.1.7.1. Histogramas")
+print("\n\t\t\t\tProceso iniciado")
 fig, axes = plt.subplots(2, 2, figsize=(15, 10))
 
 # Histograma de Precios por Noche
@@ -506,7 +604,10 @@ axes[1, 1].set_ylabel('Frecuencia')
 plt.tight_layout()
 plt.savefig('output/Análisis Económico/Histograma - Precios.png')
 plt.close(fig)
-##### **5.1.7.2 Diagramas de Caja**
+print("\n\t\t\t\tProceso finalizado")
+##### **5.1.7.2. Diagramas de Caja**
+print("\n\t\t\t5.1.7.2. Diagramas de Caja")
+print("\n\t\t\t\tProceso iniciado")
 fig, axes = plt.subplots(2, 2, figsize=(15, 10))
 
 # Diagrama de caja de Precios por Noche
@@ -532,8 +633,12 @@ axes[1, 1].set_ylabel('Precio Total por Viajero (€)')
 plt.tight_layout()
 plt.savefig('output/Análisis Económico/Diagrama Caja - Precios.png')
 plt.close(fig)
-### **5.2 Análisis de Servicios**
-#### **5.2.1 Extracción de los Servicios**
+print("\n\t\t\t\tProceso finalizado")
+### **5.2. Análisis de Servicios**
+print("\n\t5.2. Análisis de Servicios")
+#### **5.2.1. Extracción de los Servicios**
+print("\n\t\t5.2.1. Extracción de los Servicios")
+print("\n\t\t\tProceso iniciado")
 # Copiamos solo la columna de servicios para trabajar
 servicios_raw = df['Servicios'].dropna().copy()
 
@@ -554,12 +659,21 @@ listas_de_servicios = servicios_raw.apply(extraer_servicios)
 
 # Aplanamos todas las listas en una sola
 todos_los_servicios = [servicio for sublist in listas_de_servicios for servicio in sublist]
-#### **5.2.2 Contamos las Frecuencias de los Servicios**
+print("\n\t\t\tProceso finalizado")
+#### **5.2.2. Contamos las Frecuencias de los Servicios**
+print("\n\t\t5.2.2. Contamos las Frecuencias de los Servicios")
+print("\n\t\t\tProceso iniciado")
 frecuencias_servicios = Counter(todos_los_servicios)
-#### **5.2.3 Creación de un Dataframe de los Servicios**
+print("\n\t\t\tProceso finalizado")
+#### **5.2.3. Creación de un Dataframe de los Servicios**
+print("\n\t\t5.2.3. Creación de un Dataframe de los Servicios")
+print("\n\t\t\tProceso iniciado")
 servicios_df = pd.DataFrame(frecuencias_servicios.items(), columns=['Servicio', 'Frecuencia'])
 servicios_df = servicios_df.sort_values(by='Frecuencia', ascending=False)
-#### **5.2.4 Representación Gráfica de los Servicios**
+print("\n\t\t\tProceso finalizado")
+#### **5.2.4. Representación Gráfica de los Servicios**
+print("\n\t\t5.2.4. Representación Gráfica de los Servicios")
+print("\n\t\t\tProceso iniciado")
 warnings.simplefilter(action='ignore', category=FutureWarning)
 plt.figure(figsize=(12, 6))
 sns.barplot(data=servicios_df.head(20), x='Frecuencia', y='Servicio', palette='crest')
@@ -570,21 +684,34 @@ plt.tight_layout()
 plt.savefig('output/Análisis de Servicios/Frecuencia - Servicios.png')
 warnings.simplefilter(action='ignore', category=FutureWarning)
 plt.close()
-#### **5.2.5 Cálculo del Número de Servicios por Alojamiento**
+print("\n\t\t\tProceso finalizado")
+#### **5.2.5. Cálculo del Número de Servicios por Alojamiento**
+print("\n\t\t5.2.5. Cálculo del Número de Servicios por Alojamiento")
+print("\n\t\t\tProceso iniciado")
 df['Numero de Servicios'] = df['Servicios'].apply(lambda x: len(x.split('\n')) if isinstance(x, str) else 0)
-### **5.3 Análisis Geográfico**
-##### **5.3.1 Obtener las Coordenadas de Nuestra Ciudad**
+print("\n\t\t\tProceso finalizado")
+### **5.3. Análisis Geográfico**
+print("\n\t5.3. Análisis Geográfico")
+##### **5.3.1. Obtener las Coordenadas de Nuestra Ciudad**
+print("\n\t\t5.3.1. Obtener las Coordenadas de Nuestra Ciudad")
+print("\n\t\t\tProceso iniciado")
 geolocator = Nominatim(user_agent="geoapiEjemplo")
 
 location = geolocator.geocode(f"{ciudad}, {pais}")
 
 latitud_ciudad = location.latitude
 longitud_ciudad = location.longitude
-##### **5.3.2 Creación del Mapa**
+print("\n\t\t\tProceso finalizado")
+##### **5.3.2. Creación del Mapa**
+print("\n\t\t5.3.2. Creación del Mapa")
+print("\n\t\t\tProceso iniciado")
 mapa = folium.Map(location=[latitud_ciudad, longitud_ciudad], zoom_start=13)
 
 cluster = MarkerCluster().add_to(mapa) # Agrupador de marcadores
-##### **5.3.3 Añadir Elementos Clasificados al Mapa** 
+print("\n\t\t\tProceso finalizado")
+##### **5.3.3. Añadir Elementos Clasificados al Mapa** 
+print("\n\t\t5.3.3. Añadir Elementos Clasificados al Mapa")
+print("\n\t\t\tProceso iniciado")
 for _, row in df.iterrows():
     tooltip = f"Nombre: {row['Nombre']} <br> Precio total: {row['Precio Total']} € <br> Precio Total por Viajero: {row['Precio Total por Viajero']} € <br> Precio por Noche: {row['Precio por Noche']} € <br> Precio por Noche por Viajero: {row['Precio por Noche por Viajero']} €  <br> Número de Servicios: {row['Numero de Servicios']} <br><a href='{row['URL']}' target='_blank'>Ver alojamiento</a>"
     
@@ -604,8 +731,12 @@ for _, row in df.iterrows():
         fill_opacity=0.7,
         popup=folium.Popup(tooltip, max_width=300)
     ).add_to(cluster)
+print("\n\t\t\tProceso finalizado")
 ## **6. Exportación de Datos**
-### **6.1 Reordenación del Dataframe**
+print("\n6. Exportación de Datos")
+### **6.1. Reordenación del Dataframe**
+print("\n\t6.1. Reordenación del Dataframe")
+print("\n\t\tProceso iniciado")
 # Especificar el nuevo orden de las columnas
 nuevo_orden = [
     'Nombre', 
@@ -621,7 +752,10 @@ nuevo_orden = [
 
 # Reordenar las columnas
 df = df[nuevo_orden]
-### **6.2 Exportación del CSV**
+print("\n\t\tProceso finalizado")
+### **6.2. Exportación del CSV**
+print("\n\t6.2. Exportación del CSV")
+print("\n\t\tProceso iniciado")
 # Asegurarse de que el directorio exista
 os.makedirs('output', exist_ok=True)
 
@@ -631,7 +765,10 @@ df.to_csv(
     index=False,
     encoding='utf-8'
 )
-### **6.3 Exportación del Fichero de Texto**
+print("\n\t\tProceso finalizado")
+### **6.3. Exportación del Fichero de Texto**
+print("\n\t6.3. Exportación del Fichero de Texto")
+print("\n\t\tProceso iniciado")
 # Asegurarse de que el directorio exista
 os.makedirs('output', exist_ok=True)
 
@@ -644,14 +781,24 @@ with open(f'output/Análisis Económico/Medidas Descriptivas - {ciudad}.txt', 
     file.write("\n\n")
     file.write(desviaciones_tipicas)
     file.write("\n\n")
-### **6.4 Exportación del Mapa Interactivo**
+print("\n\t\tProceso finalizado")
+### **6.4. Exportación del Mapa Interactivo**
+print("\n\t6.4. Exportación del Mapa Interactivo")
+print("\n\t\tProceso iniciado")
 mapa.save(f'output/Análisis Geográfico/Mapa. {ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}.html')
+print("\n\t\tProceso finalizado")
 ## **7. Creación de un Agente de Inteligencia Artificial para las Conclusiones Finales**
-### **7.1 Lectura del Prompt**
+print("\n7. Creación de un Agente de Inteligencia Artificial para las Conclusiones Finales")
+### **7.1. Lectura del Prompt**
+print("\n\t7.1. Lectura del Prompt")
+print("\n\t\tProceso iniciado")
 def cargar_prompt():
     with open('agente IA/input/prompt/prompt.rtf', "r", encoding="utf-8") as f:
         return f.read()
-### **7.2 Copia de Imágenes**
+print("\n\t\tProceso finalizado")
+### **7.2. Copia de Imágenes**
+print("\n\t7.2. Copia de Imágenes")
+print("\n\t\tProceso iniciado")
 imagenes = list()
 
 origen_imagen_economia_1 = "output/Análisis Económico/Diagrama Caja - Precios.png"
@@ -678,7 +825,10 @@ if os.path.exists(origen_tabla_datos):
     shutil.copy(origen_tabla_datos, destino_data)
 else:
     print(f"Tabla de datos no encontrada: {origen_tabla_datos}")
-### **7.3 Cargar Varibales de Entorno**
+print("\n\t\tProceso finalizado")
+### **7.3. Cargar Varibales de Entorno**
+print("\n\t7.3. Cargar Varibales de Entorno")
+print("\n\t\tProceso iniciado")
 # Obtener directorio actual y construir ruta absoluta
 current_dir = os.path.dirname(os.path.abspath("agente IA/.env"))
 dotenv_path = os.path.join(current_dir, '.env')
@@ -688,18 +838,27 @@ load_dotenv(dotenv_path=dotenv_path)
 
 OLLAMA_MODEL = os.getenv("OLLAMA_MODEL")
 OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL")
-### **7.3 Lectura de Imágenes**
+print("\n\t\tProceso finalizado")
+### **7.4. Lectura de Imágenes**
+print("\n\t7.4. Lectura de Imágenes")
+print("\n\t\tProceso iniciado")
 directorio_images = "agente IA/input/images/"
 directorio_data = "agente IA/input/data/"
 
 images = SimpleDirectoryReader(directorio_images).load_data()
 data = SimpleDirectoryReader(directorio_data).load_data()
-### **7.4 Inicialización del Almacenamiento en Chroma**
+print("\n\t\tProceso finalizado")
+### **7.5. Inicialización del Almacenamiento en Chroma**
+print("\n\t7.5. Inicialización del Almacenamiento en Chroma")
+print("\n\t\tProceso iniciado")
 chroma_client = chromadb.PersistentClient(path="./agente IA/chroma_store")
 collection = chroma_client.get_or_create_collection("rag_collection")
 vector_store = ChromaVectorStore(chroma_collection=collection)
 storage_context = StorageContext.from_defaults(vector_store=vector_store)
-### **7.5 Configuración de LLM y Embedings**
+print("\n\t\tProceso finalizado")
+### **7.6. Configuración de LLM y Embedings**
+print("\n\t7.6. Configuración de LLM y Embedings")
+print("\n\t\tProceso iniciado")
 # Configurar LLM con Ollama
 llm = Ollama(
     model=OLLAMA_MODEL,
@@ -717,7 +876,10 @@ embed_model = OllamaEmbedding(
 # Configurar Settings
 Settings.llm = llm
 Settings.embed_model = embed_model
-### **7.6 Creación de un Índice Vectorial**
+print("\n\t\tProceso finalizado")
+### **7.7. Creación de un Índice Vectorial**
+print("\n\t7.7. Creación de un Índice Vectorial")
+print("\n\t\tProceso iniciado")
 documents = images + data
 
 storage_context = StorageContext.from_defaults(vector_store=SimpleVectorStore())
@@ -726,10 +888,16 @@ index = VectorStoreIndex.from_documents(
     documents=documents,
     storage_context=storage_context
 )
-### **7.7 Creación de una Respuesta**
+print("\n\t\tProceso finalizado")
+### **7.8. Creación de una Respuesta**
+print("\n\t7.8. Creación de una Respuesta")
+print("\n\t\tProceso iniciado")
 query_engine = index.as_query_engine()
 response = query_engine.query(cargar_prompt())
-### **7.8 Guardar Respuesta**
+print("\n\t\tProceso finalizado")
+### **7.9. Guardar Respuesta**
+print("\n\t7.9. Guardar Respuesta")
+print("\n\t\tProceso iniciado")
 def save_output(text, path="output.txt"):
     # Crear el directorio si no existe
     directory = os.path.dirname(path)
@@ -742,7 +910,9 @@ def save_output(text, path="output.txt"):
 
 # Guardar la respuesta en un archivo de texto
 save_output(response, "output/Análisis IA/Respuesta IA.txt")
+print("\n\t\tProceso finalizado")
 ## **8. Finalización del Proyecto**
+print("\n8. Finalización del Proyecto")
 print("\nEl proceso ha terminado.")
 contador_final = time.time()
 tiempo_total = contador_final - contador_inicio
