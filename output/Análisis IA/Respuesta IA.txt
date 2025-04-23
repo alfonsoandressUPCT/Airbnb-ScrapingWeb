@@ -1,0 +1,21 @@
+Para generar un informe detallado en formato LaTeX personalizado, es importante seguir las pautas y instrucciones proporcionadas para este proyecto. Aquí hay una guía general para completar el tarea:
+
+1. **Limpieza de datos**: Comienza por limpiar los datos extraídos del archivo CSV, eliminando cualquier dato duplicado o inconsistente.
+
+2. **Exploración y visualización**: Utiliza paquetes como `ggplot2` o `matplotlib` para crear gráficos que ayuden a comprender la información de manera más clara. Asegúrate de que las rutas de las imágenes sean relativas al fichero LaTeX generado.
+
+3. **Análisis exploratorio**: Realiza estadísticas descriptivas como promedios, medias y varianzas para entender mejor los datos. También puedes utilizar visualizaciones como barras o columnas para comparar diferentes categorías.
+
+4. **Comparativa de alojamientos**: Crea una tabla comparativa que destaque las características más importantes de cada alojamiento, utilizando paquetes LaTeX como `tabular` y `booktabs`.
+
+5. **Recomendaciones personalizadas**: Escribe texto dinámico adaptado al tipo de viajero y preferencias del cliente, manteniendo un lenguaje profesional.
+
+6. **Conclusión**: Resume los hallazgos del análisis y proporciona recomendaciones adicionales basadas en las estadísticas y visualizaciones generadas.
+
+7. **Formato LaTeX**: Utiliza paquetes profesionales como `geometry`, `graphicx`, `booktabs` y `hyperref` para un estilo limpio y profesional. Asegúrate de no incluir comentarios ni líneas que no pertenezcan estrictamente al código fuente.
+
+8. **Generación del informe**: Finalmente, genera exclusivamente las líneas del archivo LaTeX del informe, asegurándote de que sea solo código LaTeX puro sin contenido adicional.
+
+9. **Guardado del resultado**: Guarda el resultado como un archivo LaTeX llamado `Informe_[Ciudad].tex`.
+
+Siguiendo estas pautas y utilizando herramientas adecuadas, podrás generar un informe detallado en formato LaTeX personalizado que cumpla con las expectativas del cliente.

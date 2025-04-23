@@ -27,11 +27,26 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 ### **1.6 Creación de un Agente de Inteligencia Artificial**
 import subprocess
+import chromadb
 
-from langchain_core.prompts import PromptTemplate
-from langchain_core.runnables import Runnable
-from langchain_community.llms import Ollama
-from PIL import Image
+from llama_index.llms.ollama import Ollama
+
+from llama_index.core import VectorStoreIndex
+from llama_index.core import SimpleDirectoryReader
+from llama_index.core import ServiceContext
+from llama_index.core import StorageContext
+
+from llama_index.core.vector_stores import SimpleVectorStore
+
+from llama_index.embeddings.openai import OpenAIEmbedding
+
+from llama_index.vector_stores.chroma import ChromaVectorStore
+
+from llama_index.core import Settings
+
+from llama_index.embeddings.ollama import OllamaEmbedding
+
+from dotenv import load_dotenv
 ### **1.7 Otras Utilidades**
 from collections import Counter
 
@@ -184,7 +199,7 @@ time.sleep(5)
 ### **3.9 Extracción de Datos de los Alojamientos**
 data = []
 
-for pagina in range(numero_paginas):
+for pagina in range(numero_pagina):
 
     url_inicio_alojamientos = browser.current_url
 
@@ -321,7 +336,6 @@ for pagina in range(numero_paginas):
     
     boton_siguiente_pagina = browser.find_element(By.XPATH, '//*[@id="site-content"]/div/div[3]/div/div/div/nav/div/a[5]')
     boton_siguiente_pagina.click()
-    pagina_acutal += 1
     
     time.sleep(2)
 ### **3.10 Cierre del Navegador**
@@ -341,11 +355,11 @@ def extraer_precio(precio_str):
             return None
     return None
 
-df['Precio por Noche por Viajero'] = df['Precio por noche'].apply(lambda x: extraer_precio(x) / numero_adultos if extraer_precio(x) is not None else "No Disponible")
+df['Precio por Noche por Viajero'] = df['Precio por Noche'].apply(lambda x: extraer_precio(x) / numero_adultos if extraer_precio(x) is not None else "No Disponible")
 
-df['Precio Total por Viajero'] = df['Precio total'].apply(lambda x: extraer_precio(x) / numero_adultos if extraer_precio(x) is not None else "No Disponible")
+df['Precio Total por Viajero'] = df['Precio Total'].apply(lambda x: extraer_precio(x) / numero_adultos if extraer_precio(x) is not None else "No Disponible")
                                                           
-df = df[['Nombre', 'Precio por Noche', 'Precio por Noche por Viajero', 'Precio Total', 'Precio total por Viajero', 'Latitud', 'Longitud', 'Servicios', 'URL']]
+df = df[['Nombre', 'Precio por Noche', 'Precio por Noche por Viajero', 'Precio Total', 'Precio Total por Viajero', 'Latitud', 'Longitud', 'Servicios', 'URL']]
 ### **4.2 Eliminación de Filas No Disponibles**
 indices = df[df.eq("No Disponible").any(axis=1)].index.tolist()
 df = df.drop(indices)
@@ -359,7 +373,7 @@ def formatear_servicios(servicios):
 
 df['Servicios'] = df['Servicios'].apply(formatear_servicios)
 ### **4.4 Aproximación y Redondeo de Precios**
-columnas_a_redondear = ['Precio por noche por viajero', 'Precio total por viajero']
+columnas_a_redondear = ['Precio por Noche por Viajero', 'Precio Total por Viajero']
 
 for columna in columnas_a_redondear:
     # Aseguramos que son numéricos
@@ -375,116 +389,116 @@ def convertir_a_entero(precio):
     return precio
 
 # Aplicar la función a las columnas correspondientes
-df["Precio por noche"] = df["Precio por noche"].apply(convertir_a_entero)
-df["Precio total"] = df["Precio total"].apply(convertir_a_entero)
-df["Precio por noche por viajero"] = pd.to_numeric(df["Precio por noche por viajero"]).astype(int)
-df["Precio total por viajero"] = pd.to_numeric(df["Precio total por viajero"]).astype(int)
+df["Precio por Noche"] = df["Precio por Noche"].apply(convertir_a_entero)
+df["Precio Total"] = df["Precio Total"].apply(convertir_a_entero)
+df["Precio por Noche por Viajero"] = pd.to_numeric(df["Precio por Noche por Viajero"]).astype(int)
+df["Precio Total por Viajero"] = pd.to_numeric(df["Precio Total por Viajero"]).astype(int)
 ### **4.6 Capitalización de Nombre de los Títulos**
 df['Nombre'] = df['Nombre'].str.title()
 ## **5 Interpretación de Datos**
 ### **5.1 Análisis Económico**
 #### **5.1.1 Medias de los Precios**
-media_precio_noche = df['Precio por noche'].mean()
-media_precio_noche_viajero = df['Precio por noche por viajero'].mean()
-media_precio_total = df['Precio total'].mean()
-media_precio_total_viajero = df['Precio total por viajero'].mean()
+media_precio_noche = df['Precio por Noche'].mean()
+media_precio_noche_viajero = df['Precio por Noche por Viajero'].mean()
+media_precio_total = df['Precio Total'].mean()
+media_precio_total_viajero = df['Precio Total por Viajero'].mean()
 
 medias = (
     f"Medias de los Precios de Alojamientos en {ciudad}:\n"
     f"----------------------------------------\n"
-    f"Media del precio por noche: {media_precio_noche:.2f} €\n"
-    f"Media del precio por noche por viajero: {media_precio_noche_viajero:.2f} €\n"
-    f"Media del precio total: {media_precio_total:.2f} €\n"
-    f"Media del precio total por viajero: {media_precio_total_viajero:.2f} €\n"
+    f"Media del Precio por Noche: {media_precio_noche:.2f} €\n"
+    f"Media del Precio por Noche por Viajero: {media_precio_noche_viajero:.2f} €\n"
+    f"Media del Precio Total: {media_precio_total:.2f} €\n"
+    f"Media del Precio Total por Viajero: {media_precio_total_viajero:.2f} €\n"
 )
 #### **5.1.2 Medianas de los Precios**
-mediana_precio_noche = df['Precio por noche'].median()
-mediana_precio_noche_viajero = df['Precio por noche por viajero'].median()
-mediana_precio_total = df['Precio total'].median()
-mediana_precio_total_viajero = df['Precio total por viajero'].median()
+mediana_precio_noche = df['Precio por Noche'].median()
+mediana_precio_noche_viajero = df['Precio por Noche por Viajero'].median()
+mediana_precio_total = df['Precio Total'].median()
+mediana_precio_total_viajero = df['Precio Total por Viajero'].median()
 
 medianas = (
     f"Medianas de los Precios de Alojamientos en {ciudad}:\n"
     f"----------------------------------------\n"
-    f"Mediana del precio por noche: {mediana_precio_noche:.2f} €\n"
-    f"Mediana del precio por noche por viajero: {mediana_precio_noche_viajero:.2f} €\n"
-    f"Mediana del precio total: {mediana_precio_total:.2f} €\n"
-    f"Mediana del precio total por viajero: {mediana_precio_total_viajero:.2f} €\n"
+    f"Mediana del Precio por Noche: {mediana_precio_noche:.2f} €\n"
+    f"Mediana del Precio por Noche por Viajero: {mediana_precio_noche_viajero:.2f} €\n"
+    f"Mediana del Precio Total: {mediana_precio_total:.2f} €\n"
+    f"Mediana del Precio Total por Viajero: {mediana_precio_total_viajero:.2f} €\n"
 )
 #### **5.1.3 Desviaciones Estándar de los Precios**
-desviacion_precio_noche = df['Precio por noche'].std()
-desviacion_precio_noche_viajero = df['Precio por noche por viajero'].std()
-desviacion_precio_total = df['Precio total'].std()
-desviacion_precio_total_viajero = df['Precio total por viajero'].std()
+desviacion_precio_noche = df['Precio por Noche'].std()
+desviacion_precio_noche_viajero = df['Precio por Noche por Viajero'].std()
+desviacion_precio_total = df['Precio Total'].std()
+desviacion_precio_total_viajero = df['Precio Total por Viajero'].std()
 
 desviaciones_tipicas = (
     f"Desviaciones Típicas de los Precios de Alojamientos en {ciudad}:\n"
     f"----------------------------------------\n"
-    f"Desviación estándar del precio por noche: {desviacion_precio_noche:.2f} €\n"
-    f"Desviación estándar del precio por noche por viajero: {desviacion_precio_noche_viajero:.2f} €\n"
-    f"Desviación estándar del precio total: {desviacion_precio_total:.2f} €\n"
-    f"Desviación estándar del precio total por viajero: {desviacion_precio_total_viajero:.2f} €\n"
+    f"Desviación Estándar del Precio por Noche: {desviacion_precio_noche:.2f} €\n"
+    f"Desviación Estándar del Precio por Noche por Viajero: {desviacion_precio_noche_viajero:.2f} €\n"
+    f"Desviación Estándar del Precio Total: {desviacion_precio_total:.2f} €\n"
+    f"Desviación Estándar del Precio Total por Viajero: {desviacion_precio_total_viajero:.2f} €\n"
 )
 #### **5.1.4 Modas de los Precios**
-moda_precio_noche = df['Precio por noche'].mode()[0]
-df['Moda Precio por Noche'] = df['Precio por noche'].apply(lambda x: 'X' if x == moda_precio_noche else '')
+moda_precio_noche = df['Precio por Noche'].mode()[0]
+df['Moda Precio por Noche'] = df['Precio por Noche'].apply(lambda x: 'X' if x == moda_precio_noche else '')
 
-df['Moda Precio por Noche por Viajero'] = df['Precio por noche por viajero'].apply(lambda x: 'X' if x == moda_precio_noche_viajero else '')
-moda_precio_noche_viajero = df['Precio por noche por viajero'].mode()[0]
+moda_precio_noche_viajero = df['Precio por Noche por Viajero'].mode()[0]
+df['Moda Precio por Noche por Viajero'] = df['Precio por Noche por Viajero'].apply(lambda x: 'X' if x == moda_precio_noche_viajero else '')
 
-df['Moda Precio Total'] = df['Precio total'].apply(lambda x: 'X' if x == moda_precio_total else '')
-moda_precio_total = df['Precio total'].mode()[0]
+moda_precio_total = df['Precio Total'].mode()[0]
+df['Moda Precio Total'] = df['Precio Total'].apply(lambda x: 'X' if x == moda_precio_total else '')
 
-df['Moda Precio Total por Viajero'] = df['Precio total por viajero'].apply(lambda x: 'X' if x == moda_precio_total_viajero else '')
-moda_precio_total_viajero = df['Precio total por viajero'].mode()[0]
+moda_precio_total_viajero = df['Precio Total por Viajero'].mode()[0]
+df['Moda Precio Total por Viajero'] = df['Precio Total por Viajero'].apply(lambda x: 'X' if x == moda_precio_total_viajero else '')
 #### **5.1.5 Precios Máximos**
-maximo_precio_noche = df['Precio por noche'].max()
-df['Máximo precio por oche'] = df['Precio por noche'].apply(lambda x: 'X' if x == maximo_precio_noche else '')
+maximo_precio_noche = df['Precio por Noche'].max()
+df['Máximo Precio por Noche'] = df['Precio por Noche'].apply(lambda x: 'X' if x == maximo_precio_noche else '')
 
-maximo_precio_noche_viajero = df['Precio por noche por viajero'].max()
-df['Máximo precio por noche por niajero'] = df['Precio por noche por viajero'].apply(lambda x: 'X' if x == maximo_precio_noche_viajero else '')
+maximo_precio_noche_viajero = df['Precio por Noche por Viajero'].max()
+df['Máximo Precio por Noche por Viajero'] = df['Precio por Noche por Viajero'].apply(lambda x: 'X' if x == maximo_precio_noche_viajero else '')
 
-maximo_precio_total = df['Precio total'].max()
-df['Máximo precio total'] = df['Precio total'].apply(lambda x: 'X' if x == maximo_precio_total else '')
+maximo_precio_total = df['Precio Total'].max()
+df['Máximo Precio Total'] = df['Precio Total'].apply(lambda x: 'X' if x == maximo_precio_total else '')
 
-maximo_precio_total_viajero = df['Precio total por viajero'].max()
-df['Máximo precio total por viajero'] = df['Precio total por viajero'].apply(lambda x: 'X' if x == maximo_precio_total_viajero else '')
+maximo_precio_total_viajero = df['Precio Total por Viajero'].max()
+df['Máximo Precio Total por Viajero'] = df['Precio Total por Viajero'].apply(lambda x: 'X' if x == maximo_precio_total_viajero else '')
 #### **5.1.6 Precios Mínimos**
-minimo_precio_noche = df['Precio por noche'].min()
-df['Mínimo Precio por Noche'] = df['Precio por noche'].apply(lambda x: 'X' if x == minimo_precio_noche else '')
+minimo_precio_noche = df['Precio por Noche'].min()
+df['Mínimo Precio por Noche'] = df['Precio por Noche'].apply(lambda x: 'X' if x == minimo_precio_noche else '')
 
-minimo_precio_noche_viajero = df['Precio por noche por viajero'].min()
-df['Mínimo Precio por Noche por Viajero'] = df['Precio por noche por viajero'].apply(lambda x: 'X' if x == minimo_precio_noche_viajero else '')
+minimo_precio_noche_viajero = df['Precio por Noche por Viajero'].min()
+df['Mínimo Precio por Noche por Viajero'] = df['Precio por Noche por Viajero'].apply(lambda x: 'X' if x == minimo_precio_noche_viajero else '')
 
-minimo_precio_total = df['Precio total'].min()
-df['Mínimo Precio Total'] = df['Precio total'].apply(lambda x: 'X' if x == minimo_precio_total else '')
+minimo_precio_total = df['Precio Total'].min()
+df['Mínimo Precio Total'] = df['Precio Total'].apply(lambda x: 'X' if x == minimo_precio_total else '')
 
-minimo_precio_total_viajero = df['Precio total por viajero'].min()
-df['Mínimo Precio Total por Viajero'] = df['Precio total por viajero'].apply(lambda x: 'X' if x == minimo_precio_total_viajero else '')
+minimo_precio_total_viajero = df['Precio Total por Viajero'].min()
+df['Mínimo Precio Total por Viajero'] = df['Precio Total por Viajero'].apply(lambda x: 'X' if x == minimo_precio_total_viajero else '')
 #### **5.1.7 Representación Gráfica de Precios**
 ##### **5.1.7.1 Histogramas**
 fig, axes = plt.subplots(2, 2, figsize=(15, 10))
 
 # Histograma de Precios por Noche
-sns.histplot(df['Precio por noche'], bins=20, color='blue', kde=True, ax=axes[0, 0])
+sns.histplot(df['Precio por Noche'], bins=20, color='blue', kde=True, ax=axes[0, 0])
 axes[0, 0].set_title('Histograma de Precios por Noche')
 axes[0, 0].set_xlabel('Precio por Noche (€)')
 axes[0, 0].set_ylabel('Frecuencia')
 
 # Histograma de Precios por Noche por Viajero
-sns.histplot(df['Precio por noche por viajero'], bins=20, color='blue', kde=True, ax=axes[0, 1])
+sns.histplot(df['Precio por Noche por Viajero'], bins=20, color='blue', kde=True, ax=axes[0, 1])
 axes[0, 1].set_title('Histograma de Precios por Noche por Viajero')
 axes[0, 1].set_xlabel('Precio por Noche por Viajero (€)')
 axes[0, 1].set_ylabel('Frecuencia')
 
 # Histograma de Precios Totales
-sns.histplot(df['Precio total'], bins=20, color='blue', kde=True, ax=axes[1, 0])
+sns.histplot(df['Precio Total'], bins=20, color='blue', kde=True, ax=axes[1, 0])
 axes[1, 0].set_title('Histograma de Precios Totales')
 axes[1, 0].set_xlabel('Precio Total (€)')
 axes[1, 0].set_ylabel('Frecuencia')
 
 # Histograma de Precios Totales por Viajero
-sns.histplot(df['Precio total por viajero'], bins=20, color='blue', kde=True, ax=axes[1, 1])
+sns.histplot(df['Precio Total por Viajero'], bins=20, color='blue', kde=True, ax=axes[1, 1])
 axes[1, 1].set_title('Histograma de Precios Totales por Viajero')
 axes[1, 1].set_xlabel('Precio Total por Viajero (€)')
 axes[1, 1].set_ylabel('Frecuencia')
@@ -496,22 +510,22 @@ plt.close(fig)
 fig, axes = plt.subplots(2, 2, figsize=(15, 10))
 
 # Diagrama de caja de Precios por Noche
-sns.boxplot(data=df, y='Precio por noche', ax=axes[0, 0], color='blue')
+sns.boxplot(data=df, y='Precio por Noche', ax=axes[0, 0], color='blue')
 axes[0, 0].set_title('Diagrama de Caja de Precios por Noche')
 axes[0, 0].set_ylabel('Precio por Noche (€)')
 
 # Diagrama de caja de Precios por Noche por Viajero
-sns.boxplot(data=df, y='Precio por noche por viajero', ax=axes[0, 1], color='blue')
+sns.boxplot(data=df, y='Precio por Noche por Viajero', ax=axes[0, 1], color='blue')
 axes[0, 1].set_title('Diagrama de Caja de Precios por Noche por Viajero')
 axes[0, 1].set_ylabel('Precio por Noche por Viajero (€)')
 
 # Diagrama de caja de Precios Totales
-sns.boxplot(data=df, y='Precio total', ax=axes[1, 0], color='blue')
+sns.boxplot(data=df, y='Precio Total', ax=axes[1, 0], color='blue')
 axes[1, 0].set_title('Diagrama de Caja de Precios Totales')
 axes[1, 0].set_ylabel('Precio Total (€)')
 
 # Diagrama de caja de Precios Totales por Viajero
-sns.boxplot(data=df, y='Precio total por viajero', ax=axes[1, 1], color='blue')
+sns.boxplot(data=df, y='Precio Total por Viajero', ax=axes[1, 1], color='blue')
 axes[1, 1].set_title('Diagrama de Caja de Precios Totales por Viajero')
 axes[1, 1].set_ylabel('Precio Total por Viajero (€)')
 
@@ -572,12 +586,12 @@ mapa = folium.Map(location=[latitud_ciudad, longitud_ciudad], zoom_start=13)
 cluster = MarkerCluster().add_to(mapa) # Agrupador de marcadores
 ##### **5.3.3 Añadir Elementos Clasificados al Mapa** 
 for _, row in df.iterrows():
-    tooltip = f"Nombre: {row['Nombre']} <br> Precio total: {row['Precio total']} € <br> Precio total por viajero: {row['Precio total por viajero']} € <br> Precio por noche: {row['Precio por noche']} € <br> Precio por noche por viajero: {row['Precio por noche por viajero']} €  <br> Número de Servicios: {row['Numero de Servicios']} <br><a href='{row['URL']}' target='_blank'>Ver alojamiento</a>"
+    tooltip = f"Nombre: {row['Nombre']} <br> Precio total: {row['Precio Total']} € <br> Precio Total por Viajero: {row['Precio Total por Viajero']} € <br> Precio por Noche: {row['Precio por Noche']} € <br> Precio por Noche por Viajero: {row['Precio por Noche por Viajero']} €  <br> Número de Servicios: {row['Numero de Servicios']} <br><a href='{row['URL']}' target='_blank'>Ver alojamiento</a>"
     
     # Color según precio
-    if row['Precio por noche'] < 300:
+    if row['Precio por Noche'] < 300:
         color = 'green'
-    elif row['Precio por noche'] < 600:
+    elif row['Precio por Noche'] < 600:
         color = 'orange'
     else:
         color = 'red'
@@ -622,17 +636,22 @@ df.to_csv(
 os.makedirs('output', exist_ok=True)
 
 # Guardar el contenido en un archivo .txt
-with open('output/Análisis Económico/Medias_Precios.txt', 'w', encoding='utf-8') as file:
-    file.write(medias, medianas, desviaciones_tipicas)
+with open(f'output/Análisis Económico/Medidas Descriptivas - {ciudad}.txt', 'w', encoding='utf-8') as file:
+    file.write("\n\n")
+    file.write(medias)
+    file.write("\n\n")
+    file.write(medianas)
+    file.write("\n\n")
+    file.write(desviaciones_tipicas)
     file.write("\n\n")
 ### **6.4 Exportación del Mapa Interactivo**
 mapa.save(f'output/Análisis Geográfico/Mapa. {ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}.html')
 ## **7. Creación de un Agente de Inteligencia Artificial para las Conclusiones Finales**
 ### **7.1 Lectura del Prompt**
 def cargar_prompt():
-    with open('agente IA/input/prompt/prompt.rtf', "r") as f:
+    with open('agente IA/input/prompt/prompt.rtf', "r", encoding="utf-8") as f:
         return f.read()
-### **7.2 Carga de Imágenes**
+### **7.2 Copia de Imágenes**
 imagenes = list()
 
 origen_imagen_economia_1 = "output/Análisis Económico/Diagrama Caja - Precios.png"
@@ -645,9 +664,9 @@ imagenes.append(origen_imagen_servicios)
 
 destino_imagenes = "agente IA/input/images/"
 
-for imagen in origen:
+for imagen in imagenes:
     if os.path.exists(imagen):
-        shutil.copy(imagen, destino)
+        shutil.copy(imagen, destino_imagenes)
     else:
         print(f"Imagen no encontrada: {imagen}")
 
@@ -659,23 +678,70 @@ if os.path.exists(origen_tabla_datos):
     shutil.copy(origen_tabla_datos, destino_data)
 else:
     print(f"Tabla de datos no encontrada: {origen_tabla_datos}")
+### **7.3 Cargar Varibales de Entorno**
+# Obtener directorio actual y construir ruta absoluta
+current_dir = os.path.dirname(os.path.abspath("agente IA/.env"))
+dotenv_path = os.path.join(current_dir, '.env')
 
+# Cargar con ruta explícita
+load_dotenv(dotenv_path=dotenv_path)
 
-### **7.3 Generar Texto de LLM**
-def generar_texto_llm(prompt):
-    modelo = Ollama(model="llama3")
-    resultado = modelo.invoke(prompt)
-    return resultado
-### **7.4 Guardar el Contenido del LLM en un Fichero .tex**
-os.makedirs('agente IA/output', exist_ok=True) # Crear el directorio si no existe
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL")
+OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL")
+### **7.3 Lectura de Imágenes**
+directorio_images = "agente IA/input/images/"
+directorio_data = "agente IA/input/data/"
 
-texto = generar_texto_llm(cargar_prompt())
-with open('agente IA/output/Conclusiones.tex', 'w', encoding='utf-8') as f:
-    f.write(texto)
-### **7.5 Generar Fichero .pdf a partir del Fichero .tex**
-archivo_tex = 'agente IA/output/Conclusiones.tex'
+images = SimpleDirectoryReader(directorio_images).load_data()
+data = SimpleDirectoryReader(directorio_data).load_data()
+### **7.4 Inicialización del Almacenamiento en Chroma**
+chroma_client = chromadb.PersistentClient(path="./agente IA/chroma_store")
+collection = chroma_client.get_or_create_collection("rag_collection")
+vector_store = ChromaVectorStore(chroma_collection=collection)
+storage_context = StorageContext.from_defaults(vector_store=vector_store)
+### **7.5 Configuración de LLM y Embedings**
+# Configurar LLM con Ollama
+llm = Ollama(
+    model=OLLAMA_MODEL,
+    base_url=OLLAMA_BASE_URL,
+    request_timeout=240.0
+)
 
-subprocess.run(['pdflatex', '-output-directory=agente IA/output', archivo_tex], check=True)
+# Configurar embending con 
+embed_model = OllamaEmbedding(
+    model_name=OLLAMA_MODEL,
+    base_url=OLLAMA_BASE_URL,
+    request_timeout=240.0
+)
+
+# Configurar Settings
+Settings.llm = llm
+Settings.embed_model = embed_model
+### **7.6 Creación de un Índice Vectorial**
+documents = images + data
+
+storage_context = StorageContext.from_defaults(vector_store=SimpleVectorStore())
+
+index = VectorStoreIndex.from_documents(
+    documents=documents,
+    storage_context=storage_context
+)
+### **7.7 Creación de una Respuesta**
+query_engine = index.as_query_engine()
+response = query_engine.query(cargar_prompt())
+### **7.8 Guardar Respuesta**
+def save_output(text, path="output.txt"):
+    # Crear el directorio si no existe
+    directory = os.path.dirname(path)
+    if directory:  # Verifica que el directorio no sea una cadena vacía
+        os.makedirs(directory, exist_ok=True)
+    
+    # Guardar el archivo
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(str(text))
+
+# Guardar la respuesta en un archivo de texto
+save_output(response, "output/Análisis IA/Respuesta IA.txt")
 ## **8. Finalización del Proyecto**
 print("\nEl proceso ha terminado.")
 contador_final = time.time()

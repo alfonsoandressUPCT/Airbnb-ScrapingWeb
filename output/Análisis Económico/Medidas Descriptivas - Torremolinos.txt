@@ -1,0 +1,26 @@
+
+
+Medias de los Precios de Alojamientos en Torremolinos:
+----------------------------------------
+Media del Precio por Noche: 363.00 €
+Media del Precio por Noche por Viajero: 45.89 €
+Media del Precio Total: 915.50 €
+Media del Precio Total por Viajero: 114.78 €
+
+
+Medianas de los Precios de Alojamientos en Torremolinos:
+----------------------------------------
+Mediana del Precio por Noche: 344.00 €
+Mediana del Precio por Noche por Viajero: 43.00 €
+Mediana del Precio Total: 855.50 €
+Mediana del Precio Total por Viajero: 107.00 €
+
+
+Desviaciones Típicas de los Precios de Alojamientos en Torremolinos:
+----------------------------------------
+Desviación Estándar del Precio por Noche: 166.01 €
+Desviación Estándar del Precio por Noche por Viajero: 20.83 €
+Desviación Estándar del Precio Total: 425.89 €
+Desviación Estándar del Precio Total por Viajero: 53.30 €
+
+
