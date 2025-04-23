@@ -1,21 +1,11 @@
-Para generar un informe detallado en formato LaTeX personalizado, es importante seguir las pautas y instrucciones proporcionadas para este proyecto. Aquí hay una guía general para completar el tarea:
+Para generar un informe detallado en formato LaTeX personalizado a partir de los datos de alojamientos de Airbnb extraídos mediante scraping, se deben seguir las pautas y instrucciones proporcionadas. 
 
-1. **Limpieza de datos**: Comienza por limpiar los datos extraídos del archivo CSV, eliminando cualquier dato duplicado o inconsistente.
+Estos pasos son fundamentales para garantizar la calidad del informe:
 
-2. **Exploración y visualización**: Utiliza paquetes como `ggplot2` o `matplotlib` para crear gráficos que ayuden a comprender la información de manera más clara. Asegúrate de que las rutas de las imágenes sean relativas al fichero LaTeX generado.
+1.  **Limpieza y exploración de los datos**: Aplicar técnicas de limpieza para eliminar cualquier error o inconsistencia en los datos extraídos, explorar las estadísticas descriptivas de cada columna y visualizar gráficamente para extraer insights útiles.
+2.  **Generar tablas y gráficos**: Utilizar paquetes LaTeX profesionales como `geometry`, `graphicx`, `booktabs` y `hyperref` para crear un diseño limpio y profesional, con estilo sobrio y tipografía clara. 
+3.  **Comentar el código fuente**: Incluir explicaciones y comentarios en el código fuente LaTeX es opcional y no está permitido. Las líneas de comentario solo se pueden utilizar si son absolutamente necesarias.
+4.  **Utilizar rutas relativas para las imágenes**: Asegurarse de que las rutas de las imágenes sean relativas al fichero `tex`. Esto significa que el resultado final debe ser un código LaTeX puro, sin ningún otro contenido o explicación fuera del código LaTeX.
+5.  **Guardar el resultado con la estructura adecuada**: Guardar el resultado como un archivo `tex` llamado `{ciudad}.tex`, donde `{ciudad}` es el nombre de la ciudad que se analiza.
 
-3. **Análisis exploratorio**: Realiza estadísticas descriptivas como promedios, medias y varianzas para entender mejor los datos. También puedes utilizar visualizaciones como barras o columnas para comparar diferentes categorías.
-
-4. **Comparativa de alojamientos**: Crea una tabla comparativa que destaque las características más importantes de cada alojamiento, utilizando paquetes LaTeX como `tabular` y `booktabs`.
-
-5. **Recomendaciones personalizadas**: Escribe texto dinámico adaptado al tipo de viajero y preferencias del cliente, manteniendo un lenguaje profesional.
-
-6. **Conclusión**: Resume los hallazgos del análisis y proporciona recomendaciones adicionales basadas en las estadísticas y visualizaciones generadas.
-
-7. **Formato LaTeX**: Utiliza paquetes profesionales como `geometry`, `graphicx`, `booktabs` y `hyperref` para un estilo limpio y profesional. Asegúrate de no incluir comentarios ni líneas que no pertenezcan estrictamente al código fuente.
-
-8. **Generación del informe**: Finalmente, genera exclusivamente las líneas del archivo LaTeX del informe, asegurándote de que sea solo código LaTeX puro sin contenido adicional.
-
-9. **Guardado del resultado**: Guarda el resultado como un archivo LaTeX llamado `Informe_[Ciudad].tex`.
-
-Siguiendo estas pautas y utilizando herramientas adecuadas, podrás generar un informe detallado en formato LaTeX personalizado que cumpla con las expectativas del cliente.
+Siguiendo estas pautas y pasos, se puede generar un informe detallado en formato LaTeX personalizado a partir de los datos de alojamientos de Airbnb extraídos mediante scraping.
