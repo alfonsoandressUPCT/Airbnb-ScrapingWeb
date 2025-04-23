@@ -66,6 +66,8 @@ from llama_index.core import Settings
 
 from llama_index.embeddings.ollama import OllamaEmbedding
 
+from llama_index.core import PromptHelper
+
 from dotenv import load_dotenv
 print("\n\t\tProceso finalizado")
 ### **1.7. Otras Utilidades**
@@ -134,7 +136,7 @@ def cargar_variables(ruta):
                 variables[clave] = valor
     return variables
 
-variables = cargar_variables('input/input_ejemplo.txt')
+variables = cargar_variables('input/input.txt')
 
 for clave, valor in variables.items():
     globals()[clave] = valor
@@ -602,7 +604,7 @@ axes[1, 1].set_xlabel('Precio Total por Viajero (€)')
 axes[1, 1].set_ylabel('Frecuencia')
 
 plt.tight_layout()
-plt.savefig('output/Análisis Económico/Histograma - Precios.png')
+plt.savefig(f'output/Análisis Económico/Histogramas/Histograma - {ciudad}.png')
 plt.close(fig)
 print("\n\t\t\t\tProceso finalizado")
 ##### **5.1.7.2. Diagramas de Caja**
@@ -631,7 +633,7 @@ axes[1, 1].set_title('Diagrama de Caja de Precios Totales por Viajero')
 axes[1, 1].set_ylabel('Precio Total por Viajero (€)')
 
 plt.tight_layout()
-plt.savefig('output/Análisis Económico/Diagrama Caja - Precios.png')
+plt.savefig(f'output/Análisis Económico/Diagramas de Cajas/Diagrama Caja - {ciudad}.png')
 plt.close(fig)
 print("\n\t\t\t\tProceso finalizado")
 ### **5.2. Análisis de Servicios**
@@ -681,7 +683,7 @@ plt.title(f'Servicios más comunes en los alojamientos de {ciudad}')
 plt.xlabel('Número de alojamientos que lo ofrecen')
 plt.ylabel('Servicio')
 plt.tight_layout()
-plt.savefig('output/Análisis de Servicios/Frecuencia - Servicios.png')
+plt.savefig(f'output/Análisis de Servicios/Servicios - {ciudad}.png')
 warnings.simplefilter(action='ignore', category=FutureWarning)
 plt.close()
 print("\n\t\t\tProceso finalizado")
@@ -773,7 +775,7 @@ print("\n\t\tProceso iniciado")
 os.makedirs('output', exist_ok=True)
 
 # Guardar el contenido en un archivo .txt
-with open(f'output/Análisis Económico/Medidas Descriptivas - {ciudad}.txt', 'w', encoding='utf-8') as file:
+with open(f'output/Análisis Económico/Medidas Descriptivas/Medidas Descriptivas - {ciudad}.txt', 'w', encoding='utf-8') as file:
     file.write("\n\n")
     file.write(medias)
     file.write("\n\n")
@@ -801,9 +803,9 @@ print("\n\t7.2. Copia de Imágenes")
 print("\n\t\tProceso iniciado")
 imagenes = list()
 
-origen_imagen_economia_1 = "output/Análisis Económico/Diagrama Caja - Precios.png"
-origen_imagen_economia_2 = "output/Análisis Económico/Histograma - Precios.png"
-origen_imagen_servicios = "output/Análisis de Servicios/Frecuencia - Servicios.png"
+origen_imagen_economia_1 = f'output/Análisis Económico/Diagramas de Cajas/Diagrama Caja - {ciudad}.png'
+origen_imagen_economia_2 = f'output/Análisis Económico/Histogramas/Histograma - {ciudad}.png'
+origen_imagen_servicios = f'output/Análisis de Servicios/Servicios - {ciudad}.png'
 
 imagenes.append(origen_imagen_economia_1)
 imagenes.append(origen_imagen_economia_2)
@@ -892,7 +894,12 @@ print("\n\t\tProceso finalizado")
 ### **7.8. Creación de una Respuesta**
 print("\n\t7.8. Creación de una Respuesta")
 print("\n\t\tProceso iniciado")
-query_engine = index.as_query_engine()
+Settings.context_window = 20480     # Tamaño total de la ventana de contexto
+Settings.num_output = 4086          # Tokens para la salida
+Settings.chunk_overlap_ratio = 0.1  # Solapamiento entre fragmentos
+Settings.chunk_size_limit = 8192    # Tamaño máximo de fragmento
+
+query_engine = index.as_query_engine(response_mode="compact")
 response = query_engine.query(cargar_prompt())
 print("\n\t\tProceso finalizado")
 ### **7.9. Guardar Respuesta**
@@ -909,7 +916,7 @@ def save_output(text, path="output.txt"):
         f.write(str(text))
 
 # Guardar la respuesta en un archivo de texto
-save_output(response, "output/Análisis IA/Respuesta IA.txt")
+save_output(response, f"output/Análisis IA/Respuesta IA - {ciudad}.txt")
 print("\n\t\tProceso finalizado")
 ## **8. Finalización del Proyecto**
 print("\n8. Finalización del Proyecto")

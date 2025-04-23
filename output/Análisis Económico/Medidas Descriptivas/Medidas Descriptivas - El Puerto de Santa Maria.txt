@@ -1,0 +1,26 @@
+
+
+Medias de los Precios de Alojamientos en El Puerto de Santa Maria:
+----------------------------------------
+Media del Precio por Noche: 301.61 €
+Media del Precio por Noche por Viajero: 50.61 €
+Media del Precio Total: 1238.43 €
+Media del Precio Total por Viajero: 206.83 €
+
+
+Medianas de los Precios de Alojamientos en El Puerto de Santa Maria:
+----------------------------------------
+Mediana del Precio por Noche: 310.00 €
+Mediana del Precio por Noche por Viajero: 52.00 €
+Mediana del Precio Total: 1393.00 €
+Mediana del Precio Total por Viajero: 233.00 €
+
+
+Desviaciones Típicas de los Precios de Alojamientos en El Puerto de Santa Maria:
+----------------------------------------
+Desviación Estándar del Precio por Noche: 140.89 €
+Desviación Estándar del Precio por Noche por Viajero: 23.52 €
+Desviación Estándar del Precio Total: 644.97 €
+Desviación Estándar del Precio Total por Viajero: 107.59 €
+
+
