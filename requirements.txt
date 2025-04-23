@@ -1,48 +1,60 @@
 # Paquetes básicos para web scraping
-requests==2.31.0
-beautifulsoup4==4.12.3
-selenium==4.18.1
-webdriver-manager==4.0.1
-lxml==4.9.3
-scrapy==2.11.0
-playwright==1.41.2
+requests
+beautifulsoup4
+selenium
+webdriver-manager
+lxml
+scrapy
+playwright
+undetected-chromedriver
 
 # Procesamiento de datos
-pandas==2.2.1
-numpy==1.26.4
+pandas
+numpy
 
 # Visualización de datos
-matplotlib==3.8.3
-seaborn==0.13.1
-plotly==5.18.0
-folium==0.15.1
+matplotlib
+seaborn
+plotly
+folium
 
 # Manipulación de archivos
-openpyxl==3.1.2
-xlsxwriter==3.1.2
-pyarrow==14.0.2
-
-# Jupyter y notebooks
-jupyter==1.0.0
-jupyterlab==4.1.5
-notebook==7.0.8
-ipywidgets==8.1.2
-
-# Utilidades
-tqdm==4.66.2
-python-dotenv==1.0.1
-fake-useragent==1.4.0
-requests-html==0.10.0
-schedule==1.2.1
-pytz==2024.1
-
-# Herramientas de análisis
-scikit-learn==1.4.1
-statsmodels==0.14.1
+openpyxl
+xlsxwriter
+pyarrow
 
 # Geocodificación y mapas
-geopy==2.4.1
-geopandas==0.14.3
+geopy
+geopandas
 
-# Manejo de errores y reintento
-tenacity==8.2.3
+# Utilidades
+tqdm
+python-dotenv
+fake-useragent
+requests-html
+schedule
+pytz
+translate
+subprocess32
+chromadb
+
+# Herramientas de análisis
+scikit-learn
+statsmodels
+
+# Jupyter y notebooks
+jupyter
+jupyterlab
+notebook
+ipywidgets
+
+# LLama Index packages
+llama-index
+llama-index-llms-ollama
+llama-index-core
+llama-index-embeddings-openai
+llama-index-vector-stores-chroma
+llama-index-embeddings-ollama
+
+# Otros módulos (La mayoría son parte de la biblioteca estándar de Python)
+# re, datetime, time, os, warnings, random, ssl, shutil, collections

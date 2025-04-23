@@ -1,6 +1,6 @@
 pais = 'España'
 
-ciudad = 'Mojacar'
+ciudad = 'Nerja'
 
 fecha_entrada = '17/07/2025'
 
