@@ -43,39 +43,8 @@ print("\n\t\tProceso iniciado")
 import matplotlib.pyplot as plt
 import seaborn as sns
 print("\n\t\tProceso finalizado")
-### **1.6. Creación de un Agente de Inteligencia Artificial**
-print("\n\t1.6. Creación de un Agente de Inteligencia Artificial")
-print("\n\t\tProceso iniciado")
-import subprocess
-import chromadb
-import logging
-import striprtf.striprtf as striprtf
-
-from llama_index.llms.ollama import Ollama
-
-from llama_index.core import VectorStoreIndex
-from llama_index.core import SimpleDirectoryReader
-from llama_index.core import ServiceContext
-from llama_index.core import StorageContext
-
-from llama_index.core.vector_stores import SimpleVectorStore
-
-from llama_index.embeddings.openai import OpenAIEmbedding
-
-from llama_index.vector_stores.chroma import ChromaVectorStore
-
-from llama_index.core import Settings
-
-from llama_index.embeddings.ollama import OllamaEmbedding
-
-from llama_index.core import PromptHelper
-
-from dotenv import load_dotenv
-
-from PIL import Image
-print("\n\t\tProceso finalizado")
-### **1.7. Otras Utilidades**
-print("\n\t1.7. Otras Utilidades")
+### **1.6. Otras Utilidades**
+print("\n\t1.6. Otras Utilidades")
 print("\n\t\tProceso iniciado")
 from collections import Counter
 
@@ -811,16 +780,19 @@ print("\n\t\tProceso finalizado")
 ### **6.5. Copia del Fichero Input.txt**
 print("\n\t6.5. Copia del Fichero Input.txt")
 print("\n\t\tProceso iniciado")
+
 ruta_input_origen = f'input/input.txt'
-ruta_input_destino = f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Input.txt'
+ruta_directorio_destino = f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}'
+ruta_input_destino = os.path.join(ruta_directorio_destino, 'input.txt')
 
-shutil.copy(
-    ruta_input_origen,
-    ruta_input_destino
-)
+# Copiar el archivo
+shutil.copy(ruta_input_origen, ruta_input_destino)
 
+# Renombrar el archivo dentro del mismo directorio
 nuevo_nombre = 'Datos Usados Realizar Búsqueda.txt'
-os.rename(ruta_input_destino, nuevo_nombre)
+ruta_nuevo_nombre = os.path.join(ruta_directorio_destino, nuevo_nombre)
+
+os.rename(ruta_input_destino, ruta_nuevo_nombre)
 print("\n\t\tProceso finalizado")
 ## **8. Finalización del Proyecto**
 print("\n8. Finalización del Proyecto")
