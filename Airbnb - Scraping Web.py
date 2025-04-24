@@ -703,7 +703,7 @@ print("\n\t\t\tProceso finalizado")
 print("\n\t\t5.3.3. Añadir Elementos Clasificados al Mapa")
 print("\n\t\t\tProceso iniciado")
 for _, row in df.iterrows():
-    tooltip = f"Nombre: {row['Nombre']} <br> Precio total: {row['Precio Total']} € <br> Precio Total por Viajero: {row['Precio Total por Viajero']} € <br> Precio por Noche: {row['Precio por Noche']} € <br> Precio por Noche por Viajero: {row['Precio por Noche por Viajero']} €  <br> Número de Servicios: {row['Numero de Servicios']} <br><a href='{row['URL']}' target='_blank'>Ver alojamiento</a>"
+    tooltip = f"Nombre: {row['Nombre']} <br> Precio Total: {row['Precio Total']} € <br> Precio Total por Viajero: {row['Precio Total por Viajero']} € <br> Precio por Noche: {row['Precio por Noche']} € <br> Precio por Noche por Viajero: {row['Precio por Noche por Viajero']} €  <br> Número de Servicios: {row['Numero de Servicios']} <br><a href='{row['URL']}' target='_blank'>Ver alojamiento</a>"
     
     # Color según precio
     if row['Precio por Noche'] < 300:
@@ -780,7 +780,6 @@ print("\n\t\tProceso finalizado")
 ### **6.5. Copia del Fichero Input.txt**
 print("\n\t6.5. Copia del Fichero Input.txt")
 print("\n\t\tProceso iniciado")
-
 ruta_input_origen = f'input/input.txt'
 ruta_directorio_destino = f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}'
 ruta_input_destino = os.path.join(ruta_directorio_destino, 'input.txt')
