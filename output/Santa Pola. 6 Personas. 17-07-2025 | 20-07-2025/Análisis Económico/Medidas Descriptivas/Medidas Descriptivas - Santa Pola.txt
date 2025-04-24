@@ -1,0 +1,26 @@
+
+
+Medias de los Precios de Alojamientos en Santa Pola:
+----------------------------------------
+Media del Precio por Noche: 159.00 €
+Media del Precio por Noche por Viajero: 26.83 €
+Media del Precio Total: 638.08 €
+Media del Precio Total por Viajero: 106.79 €
+
+
+Medianas de los Precios de Alojamientos en Santa Pola:
+----------------------------------------
+Mediana del Precio por Noche: 143.00 €
+Mediana del Precio por Noche por Viajero: 24.00 €
+Mediana del Precio Total: 618.00 €
+Mediana del Precio Total por Viajero: 103.50 €
+
+
+Desviaciones Típicas de los Precios de Alojamientos en Santa Pola:
+----------------------------------------
+Desviación Estándar del Precio por Noche: 50.13 €
+Desviación Estándar del Precio por Noche por Viajero: 8.38 €
+Desviación Estándar del Precio Total: 176.75 €
+Desviación Estándar del Precio Total por Viajero: 29.40 €
+
+

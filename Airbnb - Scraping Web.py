@@ -48,6 +48,8 @@ print("\n\t1.6. Creación de un Agente de Inteligencia Artificial")
 print("\n\t\tProceso iniciado")
 import subprocess
 import chromadb
+import logging
+import striprtf.striprtf as striprtf
 
 from llama_index.llms.ollama import Ollama
 
@@ -69,6 +71,8 @@ from llama_index.embeddings.ollama import OllamaEmbedding
 from llama_index.core import PromptHelper
 
 from dotenv import load_dotenv
+
+from PIL import Image
 print("\n\t\tProceso finalizado")
 ### **1.7. Otras Utilidades**
 print("\n\t1.7. Otras Utilidades")
@@ -118,7 +122,7 @@ html = browser.page_source
 
 soup = bs(html, 'lxml')
 print("\n\t\tProceso finalizado")
-### **3.4. Lectura de Datos desde el Fichero**
+### **3.4. Lectura de Datos desde el Fichero y Creación de Carpeta para Resultados**
 print("\n\t3.4. Lectura de Datos desde el Fichero")
 print("\n\t\tProceso iniciado")
 def cargar_variables(ruta):
@@ -168,6 +172,21 @@ fecha_entrada_str = fecha_entrada.replace('/', '-')
 fecha_salida_str = fecha_salida.replace('/', '-')
 
 numero_total_personas = numero_adultos + numero_niños + numero_bebes + numero_mascotas
+
+directorios = list()
+
+directorios.append(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}')
+directorios.append(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis de Datos')
+directorios.append(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis de Servicios')
+directorios.append(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico')
+directorios.append(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Diagrama de Cajas')
+directorios.append(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Histograma')
+directorios.append(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Medidas Descriptivas')
+directorios.append(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Geográfico')
+
+for directorio in directorios:
+    if not os.path.exists(directorio):
+        os.makedirs(directorio)
 print("\n\t\tProceso finalizado")
 ### **3.5. Selección del Destino del Viaje**
 print("\n\t3.5. Selección del Destino del Viaje")
@@ -604,7 +623,7 @@ axes[1, 1].set_xlabel('Precio Total por Viajero (€)')
 axes[1, 1].set_ylabel('Frecuencia')
 
 plt.tight_layout()
-plt.savefig(f'output/Análisis Económico/Histogramas/Histograma - {ciudad}.png')
+plt.savefig(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Histograma/Histograma - {ciudad}.png')
 plt.close(fig)
 print("\n\t\t\t\tProceso finalizado")
 ##### **5.1.7.2. Diagramas de Caja**
@@ -633,7 +652,7 @@ axes[1, 1].set_title('Diagrama de Caja de Precios Totales por Viajero')
 axes[1, 1].set_ylabel('Precio Total por Viajero (€)')
 
 plt.tight_layout()
-plt.savefig(f'output/Análisis Económico/Diagramas de Cajas/Diagrama Caja - {ciudad}.png')
+plt.savefig(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Diagrama de Cajas/Diagrama Caja - {ciudad}.png')
 plt.close(fig)
 print("\n\t\t\t\tProceso finalizado")
 ### **5.2. Análisis de Servicios**
@@ -683,7 +702,7 @@ plt.title(f'Servicios más comunes en los alojamientos de {ciudad}')
 plt.xlabel('Número de alojamientos que lo ofrecen')
 plt.ylabel('Servicio')
 plt.tight_layout()
-plt.savefig(f'output/Análisis de Servicios/Servicios - {ciudad}.png')
+plt.savefig(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis de Servicios/Servicios - {ciudad}.png')
 warnings.simplefilter(action='ignore', category=FutureWarning)
 plt.close()
 print("\n\t\t\tProceso finalizado")
@@ -763,7 +782,7 @@ os.makedirs('output', exist_ok=True)
 
 # Guardar el archivo
 df.to_csv(
-    f'output/Análisis de Datos/Alojamientos. {ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}.csv',
+    f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis de Datos/Alojamientos. {ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}.csv',
     index=False,
     encoding='utf-8'
 )
@@ -775,7 +794,7 @@ print("\n\t\tProceso iniciado")
 os.makedirs('output', exist_ok=True)
 
 # Guardar el contenido en un archivo .txt
-with open(f'output/Análisis Económico/Medidas Descriptivas/Medidas Descriptivas - {ciudad}.txt', 'w', encoding='utf-8') as file:
+with open(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Medidas Descriptivas/Medidas Descriptivas - {ciudad}.txt', 'w', encoding='utf-8') as file:
     file.write("\n\n")
     file.write(medias)
     file.write("\n\n")
@@ -787,136 +806,21 @@ print("\n\t\tProceso finalizado")
 ### **6.4. Exportación del Mapa Interactivo**
 print("\n\t6.4. Exportación del Mapa Interactivo")
 print("\n\t\tProceso iniciado")
-mapa.save(f'output/Análisis Geográfico/Mapa. {ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}.html')
+mapa.save(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Geográfico/Mapa. {ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}.html')
 print("\n\t\tProceso finalizado")
-## **7. Creación de un Agente de Inteligencia Artificial para las Conclusiones Finales**
-print("\n7. Creación de un Agente de Inteligencia Artificial para las Conclusiones Finales")
-### **7.1. Lectura del Prompt**
-print("\n\t7.1. Lectura del Prompt")
+### **6.5. Copia del Fichero Input.txt**
+print("\n\t6.5. Copia del Fichero Input.txt")
 print("\n\t\tProceso iniciado")
-def cargar_prompt():
-    with open('agente IA/input/prompt/prompt.rtf', "r", encoding="utf-8") as f:
-        return f.read()
-print("\n\t\tProceso finalizado")
-### **7.2. Copia de Imágenes**
-print("\n\t7.2. Copia de Imágenes")
-print("\n\t\tProceso iniciado")
-imagenes = list()
+ruta_input_origen = f'input/input.txt'
+ruta_input_destino = f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Input.txt'
 
-origen_imagen_economia_1 = f'output/Análisis Económico/Diagramas de Cajas/Diagrama Caja - {ciudad}.png'
-origen_imagen_economia_2 = f'output/Análisis Económico/Histogramas/Histograma - {ciudad}.png'
-origen_imagen_servicios = f'output/Análisis de Servicios/Servicios - {ciudad}.png'
-
-imagenes.append(origen_imagen_economia_1)
-imagenes.append(origen_imagen_economia_2)
-imagenes.append(origen_imagen_servicios)
-
-destino_imagenes = "agente IA/input/images/"
-
-for imagen in imagenes:
-    if os.path.exists(imagen):
-        shutil.copy(imagen, destino_imagenes)
-    else:
-        print(f"Imagen no encontrada: {imagen}")
-
-origen_tabla_datos = f"output/Análisis de Datos/Alojamientos. {ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}.csv"
-
-destino_data = "agente IA/input/data/"
-
-if os.path.exists(origen_tabla_datos):
-    shutil.copy(origen_tabla_datos, destino_data)
-else:
-    print(f"Tabla de datos no encontrada: {origen_tabla_datos}")
-print("\n\t\tProceso finalizado")
-### **7.3. Cargar Varibales de Entorno**
-print("\n\t7.3. Cargar Varibales de Entorno")
-print("\n\t\tProceso iniciado")
-# Obtener directorio actual y construir ruta absoluta
-current_dir = os.path.dirname(os.path.abspath("agente IA/.env"))
-dotenv_path = os.path.join(current_dir, '.env')
-
-# Cargar con ruta explícita
-load_dotenv(dotenv_path=dotenv_path)
-
-OLLAMA_MODEL = os.getenv("OLLAMA_MODEL")
-OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL")
-print("\n\t\tProceso finalizado")
-### **7.4. Lectura de Imágenes**
-print("\n\t7.4. Lectura de Imágenes")
-print("\n\t\tProceso iniciado")
-directorio_images = "agente IA/input/images/"
-directorio_data = "agente IA/input/data/"
-
-images = SimpleDirectoryReader(directorio_images).load_data()
-data = SimpleDirectoryReader(directorio_data).load_data()
-print("\n\t\tProceso finalizado")
-### **7.5. Inicialización del Almacenamiento en Chroma**
-print("\n\t7.5. Inicialización del Almacenamiento en Chroma")
-print("\n\t\tProceso iniciado")
-chroma_client = chromadb.PersistentClient(path="./agente IA/chroma_store")
-collection = chroma_client.get_or_create_collection("rag_collection")
-vector_store = ChromaVectorStore(chroma_collection=collection)
-storage_context = StorageContext.from_defaults(vector_store=vector_store)
-print("\n\t\tProceso finalizado")
-### **7.6. Configuración de LLM y Embedings**
-print("\n\t7.6. Configuración de LLM y Embedings")
-print("\n\t\tProceso iniciado")
-# Configurar LLM con Ollama
-llm = Ollama(
-    model=OLLAMA_MODEL,
-    base_url=OLLAMA_BASE_URL,
-    request_timeout=240.0
+shutil.copy(
+    ruta_input_origen,
+    ruta_input_destino
 )
 
-# Configurar embending con 
-embed_model = OllamaEmbedding(
-    model_name=OLLAMA_MODEL,
-    base_url=OLLAMA_BASE_URL,
-    request_timeout=240.0
-)
-
-# Configurar Settings
-Settings.llm = llm
-Settings.embed_model = embed_model
-print("\n\t\tProceso finalizado")
-### **7.7. Creación de un Índice Vectorial**
-print("\n\t7.7. Creación de un Índice Vectorial")
-print("\n\t\tProceso iniciado")
-documents = images + data
-
-storage_context = StorageContext.from_defaults(vector_store=SimpleVectorStore())
-
-index = VectorStoreIndex.from_documents(
-    documents=documents,
-    storage_context=storage_context
-)
-print("\n\t\tProceso finalizado")
-### **7.8. Creación de una Respuesta**
-print("\n\t7.8. Creación de una Respuesta")
-print("\n\t\tProceso iniciado")
-Settings.context_window = 20480     # Tamaño total de la ventana de contexto
-Settings.num_output = 4086          # Tokens para la salida
-Settings.chunk_overlap_ratio = 0.1  # Solapamiento entre fragmentos
-Settings.chunk_size_limit = 8192    # Tamaño máximo de fragmento
-
-query_engine = index.as_query_engine(response_mode="compact")
-response = query_engine.query(cargar_prompt())
-print("\n\t\tProceso finalizado")
-### **7.9. Guardar Respuesta**
-print("\n\t7.9. Guardar Respuesta")
-print("\n\t\tProceso iniciado")
-def save_output(text, path="output.txt"):
-    # Crear el directorio si no existe
-    directory = os.path.dirname(path)
-    if directory:  # Verifica que el directorio no sea una cadena vacía
-        os.makedirs(directory, exist_ok=True)
-    
-    # Guardar el archivo
-    with open(path, "w", encoding="utf-8") as f:
-        f.write(str(text))
-
-# Guardar la respuesta en un archivo de texto
-save_output(response, f"output/Análisis IA/Respuesta IA - {ciudad}.txt")
+nuevo_nombre = 'Datos Usados Realizar Búsqueda.txt'
+os.rename(ruta_input_destino, nuevo_nombre)
 print("\n\t\tProceso finalizado")
 ## **8. Finalización del Proyecto**
 print("\n8. Finalización del Proyecto")
@@ -932,5 +836,5 @@ segundos = int(tiempo_total % 60)
 tiempo = f"{minutos} minutos y {segundos} segundos"
 
 print(f"El tiempo transcurrido del proyecto ha sido de: {tiempo}.")
-print("\nLos resultados se han guardado en la carpeta 'output'.")
+print(f"\nLos resultados se han guardado en la carpeta 'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}'.")
 print("\nGracias por usar el programa.")
