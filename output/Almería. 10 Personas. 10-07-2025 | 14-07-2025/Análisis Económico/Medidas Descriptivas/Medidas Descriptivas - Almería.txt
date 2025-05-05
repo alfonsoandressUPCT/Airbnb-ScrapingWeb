@@ -1,0 +1,26 @@
+
+
+Medias de los Precios de Alojamientos en Almería:
+----------------------------------------
+Media del Precio por Noche: 383.29 €
+Media del Precio por Noche por Viajero: 38.52 €
+Media del Precio Total: 2056.76 €
+Media del Precio Total por Viajero: 206.10 €
+
+
+Medianas de los Precios de Alojamientos en Almería:
+----------------------------------------
+Mediana del Precio por Noche: 420.00 €
+Mediana del Precio por Noche por Viajero: 42.00 €
+Mediana del Precio Total: 2107.00 €
+Mediana del Precio Total por Viajero: 211.00 €
+
+
+Desviaciones Típicas de los Precios de Alojamientos en Almería:
+----------------------------------------
+Desviación Estándar del Precio por Noche: 119.01 €
+Desviación Estándar del Precio por Noche por Viajero: 11.86 €
+Desviación Estándar del Precio Total: 875.58 €
+Desviación Estándar del Precio Total por Viajero: 87.40 €
+
+

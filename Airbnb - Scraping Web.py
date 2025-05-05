@@ -372,10 +372,13 @@ for pagina in range(numero_pagina):
             break
 
     time.sleep(2)
-    
-    boton_siguiente_pagina = browser.find_element(By.XPATH, '//*[@id="site-content"]/div/div[3]/div/div/div/nav/div/a[5]')
-    boton_siguiente_pagina.click()
-    
+
+    if numero_pagina != 1:
+        boton_siguiente_pagina = browser.find_element(By.XPATH, "//a[@aria-label='Siguiente']")
+        boton_siguiente_pagina.click()      
+    else:
+        pass
+        
     time.sleep(2)
 print("\n\t\tProceso finalizado")
 ### **3.10. Cierre del Navegador**

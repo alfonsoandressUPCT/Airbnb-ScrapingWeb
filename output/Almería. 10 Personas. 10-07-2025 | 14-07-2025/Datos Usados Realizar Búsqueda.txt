@@ -1,14 +1,14 @@
 pais = 'España'
 
-ciudad = 'Sevilla'
+ciudad = 'Almería'
 
-fecha_entrada = '26/04/2025'
+fecha_entrada = '10/07/2025'
 
-fecha_salida = '27/04/2025'
+fecha_salida = '14/07/2025'
 
 numero_pagina = 1
 
-numero_adultos = 3
+numero_adultos = 10
 
 numero_niños = 0
 
