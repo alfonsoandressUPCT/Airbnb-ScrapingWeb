@@ -73,7 +73,7 @@ url = 'https://www.airbnb.es'
 
 browser.get(url)
 
-time.sleep(2)
+time.sleep(3)
 print("\n\t\tProceso finalizado")
 ### **3.2. Eliminación de Mensaje de Cookies**
 print("\n\t3.2. Eliminación de Mensaje de Cookies")
@@ -119,6 +119,7 @@ fecha_salida_objetivo = datetime.strptime(fecha_salida, "%d/%m/%Y")
 
 dia_entrada = str(fecha_entrada[0:2])
 
+
 dia_entrada_nombre = fecha_entrada_objetivo.strftime("%A")
 
 mes_entrada = str(fecha_entrada[3:5])
@@ -127,7 +128,11 @@ mes_entrada_nombre = fecha_entrada_objetivo.strftime("%B")
 
 año_entrada = str(fecha_entrada[6:10])
 
+if dia_entrada[0] == '0':
+    dia_entrada = dia_entrada[1:]
+
 dia_salida = str(fecha_salida[0:2])
+
 
 dia_salida_nombre = fecha_salida_objetivo.strftime("%A")
 
@@ -137,6 +142,9 @@ mes_salida_nombre = fecha_salida_objetivo.strftime("%B")
 
 año_salida = str(fecha_salida[6:10])
 
+if dia_salida[0] == '0':
+    dia_salida = dia_salida[1:]
+    
 fecha_entrada_str = fecha_entrada.replace('/', '-')
 fecha_salida_str = fecha_salida.replace('/', '-')
 
@@ -192,7 +200,7 @@ tarjeta_fecha_entrada = f"{dia_entrada}, {dia_entrada_nombre}, {mes_entrada_nomb
 date_button = browser.find_element(By.XPATH, f"//button[@aria-label='{tarjeta_fecha_entrada}']") 
 date_button.click()
 
-time.sleep(3)
+time.sleep(6)
 
 tarjeta_fecha_salida = f"{dia_salida}, {dia_salida_nombre}, {mes_salida_nombre} {año_salida}. Disponible. Selecciona este día como fecha de salida." # Texto único del atributo aria-label 
 

@@ -2,7 +2,7 @@ pais = 'España'
 
 ciudad = 'Santander'
 
-fecha_entrada = '08/07/2025'
+fecha_entrada = '8/07/2025'
 
 fecha_salida = '11/07/2025'
 
