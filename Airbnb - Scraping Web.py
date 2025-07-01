@@ -111,6 +111,8 @@ def comenzar_programa():
     mostrar_mensaje("3.1. Apertura del Navegador en el Sitio Web")
 
     # %%
+    time.sleep(3)
+
     browser = uc.Chrome(headless=False)
 
     time.sleep(3)
@@ -165,8 +167,6 @@ def comenzar_programa():
 
     fecha_entrada_objetivo = datetime.strptime(fecha_entrada, "%d/%m/%Y")
     fecha_salida_objetivo = datetime.strptime(fecha_salida, "%d/%m/%Y")
-
-    fecha_entrada_lista = list(fecha_entrada_objetivo)
 
     dia_entrada = str(fecha_entrada[0:2])
 
@@ -1742,5 +1742,3 @@ message_output_label.place(x=0, y=510)
 
 # %%
 app.mainloop()
-
-
