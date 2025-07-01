@@ -1056,8 +1056,6 @@ app.configure(bg="#000000")
 # #### **8.1.3 Icono de la Aplicación**
 
 # %%
-ruta = "icons/airbnb.png"
-print("Directorio actual:", os.getcwd())
 icon_image = Image.open("icons/airbnb.png")
 icon_photo = ImageTk.PhotoImage(icon_image)
 app.iconphoto(False, icon_photo)
@@ -1622,7 +1620,7 @@ start_button = Ctk.CTkButton(start_frame,
                             border_width=2,
                             corner_radius=0,
                             fg_color="#00a699",
-                            command=comenzar_programa())  # Placeholder command
+                            command=comenzar_programa)
 start_button.place(x=65, y=50)
 
 # %% [markdown]
