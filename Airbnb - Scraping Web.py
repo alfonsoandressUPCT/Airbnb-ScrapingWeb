@@ -1611,6 +1611,45 @@ start_label_title.place(x=0, y=0)
 # #### **8.3.3 Botón del Start Frame**
 
 # %%
+# Primero, crea una función de validación que verifique si los campos están vacíos
+def validar_campos():
+    # Verificar si hay campos vacíos
+    pais = destination_frame_country.get().strip()
+    ciudad = destination_frame_city.get().strip()
+    fecha_entrada = fecha_entrada_entry.get().strip()
+    fecha_salida = fecha_salida_entry.get().strip()
+    
+    # Verificar si hay al menos un viajero
+    total_viajeros = int(guests_adults_value_label.cget("text")) + int(guests_childs_value_label.cget("text")) + \
+                    int(guests_babys_value_label.cget("text")) + int(guests_pets_value_label.cget("text"))
+    
+    # Verificar cada campo y mostrar un mensaje de error apropiado
+    if not pais:
+        mostrar_mensaje("Error: El campo País está vacío.")
+        return False
+    elif not ciudad:
+        mostrar_mensaje("Error: El campo Ciudad está vacío.")
+        return False
+    elif not fecha_entrada:
+        mostrar_mensaje("Error: La fecha de entrada no está seleccionada.")
+        return False
+    elif not fecha_salida:
+        mostrar_mensaje("Error: La fecha de salida no está seleccionada.")
+        return False
+    elif total_viajeros == 0:
+        mostrar_mensaje("Error: Debe haber al menos un viajero.")
+        return False
+    
+    # Si todas las validaciones pasan, retornar True
+    return True
+
+# Función wrapper que primero valida y luego ejecuta el programa si la validación es exitosa
+def iniciar_busqueda():
+    if validar_campos():
+        mostrar_mensaje("Iniciando búsqueda...")
+        comenzar_programa()
+    
+# Corregir el botón para que use la función wrapper como callback (sin paréntesis)
 start_button = Ctk.CTkButton(start_frame,
                             text="Iniciar Búsqueda",
                             font=("AirbnbCereal_W_Blk", 20, "bold"),
@@ -1620,7 +1659,7 @@ start_button = Ctk.CTkButton(start_frame,
                             border_width=2,
                             corner_radius=0,
                             fg_color="#00a699",
-                            command=comenzar_programa)
+                            command=iniciar_busqueda)  # Sin paréntesis
 start_button.place(x=65, y=50)
 
 # %% [markdown]
