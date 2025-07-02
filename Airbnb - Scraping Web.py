@@ -113,9 +113,23 @@ def comenzar_programa():
     # %%
     time.sleep(3)
 
-    browser = uc.Chrome(headless=False)
+    # Configuración más robusta de Chrome
+    options = uc.ChromeOptions()
+    options.add_argument("--disable-extensions")
+    options.add_argument("--disable-popup-blocking")
+    options.add_argument("--disable-blink-features=AutomationControlled")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    
+    # Iniciar Chrome con configuración mejorada
+    browser = uc.Chrome(
+        headless=False,
+        version_main=138,
+        options=options,
+        use_subprocess=True
+    )
 
-    time.sleep(3)
+    time.sleep(5)
 
     url = 'https://www.airbnb.es'
 
@@ -157,10 +171,10 @@ def comenzar_programa():
     pais = destination_frame_country.get()
     ciudad = destination_frame_city.get()
 
-    numero_adultos = guests_adults_value_label.cget("text")
-    numero_niños = guests_childs_value_label.cget("text")
-    numero_bebes = guests_babys_value_label.cget("text")
-    numero_mascotas = guests_pets_value_label.cget("text")
+    numero_adultos = int(guests_adults_value_label.cget("text"))
+    numero_niños = int(guests_childs_value_label.cget("text"))
+    numero_bebes = int(guests_babys_value_label.cget("text"))
+    numero_mascotas = int(guests_pets_value_label.cget("text"))
 
     fecha_entrada = fecha_entrada_entry.get()
     fecha_salida = fecha_salida_entry.get()
@@ -223,7 +237,10 @@ def comenzar_programa():
     # %%
     Destino = f"{ciudad}, {pais}"
 
+    time.sleep(2)
+
     campo_destino = browser.find_element(By.ID, "bigsearch-query-location-input")
+    time.sleep(1)
     campo_destino.send_keys(Destino)
     campo_destino.send_keys(Keys.ENTER)
 
@@ -271,8 +288,9 @@ def comenzar_programa():
     mostrar_mensaje("3.7. Selección de Viajeros del Viaje")
 
     # %%
-    viajeros_button = browser.find_element(By.XPATH, "//div[div[text()='Viajeros']]/div[text()='Añade viajeros']")
+    viajeros_button = browser.find_element(By.XPATH,"//div[contains(@class, 'fbb0tkq') and text()='Añade viajeros']")
     viajeros_button.click()
+    time.sleep(2)
 
     for n in range(0, numero_adultos):
         increase_adults_button = browser.find_element(By.XPATH, "//button[@data-testid='stepper-adults-increase-button']")
@@ -869,7 +887,7 @@ def comenzar_programa():
     mostrar_mensaje("5.3.1. Obtener las Coordenadas de Nuestra Ciudad")
 
     # %%
-    geolocator = Nominatim(user_agent="geoapiEjemplo")
+    geolocator = Nominatim(user_agent="geoapiEjemplo", timeout=10)
 
     location = geolocator.geocode(f"{ciudad}, {pais}")
 
@@ -1109,7 +1127,7 @@ destination_label_title.place(x=30, y=0)
 destination_frame_country = Ctk.CTkEntry(input_destination_frame,
                                                 font=("AirbnbCereal_W_Bk",14),
                                                 fg_color="#484848",
-                                                text_color="#767676", width=225, height=25,
+                                                text_color="#FFFFFF", width=225, height=25,
                                                 placeholder_text="Pais")
 destination_frame_country.place(x=55, y=50)
 
@@ -1120,7 +1138,7 @@ destination_frame_country.place(x=55, y=50)
 destination_frame_city = Ctk.CTkEntry(input_destination_frame,
                                                 font=("AirbnbCereal_W_Bk",14),
                                                 fg_color="#484848",
-                                                text_color="#767676", width=225, height=25,
+                                                text_color="#FFFFFF", width=225, height=25,
                                                 placeholder_text="Ciudad")
 destination_frame_city.place(x=55, y=85)
 
@@ -1517,7 +1535,7 @@ top_calendar_entry = None
 top_calendar_exit = None
 
 ### === FECHA DE ENTRADA ===
-fecha_entrada_entry = Ctk.CTkEntry(calendar_frame, placeholder_text="Fecha de entrada", width=120, fg_color="#484848", text_color="#767676")
+fecha_entrada_entry = Ctk.CTkEntry(calendar_frame, placeholder_text="Fecha de entrada", width=120, fg_color="#484848", text_color="#FFFFFF")
 fecha_entrada_entry.place(x=50, y=80)
 
 def mostrar_calendario_entrada():
@@ -1545,11 +1563,11 @@ def mostrar_calendario_entrada():
 
     cal.bind("<<CalendarSelected>>", lambda e: seleccionar_fecha(cal, fecha_entrada_entry, top_calendar_entry))
 
-btn_fecha_entrada = Ctk.CTkButton(calendar_frame, text="📅", width=40, command=mostrar_calendario_entrada, fg_color="#484848", text_color="#767676")
+btn_fecha_entrada = Ctk.CTkButton(calendar_frame, text="📅", width=40, command=mostrar_calendario_entrada, fg_color="#484848", text_color="#FFFFFF")
 btn_fecha_entrada.place(x=180, y=80)
 
 ### === FECHA DE SALIDA ===
-fecha_salida_entry = Ctk.CTkEntry(calendar_frame, placeholder_text="Fecha de salida", width=120, fg_color="#484848", text_color="#767676")
+fecha_salida_entry = Ctk.CTkEntry(calendar_frame, placeholder_text="Fecha de salida", width=120, fg_color="#484848", text_color="#FFFFFF")
 fecha_salida_entry.place(x=50, y=130)
 
 def mostrar_calendario_salida():
@@ -1577,7 +1595,7 @@ def mostrar_calendario_salida():
 
     cal.bind("<<CalendarSelected>>", lambda e: seleccionar_fecha(cal, fecha_salida_entry, top_calendar_exit))
 
-btn_fecha_salida = Ctk.CTkButton(calendar_frame, text="📅", width=40, command=mostrar_calendario_salida, fg_color="#484848", text_color="#767676")
+btn_fecha_salida = Ctk.CTkButton(calendar_frame, text="📅", width=40, command=mostrar_calendario_salida, fg_color="#484848", text_color="#FFFFFF")
 btn_fecha_salida.place(x=180, y=130)
 
 ### === FUNCIÓN COMÚN PARA AMBOS ===
@@ -1647,7 +1665,7 @@ def validar_campos():
 def iniciar_busqueda():
     if validar_campos():
         mostrar_mensaje("Iniciando búsqueda...")
-        comenzar_programa()
+        comenzar_programa
     
 # Corregir el botón para que use la función wrapper como callback (sin paréntesis)
 start_button = Ctk.CTkButton(start_frame,
