@@ -135,7 +135,7 @@ def comenzar_programa():
 
     browser.get(url)
 
-    time.sleep(3)
+    time.sleep(4)
 
     # %% [markdown]
     # ### **3.2. Eliminación de Mensaje de Cookies**
@@ -144,6 +144,8 @@ def comenzar_programa():
     mostrar_mensaje("3.2. Eliminación de Mensaje de Cookies")
 
     # %%
+    time.sleep(1)
+
     cockies_botton = browser.find_element(By.XPATH, "//button[contains(text(), 'Solo las necesarias')]")
 
     cockies_botton.click()
@@ -1545,7 +1547,7 @@ def mostrar_calendario_entrada():
         return  # ya está abierto
 
     top_calendar_entry = Tk.Toplevel(calendar_frame)
-    top_calendar_entry.geometry("+{}+{}".format(app.winfo_rootx() + 100, app.winfo_rooty() + 300))
+    top_calendar_entry.geometry("+{}+{}".format(app.winfo_rootx() + 100, app.winfo_rooty() + 370))
     top_calendar_entry.overrideredirect(True)
 
     cal = Calendar(
@@ -1557,7 +1559,7 @@ def mostrar_calendario_entrada():
         headersbackground="#FF5A5F",
         headersforeground="#FFFFFF",
         selectbackground="#FFFFFF",
-        selectforeground="#FF5A5F"
+        selectforeground="#FF5A5F",
     )
     cal.pack()
 
@@ -1664,8 +1666,7 @@ def validar_campos():
 # Función wrapper que primero valida y luego ejecuta el programa si la validación es exitosa
 def iniciar_busqueda():
     if validar_campos():
-        mostrar_mensaje("Iniciando búsqueda...")
-        comenzar_programa
+        comenzar_programa()
     
 # Corregir el botón para que use la función wrapper como callback (sin paréntesis)
 start_button = Ctk.CTkButton(start_frame,
