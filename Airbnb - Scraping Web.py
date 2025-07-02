@@ -1557,16 +1557,27 @@ def mostrar_calendario_entrada():
     top_calendar_entry.geometry("+{}+{}".format(app.winfo_rootx() + 100, app.winfo_rooty() + 370))
     top_calendar_entry.overrideredirect(True)
 
+    # En la función mostrar_calendario_entrada:
     cal = Calendar(
         top_calendar_entry,
         selectmode='day',
         date_pattern='dd/mm/y',
-        background="#FF5A5F",
-        foreground="#FFFFFF",
-        headersbackground="#FF5A5F",
-        headersforeground="#FFFFFF",
-        selectbackground="#FFFFFF",
-        selectforeground="#FF5A5F",
+        background="#333333",  # Fondo gris oscuro (un poco más claro que negro)
+        foreground="#FFFFFF",  # Texto blanco brillante para las fechas del mes actual
+        disabledbackground="#333333",  # Mismo color de fondo para fechas deshabilitadas
+        disabledforeground="#FF9999",  # Color rosa claro para fechas de otros meses
+        headersbackground="#FF5A5F",  # Cabeceras en color Airbnb
+        headersforeground="#FFFFFF",  # Texto blanco para las cabeceras
+        selectbackground="#00a699",  # Color teal para la fecha seleccionada
+        selectforeground="#FFFFFF",  # Texto blanco para la fecha seleccionada
+        normalbackground="#333333",  # Fondo normal
+        normalforeground="#FFFFFF",  # Color normal del texto
+        weekendbackground="#333333",  # Fondo para fines de semana
+        weekendforeground="#00FFFF",  # Color cian para los fines de semana (destacados)
+        othermonthforeground="#FF9999",  # Color rosa claro para fechas de otros meses
+        othermonthbackground="#333333",  # Fondo para fechas de otros meses
+        othermonthweforeground="#FF9999",  # Color para fines de semana de otros meses
+        othermonthwebackground="#333333",  # Fondo para fines de semana de otros meses
     )
     cal.pack()
 
@@ -1589,16 +1600,27 @@ def mostrar_calendario_salida():
     top_calendar_exit.geometry("+{}+{}".format(app.winfo_rootx() + 100, app.winfo_rooty() + 370))
     top_calendar_exit.overrideredirect(True)
 
+    # En la función mostrar_calendario_entrada:
     cal = Calendar(
         top_calendar_exit,
         selectmode='day',
         date_pattern='dd/mm/y',
-        background="#FF5A5F",
-        foreground="#FFFFFF",
-        headersbackground="#FF5A5F",
-        headersforeground="#FFFFFF",
-        selectbackground="#FFFFFF",
-        selectforeground="#FF5A5F"
+        background="#333333",  # Fondo gris oscuro (un poco más claro que negro)
+        foreground="#FFFFFF",  # Texto blanco brillante para las fechas del mes actual
+        disabledbackground="#333333",  # Mismo color de fondo para fechas deshabilitadas
+        disabledforeground="#FF9999",  # Color rosa claro para fechas de otros meses
+        headersbackground="#FF5A5F",  # Cabeceras en color Airbnb
+        headersforeground="#FFFFFF",  # Texto blanco para las cabeceras
+        selectbackground="#00a699",  # Color teal para la fecha seleccionada
+        selectforeground="#FFFFFF",  # Texto blanco para la fecha seleccionada
+        normalbackground="#333333",  # Fondo normal
+        normalforeground="#FFFFFF",  # Color normal del texto
+        weekendbackground="#333333",  # Fondo para fines de semana
+        weekendforeground="#00FFFF",  # Color cian para los fines de semana (destacados)
+        othermonthforeground="#FF9999",  # Color rosa claro para fechas de otros meses
+        othermonthbackground="#333333",  # Fondo para fechas de otros meses
+        othermonthweforeground="#FF9999",  # Color para fines de semana de otros meses
+        othermonthwebackground="#333333",  # Fondo para fines de semana de otros meses
     )
     cal.pack()
 
@@ -1621,7 +1643,7 @@ def seleccionar_fecha(calendario, campo_entry, ventana_top):
 # #### **8.3.1 Creación del Start Frame**
 
 # %%
-start_frame = Ctk.CTkFrame(app, width=300, height=140, fg_color="#00a699")
+start_frame = Ctk.CTkFrame(app, width=300, height=140, fg_color="#00a699", corner_radius=0)
 start_frame.place(x=0, y=580)
 
 # %% [markdown]
@@ -1695,7 +1717,7 @@ start_button.place(x=65, y=50)
 # #### **8.4.1 Creación del Process Frame**
 
 # %%
-process_frame = Ctk.CTkFrame(app, width=780, height=140, fg_color="#e2dece")
+process_frame = Ctk.CTkFrame(app, width=780, height=140, fg_color="#e2dece", corner_radius=0)
 process_frame.place(x=300, y=580)
 
 # %% [markdown]
