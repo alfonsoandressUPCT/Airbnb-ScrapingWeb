@@ -1,9 +1,0 @@
-País: España
-Ciudad: Granada
-Número de Adultos: 2
-Número de Niños: 0
-Número de Bebés: 0
-Número de Mascotas: 0
-Número Total de Personas: 2
-Fecha de Entrada: 18-07-2025
-Fecha de Salida: 20-07-2025

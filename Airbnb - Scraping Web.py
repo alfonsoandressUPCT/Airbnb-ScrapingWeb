@@ -111,7 +111,7 @@ def comenzar_programa():
     mostrar_mensaje("3.1. Apertura del Navegador en el Sitio Web")
 
     # %%
-    time.sleep(3)
+    time.sleep(6)
 
     # Configuración más robusta de Chrome
     options = uc.ChromeOptions()
@@ -557,11 +557,8 @@ def comenzar_programa():
         # Aseguramos que son numéricos
         df[columna] = pd.to_numeric(df[columna], errors='coerce')
         
-        # Redondeamos hacia arriba
-        #df[columna] = np.ceil(df[columna]).astype(float)
-
-        # Aplicamos redondeo tradicional y convertimos a enteros
-        df[columna] = df[columna].round().astype(int)
+        # Redondeamos hacia arriba y convertimos a enteros
+        df[columna] = np.ceil(df[columna]).astype(float)
 
     # %% [markdown]
     # ### **4.5. Conversión de Datos Económicos a Datos Numéricos**
@@ -573,16 +570,8 @@ def comenzar_programa():
     # Función para limpiar y convertir los precios a float
     def convertir_a_entero(precio):
         if isinstance(precio, str):
-            # Convertimos a float para manejar decimales
-            precio_float = float(precio.replace("€", "").replace(".", "").replace(",", ".").strip())
-            # Aplicamos redondeo tradicional y convertimos a entero
-            return int(round(precio_float))
-        return int(round(precio)) if isinstance(precio, float) else precio
-
-    #def convertir_a_entero(precio):
-    #    if isinstance(precio, str):
-    #        return int(precio.replace("€", "").replace(".", "").replace(",", ".").strip())
-    #    return precio
+            return int(precio.replace("€", "").replace(".", "").replace(",", ".").strip())
+        return precio
 
     # Aplicar la función a las columnas correspondientes
     df["Precio por Noche"] = df["Precio por Noche"].apply(convertir_a_entero)
