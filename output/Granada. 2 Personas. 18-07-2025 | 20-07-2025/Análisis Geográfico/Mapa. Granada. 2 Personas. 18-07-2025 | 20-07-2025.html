@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_03ffdab4f4f17dfd48bac218cc2d9ad0 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_03ffdab4f4f17dfd48bac218cc2d9ad0" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_03ffdab4f4f17dfd48bac218cc2d9ad0 = L.map(
+                "map_03ffdab4f4f17dfd48bac218cc2d9ad0",
+                {
+                    center: [37.1734995, -3.5995337],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 13,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_3c5427dd762aa9cd871017a30332e844 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_3c5427dd762aa9cd871017a30332e844.addTo(map_03ffdab4f4f17dfd48bac218cc2d9ad0);
+        
+    
+            var marker_cluster_8b1df8e808acece492208350b616012f = L.markerClusterGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_86f3e5d3242eea0579d34554e2e0bcc5 = L.circleMarker(
+                [37.17843, -3.60085],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_8b1df8e808acece492208350b616012f);
+        
+    
+        var popup_381745a709009db30b527c20ef9b2525 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a9c77d9d77968214ff44d8427604cb6c = $(`<div id="html_a9c77d9d77968214ff44d8427604cb6c" style="width: 100.0%; height: 100.0%;">Nombre: Espectacular Piso Para Descubrir Granada <br> Precio Total: 12176 € <br> Precio Total por Viajero: 6088 € <br> Precio por Noche: 42 € <br> Precio por Noche por Viajero: 21 €  <br> Número de Servicios: 11 <br><a href='https://www.airbnb.es/rooms/46745326?adults=2&check_in=2025-07-18&check_out=2025-07-20&search_mode=regular_search&source_impression_id=p3_1751457830_P3KoL-M_f15oKIT4&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_381745a709009db30b527c20ef9b2525.setContent(html_a9c77d9d77968214ff44d8427604cb6c);
+            
+        
+
+        circle_marker_86f3e5d3242eea0579d34554e2e0bcc5.bindPopup(popup_381745a709009db30b527c20ef9b2525)
+        ;
+
+        
+    
+    
+            var circle_marker_a82853613eab287b6d4d3cda0fa25c35 = L.circleMarker(
+                [37.1824, -3.5987],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_8b1df8e808acece492208350b616012f);
+        
+    
+        var popup_daea7bbf48d8fe72cf6d21489d29784a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_706a1cd5e23175ab7657848eb58afabf = $(`<div id="html_706a1cd5e23175ab7657848eb58afabf" style="width: 100.0%; height: 100.0%;">Nombre: A6 Centro Granada Albaicin Bajo <br> Precio Total: 13000 € <br> Precio Total por Viajero: 6500 € <br> Precio por Noche: 50 € <br> Precio por Noche por Viajero: 25 €  <br> Número de Servicios: 10 <br><a href='https://www.airbnb.es/rooms/828326282134610952?adults=2&check_in=2025-07-18&check_out=2025-07-20&search_mode=regular_search&source_impression_id=p3_1751457830_P3Cl4PVOTxmWp-DU&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_daea7bbf48d8fe72cf6d21489d29784a.setContent(html_706a1cd5e23175ab7657848eb58afabf);
+            
+        
+
+        circle_marker_a82853613eab287b6d4d3cda0fa25c35.bindPopup(popup_daea7bbf48d8fe72cf6d21489d29784a)
+        ;
+
+        
+    
+    
+            var circle_marker_6c178eea1b4809a32e3fd336a538feb5 = L.circleMarker(
+                [37.1787, -3.5909],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_8b1df8e808acece492208350b616012f);
+        
+    
+        var popup_9c8582626d9ab8e59de0d6a7d863cfd9 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_133c599fac4d481e9fc13cf3895f5ad9 = $(`<div id="html_133c599fac4d481e9fc13cf3895f5ad9" style="width: 100.0%; height: 100.0%;">Nombre: Casa Ruan Albaicín, Las Bernardas <br> Precio Total: 14500 € <br> Precio Total por Viajero: 7250 € <br> Precio por Noche: 60 € <br> Precio por Noche por Viajero: 30 €  <br> Número de Servicios: 11 <br><a href='https://www.airbnb.es/rooms/1109296826442652975?adults=2&check_in=2025-07-18&check_out=2025-07-20&search_mode=regular_search&source_impression_id=p3_1751457830_P3xKd-EQojWJYPaL&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_9c8582626d9ab8e59de0d6a7d863cfd9.setContent(html_133c599fac4d481e9fc13cf3895f5ad9);
+            
+        
+
+        circle_marker_6c178eea1b4809a32e3fd336a538feb5.bindPopup(popup_9c8582626d9ab8e59de0d6a7d863cfd9)
+        ;
+
+        
+    
+    
+            var circle_marker_64fd75543cb3a07ff29bce30b993925d = L.circleMarker(
+                [37.1737, -3.5986],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_8b1df8e808acece492208350b616012f);
+        
+    
+        var popup_deb3de11590f73d2cde22522a2bedb01 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5685190ce2fb1941551958dc13d57d73 = $(`<div id="html_5685190ce2fb1941551958dc13d57d73" style="width: 100.0%; height: 100.0%;">Nombre: 9 Centro Center Calle Navas Junto Ayuntamiento <br> Precio Total: 13000 € <br> Precio Total por Viajero: 6500 € <br> Precio por Noche: 50 € <br> Precio por Noche por Viajero: 25 €  <br> Número de Servicios: 10 <br><a href='https://www.airbnb.es/rooms/15056494?adults=2&check_in=2025-07-18&check_out=2025-07-20&search_mode=regular_search&source_impression_id=p3_1751457830_P35icWwQw3klh2EH&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_deb3de11590f73d2cde22522a2bedb01.setContent(html_5685190ce2fb1941551958dc13d57d73);
+            
+        
+
+        circle_marker_64fd75543cb3a07ff29bce30b993925d.bindPopup(popup_deb3de11590f73d2cde22522a2bedb01)
+        ;
+
+        
+    
+    
+            var circle_marker_70e59fa497468e184b7e5317a44a3441 = L.circleMarker(
+                [37.1776, -3.597],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_8b1df8e808acece492208350b616012f);
+        
+    
+        var popup_bb4fd5543e1161515aafa79fb2cdb026 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_856ccdc181cc4dbd03a411bee6df3311 = $(`<div id="html_856ccdc181cc4dbd03a411bee6df3311" style="width: 100.0%; height: 100.0%;">Nombre: Ático Mirador De Peregrinos <br> Precio Total: 16300 € <br> Precio Total por Viajero: 8150 € <br> Precio por Noche: 55 € <br> Precio por Noche por Viajero: 28 €  <br> Número de Servicios: 12 <br><a href='https://www.airbnb.es/rooms/50412658?adults=2&check_in=2025-07-17&check_out=2025-07-20&search_mode=regular_search&children=0&infants=0&pets=0&source_impression_id=p3_1751457830_P3bqmIw3Czx-Ah1Z&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_bb4fd5543e1161515aafa79fb2cdb026.setContent(html_856ccdc181cc4dbd03a411bee6df3311);
+            
+        
+
+        circle_marker_70e59fa497468e184b7e5317a44a3441.bindPopup(popup_bb4fd5543e1161515aafa79fb2cdb026)
+        ;
+
+        
+    
+    
+            var circle_marker_dec2c0f76e992947678af4cdbaa2fa2e = L.circleMarker(
+                [37.17932, -3.5995],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_8b1df8e808acece492208350b616012f);
+        
+    
+        var popup_9330f6968d804d5108a68468a318d2bb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a9c1c50ba140dc37f11244db44eb81af = $(`<div id="html_a9c1c50ba140dc37f11244db44eb81af" style="width: 100.0%; height: 100.0%;">Nombre: 2A Casa Patio Con Vistas, En El Centro <br> Precio Total: 18400 € <br> Precio Total por Viajero: 9200 € <br> Precio por Noche: 62 € <br> Precio por Noche por Viajero: 31 €  <br> Número de Servicios: 12 <br><a href='https://www.airbnb.es/rooms/14894388?adults=2&check_in=2025-07-17&check_out=2025-07-20&search_mode=regular_search&children=0&infants=0&pets=0&source_impression_id=p3_1751457830_P3kC5h17WGNobdZf&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_9330f6968d804d5108a68468a318d2bb.setContent(html_a9c1c50ba140dc37f11244db44eb81af);
+            
+        
+
+        circle_marker_dec2c0f76e992947678af4cdbaa2fa2e.bindPopup(popup_9330f6968d804d5108a68468a318d2bb)
+        ;
+
+        
+    
+    
+            var circle_marker_ac77aaf6869bc71bc186f2abffe8640b = L.circleMarker(
+                [37.1854, -3.5974],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_8b1df8e808acece492208350b616012f);
+        
+    
+        var popup_51e54d948a064522e632312a8a4c9213 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a1a462a9419aff0246709b37bbb34077 = $(`<div id="html_a1a462a9419aff0246709b37bbb34077" style="width: 100.0%; height: 100.0%;">Nombre: Rolando House, Parking Incluido <br> Precio Total: 13800 € <br> Precio Total por Viajero: 6900 € <br> Precio por Noche: 57 € <br> Precio por Noche por Viajero: 28 €  <br> Número de Servicios: 12 <br><a href='https://www.airbnb.es/rooms/1228179036188213865?adults=2&check_in=2025-07-19&check_out=2025-07-21&search_mode=regular_search&children=0&infants=0&pets=0&source_impression_id=p3_1751457830_P3MB6hnT7M-wpME5&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_51e54d948a064522e632312a8a4c9213.setContent(html_a1a462a9419aff0246709b37bbb34077);
+            
+        
+
+        circle_marker_ac77aaf6869bc71bc186f2abffe8640b.bindPopup(popup_51e54d948a064522e632312a8a4c9213)
+        ;
+
+        
+    
+    
+            var circle_marker_addf85ac513126bb6a1fe5de7e737cb7 = L.circleMarker(
+                [37.17607, -3.59555],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_8b1df8e808acece492208350b616012f);
+        
+    
+        var popup_44e2432677bb8d186bbf5d405dc0c2b7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7817a3a0b0cb4e66d751fc02705831de = $(`<div id="html_7817a3a0b0cb4e66d751fc02705831de" style="width: 100.0%; height: 100.0%;">Nombre: Super Céntrico Estudio Renovado Con Encanto <br> Precio Total: 7611 € <br> Precio Total por Viajero: 3806 € <br> Precio por Noche: 45 € <br> Precio por Noche por Viajero: 22 €  <br> Número de Servicios: 10 <br><a href='https://www.airbnb.es/rooms/53430888?adults=2&check_in=2025-07-19&check_out=2025-07-20&search_mode=regular_search&children=0&infants=0&pets=0&source_impression_id=p3_1751457830_P38XaMUYs9CgEdXS&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_44e2432677bb8d186bbf5d405dc0c2b7.setContent(html_7817a3a0b0cb4e66d751fc02705831de);
+            
+        
+
+        circle_marker_addf85ac513126bb6a1fe5de7e737cb7.bindPopup(popup_44e2432677bb8d186bbf5d405dc0c2b7)
+        ;
+
+        
+    
+    
+            var circle_marker_18c43ae23b3deb2fb36ef625a82e2bf4 = L.circleMarker(
+                [37.1759, -3.6051],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_8b1df8e808acece492208350b616012f);
+        
+    
+        var popup_3eeee71c3ba706b93b1abddbdee3e0ce = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8c079dda4ce23ad54055d5678a4e0887 = $(`<div id="html_8c079dda4ce23ad54055d5678a4e0887" style="width: 100.0%; height: 100.0%;">Nombre: Granada Enamora 3 - Centro -Parking Privado Gratis <br> Precio Total: 19904 € <br> Precio Total por Viajero: 9952 € <br> Precio por Noche: 57 € <br> Precio por Noche por Viajero: 28 €  <br> Número de Servicios: 12 <br><a href='https://www.airbnb.es/rooms/34476862?adults=2&check_in=2025-07-18&check_out=2025-07-21&search_mode=regular_search&children=0&infants=0&pets=0&source_impression_id=p3_1751457830_P3RTH9dWal1FrSrd&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_3eeee71c3ba706b93b1abddbdee3e0ce.setContent(html_8c079dda4ce23ad54055d5678a4e0887);
+            
+        
+
+        circle_marker_18c43ae23b3deb2fb36ef625a82e2bf4.bindPopup(popup_3eeee71c3ba706b93b1abddbdee3e0ce)
+        ;
+
+        
+    
+    
+            var circle_marker_4407a88f5354136b898bd6a7af2c1490 = L.circleMarker(
+                [37.1827, -3.5937],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_8b1df8e808acece492208350b616012f);
+        
+    
+        var popup_58aa6437a734cc0038b14f8329e84bab = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_91e0bdc494ceef96a90458a41bf293f3 = $(`<div id="html_91e0bdc494ceef96a90458a41bf293f3" style="width: 100.0%; height: 100.0%;">Nombre: Apartamentos Pinksparrow 1I <br> Precio Total: 18733 € <br> Precio Total por Viajero: 9366 € <br> Precio por Noche: 50 € <br> Precio por Noche por Viajero: 25 €  <br> Número de Servicios: 12 <br><a href='https://www.airbnb.es/rooms/1314373213185953019?adults=2&check_in=2025-07-18&check_out=2025-07-21&search_mode=regular_search&children=0&infants=0&pets=0&source_impression_id=p3_1751457830_P3zwDBIMH7Gz_qUQ&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_58aa6437a734cc0038b14f8329e84bab.setContent(html_91e0bdc494ceef96a90458a41bf293f3);
+            
+        
+
+        circle_marker_4407a88f5354136b898bd6a7af2c1490.bindPopup(popup_58aa6437a734cc0038b14f8329e84bab)
+        ;
+
+        
+    
+    
+            var circle_marker_d592fe5fbf51e8e3ac3c194a0daf827f = L.circleMarker(
+                [37.1785, -3.6],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_8b1df8e808acece492208350b616012f);
+        
+    
+        var popup_6e9935738e902e0434812ef5835a12a6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8102232b6ee0572b6a4c9ef49cdeb291 = $(`<div id="html_8102232b6ee0572b6a4c9ef49cdeb291" style="width: 100.0%; height: 100.0%;">Nombre: 5 Centro De Granada Muy Centrico <br> Precio Total: 13000 € <br> Precio Total por Viajero: 6500 € <br> Precio por Noche: 50 € <br> Precio por Noche por Viajero: 25 €  <br> Número de Servicios: 10 <br><a href='https://www.airbnb.es/rooms/796164530333908051?adults=2&check_in=2025-07-18&check_out=2025-07-20&search_mode=regular_search&source_impression_id=p3_1751457830_P3UYJNxIHjvcRyDt&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_6e9935738e902e0434812ef5835a12a6.setContent(html_8102232b6ee0572b6a4c9ef49cdeb291);
+            
+        
+
+        circle_marker_d592fe5fbf51e8e3ac3c194a0daf827f.bindPopup(popup_6e9935738e902e0434812ef5835a12a6)
+        ;
+
+        
+    
+    
+            var circle_marker_a26dc28cfb05f4e2ae2078cdd1cdf567 = L.circleMarker(
+                [37.17787, -3.60378],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_8b1df8e808acece492208350b616012f);
+        
+    
+        var popup_471ee8d487f8e093d4a9861fb380ae8f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bdf91e66fde654abb862241b5bab6776 = $(`<div id="html_bdf91e66fde654abb862241b5bab6776" style="width: 100.0%; height: 100.0%;">Nombre: Apartamento Garcia Lorca Iii <br> Precio Total: 14050 € <br> Precio Total por Viajero: 7025 € <br> Precio por Noche: 60 € <br> Precio por Noche por Viajero: 30 €  <br> Número de Servicios: 12 <br><a href='https://www.airbnb.es/rooms/17233813?adults=2&check_in=2025-07-18&check_out=2025-07-20&search_mode=regular_search&source_impression_id=p3_1751457830_P3mg1LcPHVt9v-Vv&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_471ee8d487f8e093d4a9861fb380ae8f.setContent(html_bdf91e66fde654abb862241b5bab6776);
+            
+        
+
+        circle_marker_a26dc28cfb05f4e2ae2078cdd1cdf567.bindPopup(popup_471ee8d487f8e093d4a9861fb380ae8f)
+        ;
+
+        
+    
+    
+            var circle_marker_c15b018711f2fc952fb0e1b76e2065a0 = L.circleMarker(
+                [37.1734, -3.5976],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_8b1df8e808acece492208350b616012f);
+        
+    
+        var popup_81bd0a7ee8f5d15a393cf8a140586740 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f7bca9b24a1b6a70d2b3fd9bc25b75a4 = $(`<div id="html_f7bca9b24a1b6a70d2b3fd9bc25b75a4" style="width: 100.0%; height: 100.0%;">Nombre: Atico Con Magnífica Terraza En Pleno Centro <br> Precio Total: 11300 € <br> Precio Total por Viajero: 5650 € <br> Precio por Noche: 57 € <br> Precio por Noche por Viajero: 28 €  <br> Número de Servicios: 10 <br><a href='https://www.airbnb.es/rooms/612764510228631543?adults=2&check_in=2025-07-18&check_out=2025-07-20&search_mode=regular_search&source_impression_id=p3_1751457830_P3Q86RyccB1dRDsf&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_81bd0a7ee8f5d15a393cf8a140586740.setContent(html_f7bca9b24a1b6a70d2b3fd9bc25b75a4);
+            
+        
+
+        circle_marker_c15b018711f2fc952fb0e1b76e2065a0.bindPopup(popup_81bd0a7ee8f5d15a393cf8a140586740)
+        ;
+
+        
+    
+    
+            var circle_marker_e5d393e69d5b3216bdf424ea502c34dc = L.circleMarker(
+                [37.1531362, -3.5982487],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_8b1df8e808acece492208350b616012f);
+        
+    
+        var popup_17b3cce2f358867be54bfcc62e67f6db = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d7a7f63d07e02d5ece8e5ae93b28574e = $(`<div id="html_d7a7f63d07e02d5ece8e5ae93b28574e" style="width: 100.0%; height: 100.0%;">Nombre: Loft Los Cármenes <br> Precio Total: 15680 € <br> Precio Total por Viajero: 7840 € <br> Precio por Noche: 67 € <br> Precio por Noche por Viajero: 34 €  <br> Número de Servicios: 9 <br><a href='https://www.airbnb.es/rooms/1333241215702690148?adults=2&check_in=2025-07-18&check_out=2025-07-20&search_mode=regular_search&source_impression_id=p3_1751457830_P3mV_H7cqlHD2o-t&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_17b3cce2f358867be54bfcc62e67f6db.setContent(html_d7a7f63d07e02d5ece8e5ae93b28574e);
+            
+        
+
+        circle_marker_e5d393e69d5b3216bdf424ea502c34dc.bindPopup(popup_17b3cce2f358867be54bfcc62e67f6db)
+        ;
+
+        
+    
+    
+            var circle_marker_630f34b38d979170274c291eace9ab7d = L.circleMarker(
+                [37.1799, -3.5956],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_8b1df8e808acece492208350b616012f);
+        
+    
+        var popup_a1c04339dccd4436270a749421d3bb36 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d7ab7c975402b6a5f08719a8aab78dff = $(`<div id="html_d7ab7c975402b6a5f08719a8aab78dff" style="width: 100.0%; height: 100.0%;">Nombre: Estrella De Las Nieves <br> Precio Total: 17563 € <br> Precio Total por Viajero: 8782 € <br> Precio por Noche: 75 € <br> Precio por Noche por Viajero: 38 €  <br> Número de Servicios: 9 <br><a href='https://www.airbnb.es/rooms/669986574840024361?adults=2&check_in=2025-07-18&check_out=2025-07-20&search_mode=regular_search&source_impression_id=p3_1751457830_P3qp5p9m0Vt2hvJa&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_a1c04339dccd4436270a749421d3bb36.setContent(html_d7ab7c975402b6a5f08719a8aab78dff);
+            
+        
+
+        circle_marker_630f34b38d979170274c291eace9ab7d.bindPopup(popup_a1c04339dccd4436270a749421d3bb36)
+        ;
+
+        
+    
+    
+            var circle_marker_ed1d49720464bb80dd003f67360294ce = L.circleMarker(
+                [37.1798, -3.5918],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_8b1df8e808acece492208350b616012f);
+        
+    
+        var popup_dabb128cd13b337a11243488ea57d3e6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6a1a8b68ae403f4888fa912118d11da4 = $(`<div id="html_6a1a8b68ae403f4888fa912118d11da4" style="width: 100.0%; height: 100.0%;">Nombre: Apartamento Albayzín, Terraza Privada <br> Precio Total: 13900 € <br> Precio Total por Viajero: 6950 € <br> Precio por Noche: 62 € <br> Precio por Noche por Viajero: 31 €  <br> Número de Servicios: 13 <br><a href='https://www.airbnb.es/rooms/939529665640387301?adults=2&check_in=2025-07-18&check_out=2025-07-20&search_mode=regular_search&source_impression_id=p3_1751457830_P3uLBOVdTEiCAHF-&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_dabb128cd13b337a11243488ea57d3e6.setContent(html_6a1a8b68ae403f4888fa912118d11da4);
+            
+        
+
+        circle_marker_ed1d49720464bb80dd003f67360294ce.bindPopup(popup_dabb128cd13b337a11243488ea57d3e6)
+        ;
+
+        
+    
+    
+            var circle_marker_5a4083e952806aca9212441021d1c048 = L.circleMarker(
+                [37.180508, -3.5963734],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_8b1df8e808acece492208350b616012f);
+        
+    
+        var popup_7a4ee9022308daa5301db18fbcc96e02 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7921dcd5747a69f79208f293c43270f6 = $(`<div id="html_7921dcd5747a69f79208f293c43270f6" style="width: 100.0%; height: 100.0%;">Nombre: Bonito Apartamento En El Corazón Del Albaicín <br> Precio Total: 13816 € <br> Precio Total por Viajero: 6908 € <br> Precio por Noche: 59 € <br> Precio por Noche por Viajero: 30 €  <br> Número de Servicios: 10 <br><a href='https://www.airbnb.es/rooms/7644468?adults=2&check_in=2025-07-18&check_out=2025-07-20&search_mode=regular_search&source_impression_id=p3_1751457830_P3bMtCV_UxMtmn4T&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_7a4ee9022308daa5301db18fbcc96e02.setContent(html_7921dcd5747a69f79208f293c43270f6);
+            
+        
+
+        circle_marker_5a4083e952806aca9212441021d1c048.bindPopup(popup_7a4ee9022308daa5301db18fbcc96e02)
+        ;
+
+        
+    
+    
+            marker_cluster_8b1df8e808acece492208350b616012f.addTo(map_03ffdab4f4f17dfd48bac218cc2d9ad0);
+        
+</script>
+</html>

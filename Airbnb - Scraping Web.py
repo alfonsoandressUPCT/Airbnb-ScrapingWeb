@@ -557,8 +557,11 @@ def comenzar_programa():
         # Aseguramos que son numéricos
         df[columna] = pd.to_numeric(df[columna], errors='coerce')
         
-        # Redondeamos hacia arriba y convertimos a enteros
-        df[columna] = np.ceil(df[columna]).astype(float)
+        # Redondeamos hacia arriba
+        #df[columna] = np.ceil(df[columna]).astype(float)
+
+        # Aplicamos redondeo tradicional y convertimos a enteros
+        df[columna] = df[columna].round().astype(int)
 
     # %% [markdown]
     # ### **4.5. Conversión de Datos Económicos a Datos Numéricos**
@@ -570,8 +573,16 @@ def comenzar_programa():
     # Función para limpiar y convertir los precios a float
     def convertir_a_entero(precio):
         if isinstance(precio, str):
-            return int(precio.replace("€", "").replace(".", "").replace(",", ".").strip())
-        return precio
+            # Convertimos a float para manejar decimales
+            precio_float = float(precio.replace("€", "").replace(".", "").replace(",", ".").strip())
+            # Aplicamos redondeo tradicional y convertimos a entero
+            return int(round(precio_float))
+        return int(round(precio)) if isinstance(precio, float) else precio
+
+    #def convertir_a_entero(precio):
+    #    if isinstance(precio, str):
+    #        return int(precio.replace("€", "").replace(".", "").replace(",", ".").strip())
+    #    return precio
 
     # Aplicar la función a las columnas correspondientes
     df["Precio por Noche"] = df["Precio por Noche"].apply(convertir_a_entero)
@@ -1031,7 +1042,7 @@ def comenzar_programa():
     nuevo_nombre = 'Datos Usados Realizar Búsqueda.txt'
     ruta_directorio_destino = f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}'
 
-    datos_utilizados_txt = os.path.join(ruta_directorio_destino, 'archivo_personalizado.txt')
+    datos_utilizados_txt = os.path.join(ruta_directorio_destino, nuevo_nombre)
     with open(datos_utilizados_txt, 'w', encoding='utf-8') as f:
         for dato in datos_utilizados:
             f.write(dato + '\n')
@@ -1707,7 +1718,7 @@ def mostrar_contador_programa(mensaje):
 
 process_label_time = Ctk.CTkLabel(process_frame, 
                                 text="",
-                                width=780, height=50, anchor="center", text_color="#000000",
+                                width=780, height=70, anchor="center", text_color="#000000",
                                 font=("AirbnbCereal_W_Blk", 14, "bold"),
                                 corner_radius=0, bg_color="#e2dece")
 process_label_time.place(x=0, y=0)
