@@ -1016,18 +1016,25 @@ def comenzar_programa():
     mostrar_mensaje("6.5. Copia del Fichero Input.txt")
 
     # %%
-    ruta_input_origen = f'input/input.txt'
-    ruta_directorio_destino = f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}'
-    ruta_input_destino = os.path.join(ruta_directorio_destino, 'input.txt')
+    # Crear un archivo .txt con un mensaje personalizado
+    datos_utilizados = []
+    datos_utilizados.append(f"País: {pais}")
+    datos_utilizados.append(f"Ciudad: {ciudad}")
+    datos_utilizados.append(f"Número de Adultos: {numero_adultos}")
+    datos_utilizados.append(f"Número de Niños: {numero_niños}")
+    datos_utilizados.append(f"Número de Bebés: {numero_bebes}")
+    datos_utilizados.append(f"Número de Mascotas: {numero_mascotas}")
+    datos_utilizados.append(f"Número Total de Personas: {numero_total_personas}")
+    datos_utilizados.append(f"Fecha de Entrada: {fecha_entrada_str}")
+    datos_utilizados.append(f"Fecha de Salida: {fecha_salida_str}")
 
-    # Copiar el archivo
-    shutil.copy(ruta_input_origen, ruta_input_destino)
-
-    # Renombrar el archivo dentro del mismo directorio
     nuevo_nombre = 'Datos Usados Realizar Búsqueda.txt'
-    ruta_nuevo_nombre = os.path.join(ruta_directorio_destino, nuevo_nombre)
+    ruta_directorio_destino = f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}'
 
-    os.rename(ruta_input_destino, ruta_nuevo_nombre)
+    datos_utilizados_txt = os.path.join(ruta_directorio_destino, 'archivo_personalizado.txt')
+    with open(datos_utilizados_txt, 'w', encoding='utf-8') as f:
+        for dato in datos_utilizados:
+            f.write(dato + '\n')
 
     # %% [markdown]
     # ## **7. Finalización del Proyecto**
@@ -1700,7 +1707,8 @@ def mostrar_contador_programa(mensaje):
 
 process_label_time = Ctk.CTkLabel(process_frame, 
                                 text="",
-                                width=780, height=50, anchor="center",
+                                width=780, height=50, anchor="center", text_color="#000000",
+                                font=("AirbnbCereal_W_Blk", 14, "bold"),
                                 corner_radius=0, bg_color="#e2dece")
 process_label_time.place(x=0, y=0)
 
@@ -1750,7 +1758,7 @@ def mostrar_mensaje_exportacion(mensaje):
 
 message_output_label = Ctk.CTkLabel(output_frame,
                                 text="",
-                                font=("AirbnbCereal_W_Blk", 16, "bold"),
+                                font=("AirbnbCereal_W_Blk", 14, "bold"),
                                 text_color="#FFFFFF", width=780, height=70, anchor="center",
                                 corner_radius=0, bg_color="#484848")
 message_output_label.place(x=0, y=510)
