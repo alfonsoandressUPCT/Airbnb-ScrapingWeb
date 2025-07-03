@@ -392,7 +392,7 @@ def comenzar_programa():
             spans_total = browser.find_elements(By.XPATH, "//span[@class='_j1kt73']")
             precios = [s.text for s in spans_total if "€" in s.text]
             if precios:
-                precio_total = precios[0].split("€")[0].replace(",", "").strip() + " €"
+                precio_total = precios[0].split("€")[0].replace(",", ".").strip() + " €"
             else:
                 precio_total = "No disponible"
         except:
@@ -551,7 +551,13 @@ def comenzar_programa():
     mostrar_mensaje("4.4. Aproximación y Redondeo de Precios")
 
     # %%
-    columnas_a_redondear = ['Precio por Noche por Viajero', 'Precio Total por Viajero']
+    print("Antes de la aproximación y redondeo:")
+    print(f"La columna de precio total es: \n{df["Precio Total"].values}\n")
+    print(f"La columna de precio por noche es: \n{df["Precio por Noche"].values}\n")
+    print(f"La columna de precio por noche por viajero es: \n{df["Precio por Noche por Viajero"].values}\n")
+    print(f"La columna de precio total por viajero es: \n{df["Precio Total por Viajero"].values}\n")
+    
+    columnas_a_redondear = ['Precio por Noche por Viajero', 'Precio Total por Viajero', 'Precio por Noche', 'Precio Total']
 
     for columna in columnas_a_redondear:
         # Aseguramos que son numéricos
@@ -578,6 +584,13 @@ def comenzar_programa():
     df["Precio Total"] = df["Precio Total"].apply(convertir_a_entero)
     df["Precio por Noche por Viajero"] = pd.to_numeric(df["Precio por Noche por Viajero"]).astype(int)
     df["Precio Total por Viajero"] = pd.to_numeric(df["Precio Total por Viajero"]).astype(int)
+
+
+    print("Después de la conversión, los precios son:")
+    print(f"La columna de precio total es: \n{df["Precio Total"].values}\n")
+    print(f"La columna de precio por noche es: \n{df["Precio por Noche"].values}\n")
+    print(f"La columna de precio por noche por viajero es: \n{df["Precio por Noche por Viajero"].values}\n")
+    print(f"La columna de precio total por viajero es: \n{df["Precio Total por Viajero"].values}\n")
 
     # %% [markdown]
     # ### **4.6. Capitalización de Nombre de los Títulos**
