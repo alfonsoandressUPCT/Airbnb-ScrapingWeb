@@ -69,10 +69,12 @@ from PIL import Image, ImageTk
 # %%
 from collections import Counter
 
+import os
+import platform
+import subprocess
 import warnings
 import random
 import time
-import os
 import ssl
 import sys
 import shutil
@@ -182,6 +184,7 @@ def comenzar_programa():
 
     # %%
     pais = destination_frame_country.get()
+    global ciudad
     ciudad = destination_frame_city.get()
 
     numero_adultos = int(guests_adults_value_label.cget("text"))
@@ -221,9 +224,12 @@ def comenzar_programa():
     if dia_salida[0] == '0':
         dia_salida = dia_salida[1:]
 
+    global fecha_entrada_str
     fecha_entrada_str = fecha_entrada.replace('/', '-')
+    global fecha_salida_str
     fecha_salida_str = fecha_salida.replace('/', '-')
 
+    global numero_total_personas
     numero_total_personas = numero_adultos + numero_niños + numero_bebes + numero_mascotas
 
     directorios = list()
@@ -525,10 +531,6 @@ def comenzar_programa():
                 return None
         return None
 
-    print("Antes de la limpieza:")
-    print(f"La columna de precio total es: \n{df['Precio Total'].values}\n")
-    print(f"La columna de precio por noche es: \n{df['Precio por Noche'].values}\n")
-
     # Aplicamos la extracción de precios solo una vez
     df['Precio por Noche'] = df['Precio por Noche'].apply(lambda x: extraer_precio(x) if extraer_precio(x) is not None else "No Disponible")
     df['Precio Total'] = df['Precio Total'].apply(lambda x: extraer_precio(x) if extraer_precio(x) is not None else "No Disponible")
@@ -572,12 +574,6 @@ def comenzar_programa():
     mostrar_mensaje("4.4. Aproximación y Redondeo de Precios")
 
     # %%
-    print("Antes de la aproximación y redondeo:")
-    print(f"La columna de precio total es: \n{df['Precio Total'].values}\n")
-    print(f"La columna de precio por noche es: \n{df['Precio por Noche'].values}\n")
-    print(f"La columna de precio por noche por viajero es: \n{df['Precio por Noche por Viajero'].values}\n")
-    print(f"La columna de precio total por viajero es: \n{df['Precio Total por Viajero'].values}\n")
-
     columnas_a_redondear = ['Precio por Noche por Viajero', 'Precio Total por Viajero', 'Precio por Noche', 'Precio Total']
 
     for columna in columnas_a_redondear:
@@ -586,12 +582,6 @@ def comenzar_programa():
         
         # Redondeamos hacia arriba y convertimos a enteros directamente
         df[columna] = np.ceil(df[columna]).astype(int)
-
-    print("Después de la conversión, los precios son:")
-    print(f"La columna de precio total es: \n{df['Precio Total'].values}\n")
-    print(f"La columna de precio por noche es: \n{df['Precio por Noche'].values}\n")
-    print(f"La columna de precio por noche por viajero es: \n{df['Precio por Noche por Viajero'].values}\n")
-    print(f"La columna de precio total por viajero es: \n{df['Precio Total por Viajero'].values}\n")
 
     # %% [markdown]
     # ### **4.5. Capitalización de Nombre de los Títulos**
@@ -1068,9 +1058,9 @@ def comenzar_programa():
     tiempo = f"{minutos} minutos y {segundos} segundos"
 
     mostrar_contador_programa(f"El tiempo transcurrido de la búsqueda ha sido de: {tiempo}.")
-    mostrar_resultados()
     mostrar_mensaje_exportacion(f"Los resultados se han guardado en la carpeta 'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}'.")
     mostrar_mensaje("Gracias por usar el programa.")
+    mostrar_resultados()
 
 # %% [markdown]
 # ## **8. Ventana Gráfica**
@@ -1806,10 +1796,14 @@ message_output_label.place(x=0, y=510)
 # %% [markdown]
 def mostrar_resultados():
 
-    def abrir_archivo(title):
-        archivo = filedialog.askopenfilename(title)
-        if archivo:
-            print(f"Archivo seleccionado: {archivo}")
+    def abrir_archivo(ruta):
+    
+        if platform.system() == 'Windows':
+            os.startfile(ruta)
+        elif platform.system() == 'Darwin':  # macOS
+            subprocess.run(['open', ruta])
+        else:  # Linux
+            subprocess.run(['xdg-open', ruta])
 
     data_output_frame = Ctk.CTkFrame(output_frame, width=195, height=440, fg_color="#484848", corner_radius=0)
     data_output_frame.place(x=0, y=70)
@@ -1824,7 +1818,7 @@ def mostrar_resultados():
     boton_abrir_datos = Ctk.CTkButton(
         data_output_frame,
         text="Datos",
-        command=abrir_archivo(f"output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis de Datos/Alojamientos. {ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}.csv"),
+        command=lambda: abrir_archivo(f"output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis de Datos/Alojamientos. {ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}.csv"),
         width=150,
         height=30,
         fg_color="#767676",
@@ -1845,7 +1839,7 @@ def mostrar_resultados():
     boton_abrir_histogramas = Ctk.CTkButton(
         price_output_frame,
         text="Histogramas",
-        command=abrir_archivo(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Histograma/Histograma - {ciudad}.png'),
+        command=lambda: abrir_archivo(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Histograma/Histograma - {ciudad}.png'),
         width=150,
         height=30,
         fg_color="#767676",
@@ -1856,7 +1850,7 @@ def mostrar_resultados():
     boton_abrir_cajas = Ctk.CTkButton(
         price_output_frame,
         text="Diagramas de Cajas",
-        command=abrir_archivo(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Diagrama de Cajas/Diagrama de Cajas - {ciudad}.png'),
+        command=lambda: abrir_archivo(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Diagrama de Cajas/Diagrama de Cajas - {ciudad}.png'),
         width=150,
         height=30,
         fg_color="#767676",
@@ -1867,7 +1861,7 @@ def mostrar_resultados():
     boton_abrir_medidas = Ctk.CTkButton(
         price_output_frame,
         text="Medidas Descriptivas",
-        command=abrir_archivo(f"output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Medidas Descriptivas/Medidas Descriptivas - {ciudad}.txt"),
+        command=lambda: abrir_archivo(f"output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Medidas Descriptivas/Medidas Descriptivas - {ciudad}.txt"),
         width=150,
         height=30,
         fg_color="#767676",
@@ -1888,7 +1882,7 @@ def mostrar_resultados():
     boton_abrir_servicios = Ctk.CTkButton(
         services_output_frame,
         text="Servicios",
-        command=abrir_archivo(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis de Servicios/Servicios - {ciudad}.png'),
+        command=lambda: abrir_archivo(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis de Servicios/Servicios - {ciudad}.png'),
         width=150,
         height=30,
         fg_color="#767676",
@@ -1909,7 +1903,7 @@ def mostrar_resultados():
     boton_abrir_mapa = Ctk.CTkButton(
         map_output_frame,
         text="Mapa",
-        command=abrir_archivo(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Geográfico/Mapa. {ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}.html'),
+        command=lambda: abrir_archivo(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Geográfico/Mapa. {ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}.html'),
         width=150,
         height=30,
         fg_color="#767676",
