@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_4e2a5afbb5d3d169aa2c0d930db46c30 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_4e2a5afbb5d3d169aa2c0d930db46c30" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_4e2a5afbb5d3d169aa2c0d930db46c30 = L.map(
+                "map_4e2a5afbb5d3d169aa2c0d930db46c30",
+                {
+                    center: [37.1734995, -3.5995337],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 13,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_3040aaf562a708eaccd114a03f3394d6 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_3040aaf562a708eaccd114a03f3394d6.addTo(map_4e2a5afbb5d3d169aa2c0d930db46c30);
+        
+    
+            var marker_cluster_ded394d6314b26b5962184b6f6ccd44e = L.markerClusterGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_80455225087c93cb00b1347da2a6b3a4 = L.circleMarker(
+                [37.17891, -3.60113],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_ded394d6314b26b5962184b6f6ccd44e);
+        
+    
+        var popup_5e382f95c754edfa691e0646c9b9a247 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9c95e3db09f789f11e924bc644c5d4a3 = $(`<div id="html_9c95e3db09f789f11e924bc644c5d4a3" style="width: 100.0%; height: 100.0%;">Nombre: Catedral Granada Fantastico Apartamento <br> Precio Total: 108 € <br> Precio Total por Viajero: 54 € <br> Precio por Noche: 36 € <br> Precio por Noche por Viajero: 18 €  <br> Número de Servicios: 12 <br><a href='https://www.airbnb.es/rooms/47070242?adults=2&check_in=2025-07-18&check_out=2025-07-20&search_mode=regular_search&source_impression_id=p3_1751626986_P34jxeuMi2GGEzf2&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_5e382f95c754edfa691e0646c9b9a247.setContent(html_9c95e3db09f789f11e924bc644c5d4a3);
+            
+        
+
+        circle_marker_80455225087c93cb00b1347da2a6b3a4.bindPopup(popup_5e382f95c754edfa691e0646c9b9a247)
+        ;
+
+        
+    
+    
+            var circle_marker_688de2e7df8f91b0af0bbed8c95ba198 = L.circleMarker(
+                [37.17231, -3.60084],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_ded394d6314b26b5962184b6f6ccd44e);
+        
+    
+        var popup_bedb67608392de4e6a33fc3f3b289abc = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f1e7e89b130947df839c810c00c73aec = $(`<div id="html_f1e7e89b130947df839c810c00c73aec" style="width: 100.0%; height: 100.0%;">Nombre: Vistas Increíbles En El Centro <br> Precio Total: 101 € <br> Precio Total por Viajero: 51 € <br> Precio por Noche: 33 € <br> Precio por Noche por Viajero: 17 €  <br> Número de Servicios: 12 <br><a href='https://www.airbnb.es/rooms/54237542?adults=2&check_in=2025-07-18&check_out=2025-07-20&search_mode=regular_search&source_impression_id=p3_1751626986_P3aEouZfDd9nBSzu&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_bedb67608392de4e6a33fc3f3b289abc.setContent(html_f1e7e89b130947df839c810c00c73aec);
+            
+        
+
+        circle_marker_688de2e7df8f91b0af0bbed8c95ba198.bindPopup(popup_bedb67608392de4e6a33fc3f3b289abc)
+        ;
+
+        
+    
+    
+            var circle_marker_4815e38239ec86df051030f84bed5996 = L.circleMarker(
+                [37.1708, -3.6009],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_ded394d6314b26b5962184b6f6ccd44e);
+        
+    
+        var popup_1e9b8e88755320bf8a6446d34c5c178d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bc642099def9f2356ca878d3d64c81f1 = $(`<div id="html_bc642099def9f2356ca878d3d64c81f1" style="width: 100.0%; height: 100.0%;">Nombre: Bonito Estudio Centro Granada 10 Min Catedral <br> Precio Total: 106 € <br> Precio Total por Viajero: 53 € <br> Precio por Noche: 48 € <br> Precio por Noche por Viajero: 24 €  <br> Número de Servicios: 10 <br><a href='https://www.airbnb.es/rooms/13955143?adults=2&check_in=2025-07-18&check_out=2025-07-20&search_mode=regular_search&source_impression_id=p3_1751626986_P3D0Q7Ld04mvc7c6&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_1e9b8e88755320bf8a6446d34c5c178d.setContent(html_bc642099def9f2356ca878d3d64c81f1);
+            
+        
+
+        circle_marker_4815e38239ec86df051030f84bed5996.bindPopup(popup_1e9b8e88755320bf8a6446d34c5c178d)
+        ;
+
+        
+    
+    
+            var circle_marker_6b151429a2be6ebe4f2c35aa2d85d3e4 = L.circleMarker(
+                [37.1824, -3.5987],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_ded394d6314b26b5962184b6f6ccd44e);
+        
+    
+        var popup_d076dc296e41e3ee56409a29c8df5b27 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c3aa22620acf7cba3cf998d33da6f392 = $(`<div id="html_c3aa22620acf7cba3cf998d33da6f392" style="width: 100.0%; height: 100.0%;">Nombre: A6 Centro Granada Albaicin Bajo <br> Precio Total: 130 € <br> Precio Total por Viajero: 65 € <br> Precio por Noche: 50 € <br> Precio por Noche por Viajero: 25 €  <br> Número de Servicios: 10 <br><a href='https://www.airbnb.es/rooms/828326282134610952?adults=2&check_in=2025-07-18&check_out=2025-07-20&search_mode=regular_search&source_impression_id=p3_1751626986_P3QeFfVRSMQhVIiy&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_d076dc296e41e3ee56409a29c8df5b27.setContent(html_c3aa22620acf7cba3cf998d33da6f392);
+            
+        
+
+        circle_marker_6b151429a2be6ebe4f2c35aa2d85d3e4.bindPopup(popup_d076dc296e41e3ee56409a29c8df5b27)
+        ;
+
+        
+    
+    
+            marker_cluster_ded394d6314b26b5962184b6f6ccd44e.addTo(map_4e2a5afbb5d3d169aa2c0d930db46c30);
+        
+</script>
+</html>

@@ -111,7 +111,7 @@ def comenzar_programa():
     mostrar_mensaje("3.1. Apertura del Navegador en el Sitio Web")
 
     # %%
-    time.sleep(6)
+    time.sleep(5)
 
     # Configuración más robusta de Chrome
     options = uc.ChromeOptions()
@@ -129,13 +129,13 @@ def comenzar_programa():
         use_subprocess=True
     )
 
-    time.sleep(5)
+    time.sleep(8)
 
     url = 'https://www.airbnb.es'
 
     browser.get(url)
 
-    time.sleep(4)
+    time.sleep(5)
 
     # %% [markdown]
     # ### **3.2. Eliminación de Mensaje de Cookies**
@@ -145,6 +145,16 @@ def comenzar_programa():
 
     # %%
     time.sleep(1)
+
+    # Esperar hasta que el navegador esté abierto antes de continuar
+    while True:
+        if browser.service.process is not None and browser.service.process.poll() is None:
+            break
+        if browser.current_url != url:
+            browser.get(url)
+        if browser.current_url == url:
+            break
+        time.sleep(0.5)
 
     cockies_botton = browser.find_element(By.XPATH, "//button[contains(text(), 'Solo las necesarias')]")
 
@@ -336,7 +346,6 @@ def comenzar_programa():
     # %%
     data = []
 
-
     url_inicio_alojamientos = browser.current_url
 
     alojamientos = browser.find_elements(By.XPATH, "//div[@itemprop='itemListElement']")
@@ -503,21 +512,32 @@ def comenzar_programa():
 
     # %%
     # Limpiar el precio y convertirlo a float
+
     def extraer_precio(precio_str):
         if isinstance(precio_str, str) and '€' in precio_str:
             try:
-                numero = precio_str.split(' ')[0].replace('.', '').replace(',', '.')
+                # Eliminamos el símbolo € y cualquier espacio
+                numero = precio_str.split('€')[0].strip()
+                # Convertimos a float
                 return float(numero)
             except ValueError:
                 return None
         return None
 
-    df['Precio por Noche por Viajero'] = df['Precio por Noche'].apply(lambda x: extraer_precio(x) / numero_adultos if extraer_precio(x) is not None else "No Disponible")
+    print("Antes de la limpieza:")
+    print(f"La columna de precio total es: \n{df['Precio Total'].values}\n")
+    print(f"La columna de precio por noche es: \n{df['Precio por Noche'].values}\n")
 
-    df['Precio Total por Viajero'] = df['Precio Total'].apply(lambda x: extraer_precio(x) / numero_adultos if extraer_precio(x) is not None else "No Disponible")
+    # Aplicamos la extracción de precios solo una vez
+    df['Precio por Noche'] = df['Precio por Noche'].apply(lambda x: extraer_precio(x) if extraer_precio(x) is not None else "No Disponible")
+    df['Precio Total'] = df['Precio Total'].apply(lambda x: extraer_precio(x) if extraer_precio(x) is not None else "No Disponible")
+
+    # Creamos las columnas por viajero correctamente
+    df['Precio por Noche por Viajero'] = df['Precio por Noche'].apply(lambda x: x / numero_adultos if isinstance(x, (int, float)) else "No Disponible")
+    df['Precio Total por Viajero'] = df['Precio Total'].apply(lambda x: x / numero_adultos if isinstance(x, (int, float)) else "No Disponible")
                                                             
     df = df[['Nombre', 'Precio por Noche', 'Precio por Noche por Viajero', 'Precio Total', 'Precio Total por Viajero', 'Latitud', 'Longitud', 'Servicios', 'URL']]
-
+    
     # %% [markdown]
     # ### **4.2. Eliminación de Filas No Disponibles**
 
@@ -552,51 +572,31 @@ def comenzar_programa():
 
     # %%
     print("Antes de la aproximación y redondeo:")
-    print(f"La columna de precio total es: \n{df["Precio Total"].values}\n")
-    print(f"La columna de precio por noche es: \n{df["Precio por Noche"].values}\n")
-    print(f"La columna de precio por noche por viajero es: \n{df["Precio por Noche por Viajero"].values}\n")
-    print(f"La columna de precio total por viajero es: \n{df["Precio Total por Viajero"].values}\n")
-    
+    print(f"La columna de precio total es: \n{df['Precio Total'].values}\n")
+    print(f"La columna de precio por noche es: \n{df['Precio por Noche'].values}\n")
+    print(f"La columna de precio por noche por viajero es: \n{df['Precio por Noche por Viajero'].values}\n")
+    print(f"La columna de precio total por viajero es: \n{df['Precio Total por Viajero'].values}\n")
+
     columnas_a_redondear = ['Precio por Noche por Viajero', 'Precio Total por Viajero', 'Precio por Noche', 'Precio Total']
 
     for columna in columnas_a_redondear:
         # Aseguramos que son numéricos
         df[columna] = pd.to_numeric(df[columna], errors='coerce')
         
-        # Redondeamos hacia arriba y convertimos a enteros
-        df[columna] = np.ceil(df[columna]).astype(float)
-
-    # %% [markdown]
-    # ### **4.5. Conversión de Datos Económicos a Datos Numéricos**
-
-    # %%
-    mostrar_mensaje("4.5. Conversión de Datos Económicos a Datos Numéricos")
-
-    # %%
-    # Función para limpiar y convertir los precios a float
-    def convertir_a_entero(precio):
-        if isinstance(precio, str):
-            return int(precio.replace("€", "").replace(".", "").replace(",", ".").strip())
-        return precio
-
-    # Aplicar la función a las columnas correspondientes
-    df["Precio por Noche"] = df["Precio por Noche"].apply(convertir_a_entero)
-    df["Precio Total"] = df["Precio Total"].apply(convertir_a_entero)
-    df["Precio por Noche por Viajero"] = pd.to_numeric(df["Precio por Noche por Viajero"]).astype(int)
-    df["Precio Total por Viajero"] = pd.to_numeric(df["Precio Total por Viajero"]).astype(int)
-
+        # Redondeamos hacia arriba y convertimos a enteros directamente
+        df[columna] = np.ceil(df[columna]).astype(int)
 
     print("Después de la conversión, los precios son:")
-    print(f"La columna de precio total es: \n{df["Precio Total"].values}\n")
-    print(f"La columna de precio por noche es: \n{df["Precio por Noche"].values}\n")
-    print(f"La columna de precio por noche por viajero es: \n{df["Precio por Noche por Viajero"].values}\n")
-    print(f"La columna de precio total por viajero es: \n{df["Precio Total por Viajero"].values}\n")
+    print(f"La columna de precio total es: \n{df['Precio Total'].values}\n")
+    print(f"La columna de precio por noche es: \n{df['Precio por Noche'].values}\n")
+    print(f"La columna de precio por noche por viajero es: \n{df['Precio por Noche por Viajero'].values}\n")
+    print(f"La columna de precio total por viajero es: \n{df['Precio Total por Viajero'].values}\n")
 
     # %% [markdown]
-    # ### **4.6. Capitalización de Nombre de los Títulos**
+    # ### **4.5. Capitalización de Nombre de los Títulos**
 
     # %%
-    mostrar_mensaje("4.6. Capitalización de Nombre de los Títulos")
+    mostrar_mensaje("4.5. Capitalización de Nombre de los Títulos")
 
     # %%
     df['Nombre'] = df['Nombre'].str.title()

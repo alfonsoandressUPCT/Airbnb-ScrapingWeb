@@ -1,0 +1,26 @@
+
+
+Medias de los Precios de Alojamientos en Granada:
+----------------------------------------
+Media del Precio por Noche: 41.75 €
+Media del Precio por Noche por Viajero: 21.00 €
+Media del Precio Total: 111.25 €
+Media del Precio Total por Viajero: 55.75 €
+
+
+Medianas de los Precios de Alojamientos en Granada:
+----------------------------------------
+Mediana del Precio por Noche: 42.00 €
+Mediana del Precio por Noche por Viajero: 21.00 €
+Mediana del Precio Total: 107.00 €
+Mediana del Precio Total por Viajero: 53.50 €
+
+
+Desviaciones Típicas de los Precios de Alojamientos en Granada:
+----------------------------------------
+Desviación Estándar del Precio por Noche: 8.50 €
+Desviación Estándar del Precio por Noche por Viajero: 4.08 €
+Desviación Estándar del Precio Total: 12.84 €
+Desviación Estándar del Precio Total por Viajero: 6.29 €
+
+
