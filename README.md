@@ -1,7 +1,5 @@
 # **🏠 Airbnb-ScrapingWeb**
 
-![Airbnb Logo](icons/airbnb.png)
-
 ![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
 ![Selenium](https://img.shields.io/badge/Selenium-4.0+-green.svg)
 ![License](https://img.shields.io/badge/Licencia-MIT-yellow)
@@ -17,25 +15,32 @@ Esta aplicación implementa un sistema avanzado de web scraping para la platafor
 ## **🚀 Características Principales**
 
 - **🖥️ Interfaz Gráfica Intuitiva**: Diseñada con CustomTkinter y Tkinter, ofrece una experiencia de usuario moderna y funcional.
+
 - **🔎 Búsqueda Personalizada y Detallada**: 
   - Selección precisa de destino (país y ciudad)
   - Configuración flexible del número y tipo de viajeros (adultos, niños, bebés, mascotas)
   - Selección de fechas de entrada y salida mediante calendario interactivo
+
 - **🤖 Extracción Automatizada de Datos**: 
   - Navega automáticamente por Airbnb utilizando Selenium y ChromeDriver
   - Gestiona cookies y elementos interactivos del sitio
   - Obtiene datos completos de cada alojamiento
+
 - **📊 Análisis Multidimensional de Resultados**:
+
   - **💸 Análisis Económico**: 
     - Estadísticas descriptivas (media, mediana, desviación estándar)
     - Visualizaciones avanzadas (histogramas, diagramas de caja)
     - Identificación de valores máximos, mínimos y modas
+
   - **🛠️ Análisis de Servicios**: 
     - Frecuencia y distribución de servicios ofrecidos
     - Visualización gráfica de los servicios más comunes
+
   - **🌍 Análisis Geográfico**: 
     - Mapa interactivo con clusters de alojamientos
     - Codificación por colores según nivel de precios
+    
 - **💾 Exportación Completa de Resultados**: 
   - Archivos CSV con datos detallados
   - Visualizaciones en formato PNG de alta calidad
