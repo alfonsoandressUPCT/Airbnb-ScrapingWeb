@@ -58,6 +58,7 @@ import seaborn as sns
 import customtkinter as Ctk
 import tkinter as Tk
 
+from tkinter import filedialog
 from tkcalendar import Calendar, DateEntry
 from datetime import datetime
 from PIL import Image, ImageTk
@@ -806,7 +807,7 @@ def comenzar_programa():
     axes[1, 1].set_ylabel('Precio Total por Viajero (€)')
 
     plt.tight_layout()
-    plt.savefig(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Diagrama de Cajas/Diagrama Caja - {ciudad}.png')
+    plt.savefig(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Diagrama de Cajas/Diagrama de Cajas - {ciudad}.png')
     plt.close(fig)
 
     # %% [markdown]
@@ -1067,6 +1068,7 @@ def comenzar_programa():
     tiempo = f"{minutos} minutos y {segundos} segundos"
 
     mostrar_contador_programa(f"El tiempo transcurrido de la búsqueda ha sido de: {tiempo}.")
+    mostrar_resultados()
     mostrar_mensaje_exportacion(f"Los resultados se han guardado en la carpeta 'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}'.")
     mostrar_mensaje("Gracias por usar el programa.")
 
@@ -1200,11 +1202,11 @@ guests_adults_frame.place(x=50, y=50)
 
 # %%
 guests_adults_label_title = Ctk.CTkLabel(guests_adults_frame,
-                                    text="Adultos",
-                                    font=("AirbnbCereal_W_Bk", 14, "bold"),
+                                    text="Adultos (13 años o más)",
+                                    font=("AirbnbCereal_W_Bk", 12, "bold"),
                                     text_color="#FFFFFF", width=100, height=25, anchor="w",
                                     corner_radius=0, bg_color="#FF5A5F")
-guests_adults_label_title.place(x=10, y=0)
+guests_adults_label_title.place(x=0, y=0)
 
 # %% [markdown]
 # ###### **8.2.4.3.3 Botones del Frame de Adultos**
@@ -1242,7 +1244,7 @@ guests_adults_button_decrement = Ctk.CTkButton(
     fg_color="#484848",
     command=reducir_adultos
 )
-guests_adults_button_decrement.place(x=100, y=0)
+guests_adults_button_decrement.place(x=140, y=0)
 
 # Valor actual
 guests_adults_value_label = Ctk.CTkLabel(
@@ -1253,7 +1255,7 @@ guests_adults_value_label = Ctk.CTkLabel(
     text_color="#FFFFFF",
     fg_color="transparent"
 )
-guests_adults_value_label.place(x=135, y=0)
+guests_adults_value_label.place(x=170, y=0)
 
 # Botón +
 guests_adults_button_increment = Ctk.CTkButton(
@@ -1267,7 +1269,7 @@ guests_adults_button_increment = Ctk.CTkButton(
     fg_color="#484848",
     command=aumentar_adultos
 )
-guests_adults_button_increment.place(x=170, y=0)
+guests_adults_button_increment.place(x=200, y=0)
 
 # %% [markdown]
 # ##### **8.2.4.4 Frame de Niños**
@@ -1284,11 +1286,11 @@ guests_childs_frame.place(x=50, y=80)
 
 # %%
 guests_childs_label_title = Ctk.CTkLabel(guests_childs_frame,
-                                    text="Niños",
-                                    font=("AirbnbCereal_W_Bk", 14, "bold"),
+                                    text="Niños (De 2 a 12 años)",
+                                    font=("AirbnbCereal_W_Bk", 12, "bold"),
                                     text_color="#FFFFFF", width=100, height=25, anchor="w",
                                     corner_radius=0, bg_color="#FF5A5F")
-guests_childs_label_title.place(x=10, y=0)
+guests_childs_label_title.place(x=0, y=0)
 
 # %% [markdown]
 # ###### **8.2.4.4.3 Botones del Frame de Niños**
@@ -1326,7 +1328,7 @@ guests_childs_button_decrement = Ctk.CTkButton(
     fg_color="#484848",
     command=reducir_niños
 )
-guests_childs_button_decrement.place(x=100, y=0)
+guests_childs_button_decrement.place(x=140, y=0)
 
 
 # Valor actual
@@ -1338,7 +1340,7 @@ guests_childs_value_label = Ctk.CTkLabel(
     text_color="#FFFFFF",
     fg_color="transparent"
 )
-guests_childs_value_label.place(x=135, y=0)
+guests_childs_value_label.place(x=170, y=0)
 
 
 # Botón +
@@ -1353,7 +1355,7 @@ guests_childs_button_increment = Ctk.CTkButton(
     fg_color="#484848",
     command=aumentar_niños
 )
-guests_childs_button_increment.place(x=170, y=0)
+guests_childs_button_increment.place(x=200, y=0)
 
 # %% [markdown]
 # ##### **8.2.4.5 Frame de Bebés**
@@ -1370,11 +1372,11 @@ guests_babys_frame.place(x=50, y=110)
 
 # %%
 guests_babys_label_title = Ctk.CTkLabel(guests_babys_frame,
-                                    text="Bebés",
-                                    font=("AirbnbCereal_W_Bk", 14, "bold"),
+                                    text="Bebés (Menos de 2 años)",
+                                    font=("AirbnbCereal_W_Bk", 12, "bold"),
                                     text_color="#FFFFFF", width=100, height=25, anchor="w",
                                     corner_radius=0, bg_color="#FF5A5F")
-guests_babys_label_title.place(x=10, y=0)
+guests_babys_label_title.place(x=0, y=0)
 
 # %% [markdown]
 # ###### **8.2.4.5.3 Botones del Frame de Bebés**
@@ -1412,7 +1414,7 @@ guests_babys_button_decrement = Ctk.CTkButton(
     fg_color="#484848",
     command=reducir_bebes
 )
-guests_babys_button_decrement.place(x=100, y=0)
+guests_babys_button_decrement.place(x=140, y=0)
 
 
 # Valor actual
@@ -1424,7 +1426,7 @@ guests_babys_value_label = Ctk.CTkLabel(
     text_color="#FFFFFF",
     fg_color="transparent"
 )
-guests_babys_value_label.place(x=135, y=0)
+guests_babys_value_label.place(x=170, y=0)
 
 
 # Botón +
@@ -1439,7 +1441,7 @@ guests_babys_button_increment = Ctk.CTkButton(
     fg_color="#484848",
     command=aumentar_bebes
 )
-guests_babys_button_increment.place(x=170, y=0)
+guests_babys_button_increment.place(x=200, y=0)
 
 # %% [markdown]
 # ##### **8.2.4.6 Frame de Mascotas**
@@ -1457,10 +1459,10 @@ guests_pets_frame.place(x=50, y=140)
 # %%
 guests_pets_label_title = Ctk.CTkLabel(guests_pets_frame,
                                     text="Mascotas",
-                                    font=("AirbnbCereal_W_Bk", 14, "bold"),
+                                    font=("AirbnbCereal_W_Bk", 12, "bold"),
                                     text_color="#FFFFFF", width=100, height=25, anchor="w",
                                     corner_radius=0, bg_color="#FF5A5F")
-guests_pets_label_title.place(x=10, y=0)
+guests_pets_label_title.place(x=0, y=0)
 
 # %% [markdown]
 # ###### **8.2.4.6.3 Botones del Frame de Mascotas**
@@ -1498,7 +1500,7 @@ guests_pets_button_decrement = Ctk.CTkButton(
     fg_color="#484848",
     command=reducir_mascotas
 )
-guests_pets_button_decrement.place(x=100, y=0)
+guests_pets_button_decrement.place(x=140, y=0)
 
 
 # Valor actual
@@ -1510,7 +1512,7 @@ guests_pets_value_label = Ctk.CTkLabel(
     text_color="#FFFFFF",
     fg_color="transparent"
 )
-guests_pets_value_label.place(x=135, y=0)
+guests_pets_value_label.place(x=170, y=0)
 
 
 # Botón +
@@ -1525,7 +1527,7 @@ guests_pets_button_increment = Ctk.CTkButton(
     fg_color="#484848",
     command=aumentar_mascotas
 )
-guests_pets_button_increment.place(x=170, y=0)
+guests_pets_button_increment.place(x=200, y=0)
 
 # %% [markdown]
 # #### **8.2.5 Frame de Calendario**
@@ -1797,6 +1799,123 @@ message_output_label = Ctk.CTkLabel(output_frame,
                                 text_color="#FFFFFF", width=780, height=70, anchor="center",
                                 corner_radius=0, bg_color="#484848")
 message_output_label.place(x=0, y=510)
+
+# %% [markdown]
+#### **8.5.4 Frames de Resultados**
+
+# %% [markdown]
+def mostrar_resultados():
+
+    def abrir_archivo(title):
+        archivo = filedialog.askopenfilename(title)
+        if archivo:
+            print(f"Archivo seleccionado: {archivo}")
+
+    data_output_frame = Ctk.CTkFrame(output_frame, width=195, height=440, fg_color="#484848", corner_radius=0)
+    data_output_frame.place(x=0, y=70)
+
+    data_output_label = Ctk.CTkLabel(data_output_frame,
+                                    text="Datos de la Búsqueda",
+                                    font=("AirbnbCereal_W_Blk", 16, "bold"),
+                                    text_color="#FFFFFF", width=195, height=40, anchor="center",
+                                    corner_radius=0, bg_color="#484848")
+    data_output_label.place(x=0, y=0)
+
+    boton_abrir_datos = Ctk.CTkButton(
+        data_output_frame,
+        text="Datos",
+        command=abrir_archivo(f"output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis de Datos/Alojamientos. {ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}.csv"),
+        width=150,
+        height=30,
+        fg_color="#767676",
+        text_color="#FFFFFF"
+    )
+    boton_abrir_datos.place(x=22, y=50)
+
+    price_output_frame = Ctk.CTkFrame(output_frame, width=195, height=440, fg_color="#484848", corner_radius=0)
+    price_output_frame.place(x=195, y=70)
+
+    price_output_label = Ctk.CTkLabel(price_output_frame,
+                                    text="Precios de la Búsqueda",
+                                    font=("AirbnbCereal_W_Blk", 16, "bold"),
+                                    text_color="#FFFFFF", width=195, height=40, anchor="center",
+                                    corner_radius=0, bg_color="#484848")
+    price_output_label.place(x=0, y=0)
+
+    boton_abrir_histogramas = Ctk.CTkButton(
+        price_output_frame,
+        text="Histogramas",
+        command=abrir_archivo(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Histograma/Histograma - {ciudad}.png'),
+        width=150,
+        height=30,
+        fg_color="#767676",
+        text_color="#FFFFFF"
+    )
+    boton_abrir_histogramas.place(x=22, y=50)
+
+    boton_abrir_cajas = Ctk.CTkButton(
+        price_output_frame,
+        text="Diagramas de Cajas",
+        command=abrir_archivo(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Diagrama de Cajas/Diagrama de Cajas - {ciudad}.png'),
+        width=150,
+        height=30,
+        fg_color="#767676",
+        text_color="#FFFFFF"
+    )
+    boton_abrir_cajas.place(x=22, y=90)
+
+    boton_abrir_medidas = Ctk.CTkButton(
+        price_output_frame,
+        text="Medidas Descriptivas",
+        command=abrir_archivo(f"output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Medidas Descriptivas/Medidas Descriptivas - {ciudad}.txt"),
+        width=150,
+        height=30,
+        fg_color="#767676",
+        text_color="#FFFFFF"
+    )
+    boton_abrir_medidas.place(x=22, y=130)
+
+    services_output_frame = Ctk.CTkFrame(output_frame, width=195, height=440, fg_color="#484848", corner_radius=0)
+    services_output_frame.place(x=390, y=70)
+
+    services_output_label = Ctk.CTkLabel(services_output_frame,
+                                    text="Servicios de la Búsqueda",
+                                    font=("AirbnbCereal_W_Blk", 16, "bold"),
+                                    text_color="#FFFFFF", width=195, height=40, anchor="center",
+                                    corner_radius=0, bg_color="#484848")
+    services_output_label.place(x=0, y=0)
+
+    boton_abrir_servicios = Ctk.CTkButton(
+        services_output_frame,
+        text="Servicios",
+        command=abrir_archivo(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis de Servicios/Servicios - {ciudad}.png'),
+        width=150,
+        height=30,
+        fg_color="#767676",
+        text_color="#FFFFFF"
+    )
+    boton_abrir_servicios.place(x=22, y=50)
+
+    map_output_frame = Ctk.CTkFrame(output_frame, width=195, height=440, fg_color="#484848", corner_radius=0)
+    map_output_frame.place(x=585, y=70)
+
+    map_output_label = Ctk.CTkLabel(map_output_frame,
+                                    text="Mapa de la Búsqueda",
+                                    font=("AirbnbCereal_W_Blk", 16, "bold"),
+                                    text_color="#FFFFFF", width=195, height=40, anchor="center",
+                                    corner_radius=0, bg_color="#484848")
+    map_output_label.place(x=0, y=0)
+
+    boton_abrir_mapa = Ctk.CTkButton(
+        map_output_frame,
+        text="Mapa",
+        command=abrir_archivo(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Geográfico/Mapa. {ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}.html'),
+        width=150,
+        height=30,
+        fg_color="#767676",
+        text_color="#FFFFFF"
+    )
+    boton_abrir_mapa.place(x=22, y=50)
 
 
 # %% [markdown]
