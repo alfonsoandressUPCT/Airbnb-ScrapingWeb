@@ -10,8 +10,6 @@
 
 Esta aplicación implementa un sistema avanzado de web scraping para la plataforma Airbnb, permitiendo a los usuarios obtener información detallada sobre alojamientos disponibles según criterios específicos. El proyecto incluye una interfaz gráfica intuitiva y genera análisis completos de los datos obtenidos, facilitando la comparación de precios, servicios y ubicaciones.
 
-**© Alfonso Andrés Giménez Sánchez**. Todos los derechos reservados.
-
 ## **🚀 Características Principales**
 
 - **🖥️ Interfaz Gráfica Intuitiva**: Diseñada con CustomTkinter y Tkinter, ofrece una experiencia de usuario moderna y funcional.
