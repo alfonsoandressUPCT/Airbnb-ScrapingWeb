@@ -1,15 +1,12 @@
 # **🏠 Airbnb-ScrapingWeb**
 
-<div align="center">
 ![Airbnb Logo](icons/airbnb.png)
-</div>
 
-<div align="center">
 ![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
 ![Selenium](https://img.shields.io/badge/Selenium-4.0+-green.svg)
 ![License](https://img.shields.io/badge/Licencia-MIT-yellow)
 ![Status](https://img.shields.io/badge/Estado-Activo-brightgreen)
-</div>
+
 
 ## **📋 Descripción del Proyecto**
 
@@ -45,7 +42,7 @@ Esta aplicación implementa un sistema avanzado de web scraping para la platafor
   - Mapas interactivos en HTML
   - Informes de estadísticas en formato TXT
 
-## **Estructura del Proyecto**
+## **🏛️ Estructura del Proyecto**
 
 El proyecto está organizado en diferentes secciones funcionales:
 
@@ -63,7 +60,7 @@ El proyecto está organizado en diferentes secciones funcionales:
 
 7. **Ventana Gráfica**: Interfaz de usuario para controlar todo el proceso.
 
-## **Requisitos del Sistema**
+## **🔌 Requisitos del Sistema**
 
 Para ejecutar correctamente la aplicación, es necesario tener instalados:
 
@@ -72,7 +69,7 @@ Para ejecutar correctamente la aplicación, es necesario tener instalados:
 - Conexión a Internet estable
 - Espacio en disco para almacenar resultados
 
-## **Instalación**
+## **🔋 Instalación**
 
 1. Clona el repositorio:
 ```bash
@@ -93,7 +90,7 @@ pip install -r requirements.txt
 
 4. Asegúrate de tener Chrome instalado en tu sistema y que la versión sea compatible con el ChromeDriver utilizado.
 
-## **Uso**
+## **📸 Uso**
 
 1. Ejecuta el script principal:
 ```bash
@@ -120,7 +117,7 @@ python "Airbnb - Scraping Web.py"
       - `Medidas Descriptivas/:` Estadísticas numéricas en formato texto
     - `Análisis Geográfico/:` Mapas interactivos con ubicaciones codificadas por precio
 
-## **Flujo de Trabajo del Programa**
+## **📈 Flujo de Trabajo del Programa**
 
 1. **Configuración Inicial:** Carga de librerías y preparación del entorno.
 2. **Apertura del Navegador:** Inicialización de Chrome con configuraciones anti-detección.
@@ -131,18 +128,18 @@ python "Airbnb - Scraping Web.py"
 7. **Exportación de Resultados:** Almacenamiento en formatos accesibles.
 8. **Presentación de Resultados:** Interfaz para explorar los análisis generados.
 
-## **Consideraciones Técnicas**
+## **🧑‍💻 Consideraciones Técnicas**
 
 - La aplicación utiliza técnicas avanzadas para evitar ser detectada como un bot.
 - Se implementan pausas aleatorias para simular comportamiento humano.
 - El código maneja excepciones para garantizar la robustez del proceso.
 - Se optimiza el rendimiento para minimizar el tiempo de ejecución.
 
-## **Consideraciones Legales**
+## **⚖️ Consideraciones Legales**
 
 Este proyecto se proporciona únicamente con fines educativos y de investigación. El web scraping debe realizarse de acuerdo con los términos y condiciones de Airbnb. El uso de esta herramienta es responsabilidad del usuario final.
 
-## **Contribuciones**
+## **🤝 Contribuciones**
 
 Las contribuciones son bienvenidas. Si deseas colaborar con el proyecto:
 
