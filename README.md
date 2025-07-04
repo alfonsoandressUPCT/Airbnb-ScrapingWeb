@@ -1,169 +1,161 @@
+# **🏠 Airbnb-ScrapingWeb**
 
-# 🏠 Airbnb-ScrapingWeb
-
-![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
-  ![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange.svg)
-  ![Selenium](https://img.shields.io/badge/Selenium-4.0+-green.svg)
-  ![License](https://img.shields.io/badge/Licencia-MIT-yellow)
-  ![Status](https://img.shields.io/badge/Estado-Activo-brightgreen)
+<div align="center">
+![Airbnb Logo](icons/airbnb.png)
 </div>
 
-## 📋 Descripción
+<div align="center">
+![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
+![Selenium](https://img.shields.io/badge/Selenium-4.0+-green.svg)
+![License](https://img.shields.io/badge/Licencia-MIT-yellow)
+![Status](https://img.shields.io/badge/Estado-Activo-brightgreen)
+</div>
 
-Airbnb-ScrapingWeb es una herramienta avanzada de web scraping desarrollada en Python diseñada para extraer y analizar datos de alojamientos de Airbnb. El proyecto permite recopilar información detallada como precios, ubicaciones, valoraciones y características de los alojamientos para análisis posterior.
+## **📋 Descripción del Proyecto**
 
-Esta herramienta está desarrollada con fines educativos y de investigación, permitiendo entender mejor el mercado de alojamientos temporales y realizar análisis de datos para identificar tendencias, comparar precios y evaluar zonas geográficas.
+Esta aplicación implementa un sistema avanzado de web scraping para la plataforma Airbnb, permitiendo a los usuarios obtener información detallada sobre alojamientos disponibles según criterios específicos. El proyecto incluye una interfaz gráfica intuitiva y genera análisis completos de los datos obtenidos, facilitando la comparación de precios, servicios y ubicaciones.
 
-## 🚀 Características principales
+**© Alfonso Andrés Giménez Sánchez**. Todos los derechos reservados.
 
-- 🔍 **Extracción automatizada** de datos de listados de Airbnb
-- 💰 Análisis de precios por zona, temporada y tipo de alojamiento
-- 📊 Visualización de datos con gráficos interactivos
-- 📍 Geolocalización y representación en mapas de los alojamientos
-- 💾 Exportación de datos a formatos CSV y Excel
-- 📈 Monitoreo de cambios de precios a lo largo del tiempo
-- 🤖 Integración con modelos de IA para análisis de datos avanzado
-- 🌐 Soporte para traducción automática de descripciones
+## **🚀 Características Principales**
 
-## 🔧 Requisitos previos
+- **🖥️ Interfaz Gráfica Intuitiva**: Diseñada con CustomTkinter y Tkinter, ofrece una experiencia de usuario moderna y funcional.
+- **🔎 Búsqueda Personalizada y Detallada**: 
+  - Selección precisa de destino (país y ciudad)
+  - Configuración flexible del número y tipo de viajeros (adultos, niños, bebés, mascotas)
+  - Selección de fechas de entrada y salida mediante calendario interactivo
+- **🤖 Extracción Automatizada de Datos**: 
+  - Navega automáticamente por Airbnb utilizando Selenium y ChromeDriver
+  - Gestiona cookies y elementos interactivos del sitio
+  - Obtiene datos completos de cada alojamiento
+- **📊 Análisis Multidimensional de Resultados**:
+  - **💸 Análisis Económico**: 
+    - Estadísticas descriptivas (media, mediana, desviación estándar)
+    - Visualizaciones avanzadas (histogramas, diagramas de caja)
+    - Identificación de valores máximos, mínimos y modas
+  - **🛠️ Análisis de Servicios**: 
+    - Frecuencia y distribución de servicios ofrecidos
+    - Visualización gráfica de los servicios más comunes
+  - **🌍 Análisis Geográfico**: 
+    - Mapa interactivo con clusters de alojamientos
+    - Codificación por colores según nivel de precios
+- **💾 Exportación Completa de Resultados**: 
+  - Archivos CSV con datos detallados
+  - Visualizaciones en formato PNG de alta calidad
+  - Mapas interactivos en HTML
+  - Informes de estadísticas en formato TXT
+
+## **Estructura del Proyecto**
+
+El proyecto está organizado en diferentes secciones funcionales:
+
+1. **Implementación de Librerías y Paquetes**: Configuración de las herramientas necesarias para el scraping, análisis y visualización.
+
+2. **Inicio del Programa**: Configuración inicial y preparación del entorno.
+
+3. **Extracción de Datos**: Navegación automatizada y obtención de información.
+
+4. **Limpieza y Ordenación de Datos**: Procesamiento para garantizar la calidad y consistencia.
+
+5. **Interpretación de Datos**: Análisis estadístico y generación de visualizaciones.
+
+6. **Exportación de Datos**: Almacenamiento de resultados en formatos accesibles.
+
+7. **Ventana Gráfica**: Interfaz de usuario para controlar todo el proceso.
+
+## **Requisitos del Sistema**
+
+Para ejecutar correctamente la aplicación, es necesario tener instalados:
 
 - Python 3.8 o superior
-- Jupyter Notebook/JupyterLab
-- Navegador web compatible con Selenium
-- Conexión a Internet
+- Navegador Chrome actualizado
+- Conexión a Internet estable
+- Espacio en disco para almacenar resultados
 
-## 🛠️ Tecnologías utilizadas
+## **Instalación**
 
-- **Web Scraping**: Selenium, BeautifulSoup4, Requests, Scrapy, Playwright
-- **Análisis de datos**: Pandas, NumPy, Scikit-learn
-- **Visualización**: Matplotlib, Seaborn, Plotly, Folium
-- **Geocodificación**: GeoPy, GeoPandas
-- **IA & NLP**: LlamaIndex, ChromaDB
-- **Otros**: Traducción automática, manejo de archivos, utilidades diversas
-
-## ⚙️ Instalación
-
-1. **Clonar el repositorio**:
+1. Clona el repositorio:
 ```bash
 git clone https://github.com/alfonsoandressUPCT/Airbnb-ScrapingWeb.git
 cd Airbnb-ScrapingWeb
 ```
 
-2. **Crear y activar un entorno virtual** (opcional pero recomendado):
+2. Crea un entorno virtual (opcional pero recomendable):
 ```bash
-# Crear entorno virtual
 python -m venv venv
-
-# Activar en Windows
-venv\Scripts\activate
-
-# Activar en macOS/Linux
-source venv/bin/activate
+source venv/bin/activate  # En Windows: venv\Scripts\activate
 ```
 
-3. **Instalar las dependencias**:
+3. Instala las dependencias necesarias:
 ```bash
 pip install -r requirements.txt
 ```
 
-4. **Configurar el archivo de entrada**:
-   - Crea una carpeta `input` si no existe
-   - Dentro de esta carpeta, crea un archivo `input.txt` con los parámetros de búsqueda (ver ejemplo en la sección de uso)
+4. Asegúrate de tener Chrome instalado en tu sistema y que la versión sea compatible con el ChromeDriver utilizado.
 
-## 🖥️ Uso
+## **Uso**
 
-### Configuración del archivo de entrada
-
-Crea un archivo `input/input.txt` con el siguiente formato:
-```
-ciudad = "Madrid"
-pais = "España"
-fecha_entrada = "01/05/2025"
-fecha_salida = "05/05/2025"
-numero_adultos = 2
-numero_niños = 0
-numero_bebes = 0
-numero_mascotas = 0
-numero_pagina = 3
-```
-
-### Ejecutar el proyecto
-
-1. **Iniciar Jupyter Notebook**:
+1. Ejecuta el script principal:
 ```bash
-jupyter notebook
+python "Airbnb - Scraping Web.py"
 ```
 
-2. **Abrir y ejecutar el notebook principal**:
-   - Navega hasta `Airbnb - Scraping Web.ipynb`
-   - Ejecuta las celdas secuencialmente para realizar el proceso de scraping
+2. En la interfaz gráfica:
 
-### Flujo de trabajo
+  - Introduce el país y ciudad de destino
+  - Selecciona el número de viajeros (adultos, niños, bebés, mascotas)
+  - Elige las fechas de entrada y salida con el calendario interactivo
+  - Haz clic en "Iniciar Búsqueda"
 
-1. El sistema automatiza la navegación en Airbnb con los parámetros proporcionados
-2. Extrae datos de los alojamientos (nombres, precios, servicios, ubicación)
-3. Procesa y limpia los datos recopilados
-4. Genera visualizaciones y análisis estadísticos
-5. Exporta los resultados a archivos CSV/Excel
+3. La aplicación realizará el proceso de scraping y análisis automáticamente, mostrando el progreso en tiempo real.
 
-## 📊 Análisis y visualización
+4. Una vez completado, podrás acceder a los resultados mediante los botones de la interfaz o directamente en la carpeta output:
 
-El proyecto incluye diversas funcionalidades para analizar los datos extraídos:
+  - `[Ciudad]. [Número de Personas]. [Fecha Entrada] | [Fecha Salida]/`
+    - `Análisis de Datos/:` Datos completos en formato CSV
+    - `Análisis de Servicios/:` Gráficos de servicios disponibles
+    - `Análisis Económico/:` Estadísticas y visualizaciones de precios
+      - `Diagrama de Cajas/:` Visualizaciones de la distribución de precios
+      - `Histograma/:` Distribución de frecuencias de precios
+      - `Medidas Descriptivas/:` Estadísticas numéricas en formato texto
+    - `Análisis Geográfico/:` Mapas interactivos con ubicaciones codificadas por precio
 
-- **Mapas interactivos**: Visualización geoespacial de alojamientos con Folium
-- **Análisis de precios**: Comparativas, tendencias y valores atípicos
-- **Clustering**: Agrupación de alojamientos por características similares
-- **Dashboards**: Paneles de control para visualizar métricas clave
+## **Flujo de Trabajo del Programa**
 
-## 🤖 Integración con IA
+1. **Configuración Inicial:** Carga de librerías y preparación del entorno.
+2. **Apertura del Navegador:** Inicialización de Chrome con configuraciones anti-detección.
+3. **Navegación en Airbnb:** Introducción automática de parámetros de búsqueda.
+4. **Extracción de Datos:** Obtención de información de cada alojamiento.
+5. **Procesamiento de Datos:** Limpieza y estructuración de la información.
+6. **Análisis Estadístico:** Cálculo de métricas y generación de visualizaciones.
+7. **Exportación de Resultados:** Almacenamiento en formatos accesibles.
+8. **Presentación de Resultados:** Interfaz para explorar los análisis generados.
 
-El proyecto incorpora capacidades de análisis mediante IA utilizando:
+## **Consideraciones Técnicas**
 
-- Modelos locales mediante Ollama
-- Embeddings y vectorización para búsquedas semánticas
-- Análisis automatizado de características y tendencias
+- La aplicación utiliza técnicas avanzadas para evitar ser detectada como un bot.
+- Se implementan pausas aleatorias para simular comportamiento humano.
+- El código maneja excepciones para garantizar la robustez del proceso.
+- Se optimiza el rendimiento para minimizar el tiempo de ejecución.
 
-## ⚠️ Consideraciones éticas y legales
+## **Consideraciones Legales**
 
-Este proyecto está diseñado exclusivamente con fines educativos y de investigación. Al utilizar esta herramienta, asegúrate de:
+Este proyecto se proporciona únicamente con fines educativos y de investigación. El web scraping debe realizarse de acuerdo con los términos y condiciones de Airbnb. El uso de esta herramienta es responsabilidad del usuario final.
 
-- Respetar los términos de servicio de Airbnb
-- No saturar los servidores con demasiadas peticiones (implementa retrasos adecuados)
-- Utilizar los datos de manera ética y responsable
-- No almacenar ni procesar información personal de los anfitriones o huéspedes
-- Cumplir con la legislación de protección de datos aplicable en tu jurisdicción
+## **Contribuciones**
 
-## 🤝 Contribuciones
+Las contribuciones son bienvenidas. Si deseas colaborar con el proyecto:
 
-Las contribuciones son bienvenidas. Para contribuir:
-
-1. Haz un fork del proyecto
-2. Crea una nueva rama (`git checkout -b feature/nueva-funcionalidad`)
-3. Realiza tus cambios y haz commit (`git commit -am 'Añadir nueva funcionalidad'`)
-4. Sube los cambios (`git push origin feature/nueva-funcionalidad`)
+1. Haz un fork del repositorio
+2. Crea una rama para tu característica (`git checkout -b feature/NuevaCaracteristica`)
+3. Realiza tus cambios y haz commit (`git commit -m 'Añade nueva característica'`)
+4. Sube tus cambios (`git push origin feature/NuevaCaracteristica`)
 5. Abre un Pull Request
 
-## ❓ Preguntas frecuentes
+## **📧 Autor**
 
-**P: ¿Es legal hacer web scraping en Airbnb?**  
-R: El web scraping debe realizarse respetando los términos de servicio del sitio web y las leyes aplicables. Este proyecto es con fines educativos y debes usarlo responsablemente.
+**Alfonso Andrés Giménez Sánchez - Estudiante del Grado de Ciencia e Ingeniería de Datos en la Universidad Politécnica de Cartagena (UPCT) - [@alfonsoandressUPCT](https://github.com/alfonsoandressUPCT)**
 
-**P: ¿Cómo evitar ser bloqueado durante el scraping?**  
-R: El proyecto implementa retrasos entre peticiones, rotación de user agents y técnicas anti-detección con undetected-chromedriver.
+## **📄 Licencia**
 
-**P: ¿Puedo usar estos datos para un negocio comercial?**  
-R: No se recomienda el uso comercial de datos extraídos sin permiso explícito de Airbnb.
-
-## 📄 Licencia
-
-Este proyecto está licenciado bajo la [Licencia MIT](https://opensource.org/licenses/MIT).
-
-## 📧 Contacto
-
-Alfonso Andrés - [@alfonsoandressUPCT](https://github.com/alfonsoandressUPCT)
-
----
-
-<div align="center">
-  <p>© 2025 Alfonso Andrés Giménez Sánchez. Todos los derechos reservados.</p>
-</div>
+**© Alfonso Andrés Giménez Sánchez. Todos los derechos reservados.**
