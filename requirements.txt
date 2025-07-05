@@ -1,0 +1,39 @@
+# Paquetes para Web Scraping
+requests
+beautifulsoup4
+selenium
+webdriver-manager
+lxml
+undetected-chromedriver
+
+# Procesamiento y análisis de datos
+pandas
+numpy
+re  # No necesario instalar, parte de la biblioteca estándar
+
+# Visualización de datos
+matplotlib
+seaborn
+folium
+plotly  # Opcional, no usado explícitamente pero útil si piensas expandir visualizaciones
+
+# Geocodificación y mapas
+geopy
+
+# Traducción
+translate  # Asegúrate de que es el correcto. Puede ser 'translate' o 'deep-translator'
+
+# Interfaz gráfica (GUI)
+customtkinter
+tkcalendar
+pillow
+tk  # parte de la biblioteca estándar (no se instala con pip)
+
+# Utilidades adicionales (solo si las usas en otro código)
+tqdm
+python-dotenv
+fake-useragent
+pytz
+
+# Módulos estándar de Python que **NO** se incluyen en requirements.txt
+# re, datetime, time, os, warnings, random, ssl, shutil, collections, platform, subprocess, sys
