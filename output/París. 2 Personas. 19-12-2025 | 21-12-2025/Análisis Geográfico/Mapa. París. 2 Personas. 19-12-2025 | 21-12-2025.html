@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_6d3a60dbd7af12751c1e0de734e24600 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_6d3a60dbd7af12751c1e0de734e24600" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_6d3a60dbd7af12751c1e0de734e24600 = L.map(
+                "map_6d3a60dbd7af12751c1e0de734e24600",
+                {
+                    center: [48.8534951, 2.3483915],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 13,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_33b02dcf4e1ed2f23369fb52e650921b = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_33b02dcf4e1ed2f23369fb52e650921b.addTo(map_6d3a60dbd7af12751c1e0de734e24600);
+        
+    
+            var marker_cluster_df14d056d81633b0664a42861cfae33f = L.markerClusterGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_8a5b37288ae5101dfeb9a925a23bc7d4 = L.circleMarker(
+                [48.8886, 2.3601],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_df14d056d81633b0664a42861cfae33f);
+        
+    
+        var popup_4e169a422618498723751a20e509df79 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_977594080750430a16ba3c5f119acd06 = $(`<div id="html_977594080750430a16ba3c5f119acd06" style="width: 100.0%; height: 100.0%;">Nombre: Ubicación Ideal Confort París <br> Precio Total: 174 € <br> Precio Total por Viajero: 87 € <br> Precio por Noche: 65 € <br> Precio por Noche por Viajero: 33 €  <br> Número de Servicios: 12 <br><a href='https://www.airbnb.es/rooms/1326708226319881902?adults=2&check_in=2025-12-19&check_out=2025-12-21&search_mode=regular_search&source_impression_id=p3_1751713841_P3Vna6aw86dzjlGg&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_4e169a422618498723751a20e509df79.setContent(html_977594080750430a16ba3c5f119acd06);
+            
+        
+
+        circle_marker_8a5b37288ae5101dfeb9a925a23bc7d4.bindPopup(popup_4e169a422618498723751a20e509df79)
+        ;
+
+        
+    
+    
+            var circle_marker_6eb69e47a20ee67d574c31edcabeb20e = L.circleMarker(
+                [48.8469, 2.3212],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_df14d056d81633b0664a42861cfae33f);
+        
+    
+        var popup_d88f1154209dd966559e8d910ee0f53c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6bf3b630887e8755cbaacbabf8cccc98 = $(`<div id="html_6bf3b630887e8755cbaacbabf8cccc98" style="width: 100.0%; height: 100.0%;">Nombre: Estudio Saint-Sulpice <br> Precio Total: 236 € <br> Precio Total por Viajero: 118 € <br> Precio por Noche: 75 € <br> Precio por Noche por Viajero: 38 €  <br> Número de Servicios: 11 <br><a href='https://www.airbnb.es/rooms/1436079865756676566?adults=2&check_in=2025-12-19&check_out=2025-12-21&search_mode=regular_search&source_impression_id=p3_1751713841_P3rD3vgXd7LcqIWK&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_d88f1154209dd966559e8d910ee0f53c.setContent(html_6bf3b630887e8755cbaacbabf8cccc98);
+            
+        
+
+        circle_marker_6eb69e47a20ee67d574c31edcabeb20e.bindPopup(popup_d88f1154209dd966559e8d910ee0f53c)
+        ;
+
+        
+    
+    
+            var circle_marker_3fe89af949a1aacaed3f88b2c842a436 = L.circleMarker(
+                [48.9309, 2.3643],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_df14d056d81633b0664a42861cfae33f);
+        
+    
+        var popup_4e7627dc0dd6fdf3ba6c7731b817c4cb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_33247a022f6b1c146b9aaec862568ef7 = $(`<div id="html_33247a022f6b1c146b9aaec862568ef7" style="width: 100.0%; height: 100.0%;">Nombre: Estudio Cerca De París <br> Precio Total: 151 € <br> Precio Total por Viajero: 76 € <br> Precio por Noche: 50 € <br> Precio por Noche por Viajero: 25 €  <br> Número de Servicios: 10 <br><a href='https://www.airbnb.es/rooms/824033184640441726?adults=2&check_in=2025-12-19&check_out=2025-12-21&search_mode=regular_search&source_impression_id=p3_1751713841_P3eucSVWZYserLk3&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_4e7627dc0dd6fdf3ba6c7731b817c4cb.setContent(html_33247a022f6b1c146b9aaec862568ef7);
+            
+        
+
+        circle_marker_3fe89af949a1aacaed3f88b2c842a436.bindPopup(popup_4e7627dc0dd6fdf3ba6c7731b817c4cb)
+        ;
+
+        
+    
+    
+            var circle_marker_b9fb4d26a9d0f4665a56cbec7ade3a39 = L.circleMarker(
+                [48.8542994, 2.3879828],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_df14d056d81633b0664a42861cfae33f);
+        
+    
+        var popup_aba87c65d6c4f0b27f2ac7748571d2af = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1e246afc645327eef89c565ea350a9c9 = $(`<div id="html_1e246afc645327eef89c565ea350a9c9" style="width: 100.0%; height: 100.0%;">Nombre: Habitación Con Encanto En Grd Apart. Barrio Animado <br> Precio Total: 171 € <br> Precio Total por Viajero: 86 € <br> Precio por Noche: 64 € <br> Precio por Noche por Viajero: 32 €  <br> Número de Servicios: 12 <br><a href='https://www.airbnb.es/rooms/1370196216805870144?adults=2&check_in=2025-12-19&check_out=2025-12-21&search_mode=regular_search&category_tag=Tag%3A8678&photo_id=2101558085&source_impression_id=p3_1751713841_P3jZ7No7H3tD_jal&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_aba87c65d6c4f0b27f2ac7748571d2af.setContent(html_1e246afc645327eef89c565ea350a9c9);
+            
+        
+
+        circle_marker_b9fb4d26a9d0f4665a56cbec7ade3a39.bindPopup(popup_aba87c65d6c4f0b27f2ac7748571d2af)
+        ;
+
+        
+    
+    
+            var circle_marker_1d4a854fabb21efcdb97421adaec412c = L.circleMarker(
+                [48.8669, 2.3967],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_df14d056d81633b0664a42861cfae33f);
+        
+    
+        var popup_b3a11041186095cc2d5f0ba406aac651 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_afc4ab02147dac342939273ea36ca769 = $(`<div id="html_afc4ab02147dac342939273ea36ca769" style="width: 100.0%; height: 100.0%;">Nombre: El Pequeño Nido De Léon Gambetta <br> Precio Total: 243 € <br> Precio Total por Viajero: 122 € <br> Precio por Noche: 91 € <br> Precio por Noche por Viajero: 46 €  <br> Número de Servicios: 10 <br><a href='https://www.airbnb.es/rooms/984678720175201504?adults=2&check_in=2025-12-19&check_out=2025-12-21&search_mode=regular_search&source_impression_id=p3_1751713841_P3RDqPTUStJtfTrJ&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_b3a11041186095cc2d5f0ba406aac651.setContent(html_afc4ab02147dac342939273ea36ca769);
+            
+        
+
+        circle_marker_1d4a854fabb21efcdb97421adaec412c.bindPopup(popup_b3a11041186095cc2d5f0ba406aac651)
+        ;
+
+        
+    
+    
+            var circle_marker_6f32a682d7f6b19a28f8c158755e495c = L.circleMarker(
+                [48.78584, 2.31593],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_df14d056d81633b0664a42861cfae33f);
+        
+    
+        var popup_1c3222c25716168d91fe5b74b33cfc2a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b1087e3f7718c7807a2a4eaa9682295f = $(`<div id="html_b1087e3f7718c7807a2a4eaa9682295f" style="width: 100.0%; height: 100.0%;">Nombre: Estudio Con Jardín Muy Cerca De París <br> Precio Total: 152 € <br> Precio Total por Viajero: 76 € <br> Precio por Noche: 58 € <br> Precio por Noche por Viajero: 29 €  <br> Número de Servicios: 14 <br><a href='https://www.airbnb.es/rooms/582493598679740585?adults=2&check_in=2025-12-19&check_out=2025-12-21&search_mode=regular_search&source_impression_id=p3_1751713841_P3RAEnaoKAroUmZz&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_1c3222c25716168d91fe5b74b33cfc2a.setContent(html_b1087e3f7718c7807a2a4eaa9682295f);
+            
+        
+
+        circle_marker_6f32a682d7f6b19a28f8c158755e495c.bindPopup(popup_1c3222c25716168d91fe5b74b33cfc2a)
+        ;
+
+        
+    
+    
+            var circle_marker_10ca27089ac36025b02fd6b9f110b44b = L.circleMarker(
+                [48.8451, 2.3186],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_df14d056d81633b0664a42861cfae33f);
+        
+    
+        var popup_050bd2630937211f1907e3324792334f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a0d42761a2451f1cb97f62bbe66e4437 = $(`<div id="html_a0d42761a2451f1cb97f62bbe66e4437" style="width: 100.0%; height: 100.0%;">Nombre: Increíble Estudio En El Mejor Lugar <br> Precio Total: 236 € <br> Precio Total por Viajero: 118 € <br> Precio por Noche: 62 € <br> Precio por Noche por Viajero: 31 €  <br> Número de Servicios: 7 <br><a href='https://www.airbnb.es/rooms/1243575232828788876?adults=2&check_in=2025-12-19&check_out=2025-12-21&search_mode=regular_search&source_impression_id=p3_1751713841_P3WSJBTcMx10fjAE&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_050bd2630937211f1907e3324792334f.setContent(html_a0d42761a2451f1cb97f62bbe66e4437);
+            
+        
+
+        circle_marker_10ca27089ac36025b02fd6b9f110b44b.bindPopup(popup_050bd2630937211f1907e3324792334f)
+        ;
+
+        
+    
+    
+            var circle_marker_e09f7180d4b05120d0da944bd06cc98c = L.circleMarker(
+                [48.8798, 2.3719],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_df14d056d81633b0664a42861cfae33f);
+        
+    
+        var popup_2f08296fd1382c16329af383a3b846de = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e355794ebd152aaa518bec4631d80834 = $(`<div id="html_e355794ebd152aaa518bec4631d80834" style="width: 100.0%; height: 100.0%;">Nombre: Estudio Privado En París <br> Precio Total: 187 € <br> Precio Total por Viajero: 94 € <br> Precio por Noche: 70 € <br> Precio por Noche por Viajero: 35 €  <br> Número de Servicios: 12 <br><a href='https://www.airbnb.es/rooms/1206415212780912103?adults=2&check_in=2025-12-19&check_out=2025-12-21&search_mode=regular_search&category_tag=Tag%3A8678&photo_id=2157488788&source_impression_id=p3_1751713841_P3U4R8X1SF1q6X5E&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_2f08296fd1382c16329af383a3b846de.setContent(html_e355794ebd152aaa518bec4631d80834);
+            
+        
+
+        circle_marker_e09f7180d4b05120d0da944bd06cc98c.bindPopup(popup_2f08296fd1382c16329af383a3b846de)
+        ;
+
+        
+    
+    
+            var circle_marker_57d05f24e6f6aacfa354ceefc211db67 = L.circleMarker(
+                [48.8741, 2.3436],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_df14d056d81633b0664a42861cfae33f);
+        
+    
+        var popup_3e1a05702de99b21040177547564117a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f228790ede92214b176e749593e39dd1 = $(`<div id="html_f228790ede92214b176e749593e39dd1" style="width: 100.0%; height: 100.0%;">Nombre: Acogedor Estudio En El Corazón De París 9 <br> Precio Total: 227 € <br> Precio Total por Viajero: 114 € <br> Precio por Noche: 85 € <br> Precio por Noche por Viajero: 43 €  <br> Número de Servicios: 9 <br><a href='https://www.airbnb.es/rooms/1039990330879622076?adults=2&check_in=2025-12-19&check_out=2025-12-21&search_mode=regular_search&source_impression_id=p3_1751713841_P3bVbhFcmJ8aViP0&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_3e1a05702de99b21040177547564117a.setContent(html_f228790ede92214b176e749593e39dd1);
+            
+        
+
+        circle_marker_57d05f24e6f6aacfa354ceefc211db67.bindPopup(popup_3e1a05702de99b21040177547564117a)
+        ;
+
+        
+    
+    
+            var circle_marker_e4b3c2c456b1718b679f2e02581d9146 = L.circleMarker(
+                [48.8705, 2.3406],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_df14d056d81633b0664a42861cfae33f);
+        
+    
+        var popup_d39578f922230644e6ec23ea1db01b49 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6c10673e41c2b52f52744cc830a54bc5 = $(`<div id="html_6c10673e41c2b52f52744cc830a54bc5" style="width: 100.0%; height: 100.0%;">Nombre: Estudio Nuevo Y Equipado - Corazón De París- Bolsa <br> Precio Total: 313 € <br> Precio Total por Viajero: 157 € <br> Precio por Noche: 117 € <br> Precio por Noche por Viajero: 59 €  <br> Número de Servicios: 6 <br><a href='https://www.airbnb.es/rooms/1205697200341222169?adults=2&check_in=2025-12-19&check_out=2025-12-21&search_mode=regular_search&source_impression_id=p3_1751713841_P3FZutHukIIzzw4A&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_d39578f922230644e6ec23ea1db01b49.setContent(html_6c10673e41c2b52f52744cc830a54bc5);
+            
+        
+
+        circle_marker_e4b3c2c456b1718b679f2e02581d9146.bindPopup(popup_d39578f922230644e6ec23ea1db01b49)
+        ;
+
+        
+    
+    
+            var circle_marker_231cda7c321dc052de4e38ce8188967c = L.circleMarker(
+                [48.826913, 2.3692597],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_df14d056d81633b0664a42861cfae33f);
+        
+    
+        var popup_8526fd09f8890c2e744a5a8fad8c010d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3c39bf257e0204b5edcdd31ed09bddc1 = $(`<div id="html_3c39bf257e0204b5edcdd31ed09bddc1" style="width: 100.0%; height: 100.0%;">Nombre: Acogedor Apartamento En París 13 <br> Precio Total: 105 € <br> Precio Total por Viajero: 53 € <br> Precio por Noche: 85 € <br> Precio por Noche por Viajero: 43 €  <br> Número de Servicios: 5 <br><a href='https://www.airbnb.es/rooms/1433363830015980354?adults=2&check_in=2025-12-20&check_out=2025-12-21&search_mode=regular_search&children=0&infants=0&pets=0&source_impression_id=p3_1751713842_P3Pdw-pmZsA4kZZy&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_8526fd09f8890c2e744a5a8fad8c010d.setContent(html_3c39bf257e0204b5edcdd31ed09bddc1);
+            
+        
+
+        circle_marker_231cda7c321dc052de4e38ce8188967c.bindPopup(popup_8526fd09f8890c2e744a5a8fad8c010d)
+        ;
+
+        
+    
+    
+            var circle_marker_e5601de1a3e725f0da073031786cdce4 = L.circleMarker(
+                [48.8540406, 2.3781229],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_df14d056d81633b0664a42861cfae33f);
+        
+    
+        var popup_3798ec0e1226982243fc5aaef939ea78 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_dfd9c7fa2c1893e1a8d51fcc820b730f = $(`<div id="html_dfd9c7fa2c1893e1a8d51fcc820b730f" style="width: 100.0%; height: 100.0%;">Nombre: Gran Habitación Cálida En El Corazón De París <br> Precio Total: 140 € <br> Precio Total por Viajero: 70 € <br> Precio por Noche: 105 € <br> Precio por Noche por Viajero: 53 €  <br> Número de Servicios: 9 <br><a href='https://www.airbnb.es/rooms/1330344097495436075?adults=2&check_in=2025-12-20&check_out=2025-12-21&search_mode=regular_search&category_tag=Tag%3A8678&children=0&infants=0&pets=0&photo_id=2086939185&source_impression_id=p3_1751713842_P313BDxw_cUU1iDY&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_3798ec0e1226982243fc5aaef939ea78.setContent(html_dfd9c7fa2c1893e1a8d51fcc820b730f);
+            
+        
+
+        circle_marker_e5601de1a3e725f0da073031786cdce4.bindPopup(popup_3798ec0e1226982243fc5aaef939ea78)
+        ;
+
+        
+    
+    
+            var circle_marker_e0ee153c5bc901754c8716eec3736626 = L.circleMarker(
+                [48.797, 2.4032],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_df14d056d81633b0664a42861cfae33f);
+        
+    
+        var popup_174c0eb2ea7f34a1fc5cc3f42a5e4277 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c6b3c250a8a84bb13dcee920128c3d35 = $(`<div id="html_c6b3c250a8a84bb13dcee920128c3d35" style="width: 100.0%; height: 100.0%;">Nombre: Pequeño Estudio Cálido <br> Precio Total: 262 € <br> Precio Total por Viajero: 131 € <br> Precio por Noche: 49 € <br> Precio por Noche por Viajero: 25 €  <br> Número de Servicios: 10 <br><a href='https://www.airbnb.es/rooms/808640523272854662?adults=2&check_in=2025-12-18&check_out=2025-12-22&search_mode=regular_search&children=0&infants=0&pets=0&source_impression_id=p3_1751713842_P3dHxqJomWZTcfQT&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_174c0eb2ea7f34a1fc5cc3f42a5e4277.setContent(html_c6b3c250a8a84bb13dcee920128c3d35);
+            
+        
+
+        circle_marker_e0ee153c5bc901754c8716eec3736626.bindPopup(popup_174c0eb2ea7f34a1fc5cc3f42a5e4277)
+        ;
+
+        
+    
+    
+            var circle_marker_20314ad40694402ad44aa56e6fef9c39 = L.circleMarker(
+                [48.87913, 2.43397],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_df14d056d81633b0664a42861cfae33f);
+        
+    
+        var popup_11dd2719e278d465191efc1873212d8e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4d01690452f62f0e4e9651e955b264df = $(`<div id="html_4d01690452f62f0e4e9651e955b264df" style="width: 100.0%; height: 100.0%;">Nombre: Bonito Estudio De 34 M² Cerca De París <br> Precio Total: 82 € <br> Precio Total por Viajero: 41 € <br> Precio por Noche: 47 € <br> Precio por Noche por Viajero: 24 €  <br> Número de Servicios: 9 <br><a href='https://www.airbnb.es/rooms/1131086417096598368?adults=2&check_in=2025-12-20&check_out=2025-12-21&search_mode=regular_search&children=0&infants=0&pets=0&source_impression_id=p3_1751713842_P3y2zB88vG4J6ilL&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_11dd2719e278d465191efc1873212d8e.setContent(html_4d01690452f62f0e4e9651e955b264df);
+            
+        
+
+        circle_marker_20314ad40694402ad44aa56e6fef9c39.bindPopup(popup_11dd2719e278d465191efc1873212d8e)
+        ;
+
+        
+    
+    
+            var circle_marker_2a1808823907680ace0e46bd0b7521e4 = L.circleMarker(
+                [48.865, 2.3583],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_df14d056d81633b0664a42861cfae33f);
+        
+    
+        var popup_cee06f382ff622fc5c69e432287e3a67 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0bab91ff2f89a6851f4aca5e63238590 = $(`<div id="html_0bab91ff2f89a6851f4aca5e63238590" style="width: 100.0%; height: 100.0%;">Nombre: Dormitorio, Arts Et Métiers En El Marais <br> Precio Total: 397 € <br> Precio Total por Viajero: 199 € <br> Precio por Noche: 70 € <br> Precio por Noche por Viajero: 35 €  <br> Número de Servicios: 11 <br><a href='https://www.airbnb.es/rooms/16419973?adults=2&check_in=2025-12-18&check_out=2025-12-22&search_mode=regular_search&children=0&infants=0&pets=0&source_impression_id=p3_1751713842_P3cL9fxLPSwjvsse&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_cee06f382ff622fc5c69e432287e3a67.setContent(html_0bab91ff2f89a6851f4aca5e63238590);
+            
+        
+
+        circle_marker_2a1808823907680ace0e46bd0b7521e4.bindPopup(popup_cee06f382ff622fc5c69e432287e3a67)
+        ;
+
+        
+    
+    
+            var circle_marker_548336a29119f54232e992024b98908e = L.circleMarker(
+                [48.9246269, 2.4902477],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_df14d056d81633b0664a42861cfae33f);
+        
+    
+        var popup_9d26787fdf84a79c2d6e5d1e4c1e5c2f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a5ba5ec1ae4575b2e80f40750e95d2da = $(`<div id="html_a5ba5ec1ae4575b2e80f40750e95d2da" style="width: 100.0%; height: 100.0%;">Nombre: El S4 <br> Precio Total: 203 € <br> Precio Total por Viajero: 102 € <br> Precio por Noche: 48 € <br> Precio por Noche por Viajero: 24 €  <br> Número de Servicios: 8 <br><a href='https://www.airbnb.es/rooms/1379848087379774791?adults=2&check_in=2025-12-18&check_out=2025-12-21&search_mode=regular_search&children=0&infants=0&pets=0&source_impression_id=p3_1751713842_P36zr8asfZFiv2_e&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_9d26787fdf84a79c2d6e5d1e4c1e5c2f.setContent(html_a5ba5ec1ae4575b2e80f40750e95d2da);
+            
+        
+
+        circle_marker_548336a29119f54232e992024b98908e.bindPopup(popup_9d26787fdf84a79c2d6e5d1e4c1e5c2f)
+        ;
+
+        
+    
+    
+            var circle_marker_e1b1c5a337db3f64c55768b8ef5a6b07 = L.circleMarker(
+                [48.8105, 2.4153],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_df14d056d81633b0664a42861cfae33f);
+        
+    
+        var popup_ca57a7d425ea27c4f32da6af05c07a3f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_215a5c08ed9b2e181b1296ef27efa0e4 = $(`<div id="html_215a5c08ed9b2e181b1296ef27efa0e4" style="width: 100.0%; height: 100.0%;">Nombre: Chez Naya -Cerca De París- Metro 8 <br> Precio Total: 162 € <br> Precio Total por Viajero: 81 € <br> Precio por Noche: 56 € <br> Precio por Noche por Viajero: 28 €  <br> Número de Servicios: 10 <br><a href='https://www.airbnb.es/rooms/1096183968487855535?adults=2&check_in=2025-12-19&check_out=2025-12-21&search_mode=regular_search&source_impression_id=p3_1751713841_P3iywGR77QXDF30O&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_ca57a7d425ea27c4f32da6af05c07a3f.setContent(html_215a5c08ed9b2e181b1296ef27efa0e4);
+            
+        
+
+        circle_marker_e1b1c5a337db3f64c55768b8ef5a6b07.bindPopup(popup_ca57a7d425ea27c4f32da6af05c07a3f)
+        ;
+
+        
+    
+    
+            var circle_marker_0989b65f3e67f4fb7dc106be18c440a3 = L.circleMarker(
+                [48.8227, 2.2934],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_df14d056d81633b0664a42861cfae33f);
+        
+    
+        var popup_2c59fe36d4a2cce79f8e55ef9f49bae8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c43f7c8aa7f1eb9878b0507a37dd104c = $(`<div id="html_c43f7c8aa7f1eb9878b0507a37dd104c" style="width: 100.0%; height: 100.0%;">Nombre: Apartamento Cerca Del Salón Porte De Versailles <br> Precio Total: 227 € <br> Precio Total por Viajero: 114 € <br> Precio por Noche: 85 € <br> Precio por Noche por Viajero: 43 €  <br> Número de Servicios: 12 <br><a href='https://www.airbnb.es/rooms/1292555638012442892?adults=2&check_in=2025-12-19&check_out=2025-12-21&search_mode=regular_search&source_impression_id=p3_1751713841_P30g3rDQYfZP9hrE&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_2c59fe36d4a2cce79f8e55ef9f49bae8.setContent(html_c43f7c8aa7f1eb9878b0507a37dd104c);
+            
+        
+
+        circle_marker_0989b65f3e67f4fb7dc106be18c440a3.bindPopup(popup_2c59fe36d4a2cce79f8e55ef9f49bae8)
+        ;
+
+        
+    
+    
+            var circle_marker_4cc82b96058c5ea3c723f955d7824b8a = L.circleMarker(
+                [48.842, 2.2663],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_df14d056d81633b0664a42861cfae33f);
+        
+    
+        var popup_80d75b74ea982240666ce9af8bbe8568 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_696ca6d9c27e7acc7da6be0a32d61697 = $(`<div id="html_696ca6d9c27e7acc7da6be0a32d61697" style="width: 100.0%; height: 100.0%;">Nombre: Encantador Estudio Reformado <br> Precio Total: 198 € <br> Precio Total por Viajero: 99 € <br> Precio por Noche: 74 € <br> Precio por Noche por Viajero: 37 €  <br> Número de Servicios: 6 <br><a href='https://www.airbnb.es/rooms/917337555952185618?adults=2&check_in=2025-12-19&check_out=2025-12-21&search_mode=regular_search&source_impression_id=p3_1751713841_P30f9iF0eAX7sOv5&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_80d75b74ea982240666ce9af8bbe8568.setContent(html_696ca6d9c27e7acc7da6be0a32d61697);
+            
+        
+
+        circle_marker_4cc82b96058c5ea3c723f955d7824b8a.bindPopup(popup_80d75b74ea982240666ce9af8bbe8568)
+        ;
+
+        
+    
+    
+            var circle_marker_370d85c74bdf458e7b5ecb556bd6c45a = L.circleMarker(
+                [48.7964, 2.4025],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_df14d056d81633b0664a42861cfae33f);
+        
+    
+        var popup_b3104610676014a3bb1890c7c0aba3cc = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_fdcb2dac3452f470781572d3bc3466a9 = $(`<div id="html_fdcb2dac3452f470781572d3bc3466a9" style="width: 100.0%; height: 100.0%;">Nombre: L5 - Apartamento A 15 Minutos De París - Con Jardín <br> Precio Total: 170 € <br> Precio Total por Viajero: 85 € <br> Precio por Noche: 60 € <br> Precio por Noche por Viajero: 30 €  <br> Número de Servicios: 10 <br><a href='https://www.airbnb.es/rooms/1323086706534009051?adults=2&check_in=2025-12-19&check_out=2025-12-21&search_mode=regular_search&source_impression_id=p3_1751713841_P3CHfMpqKZaAKzvu&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_b3104610676014a3bb1890c7c0aba3cc.setContent(html_fdcb2dac3452f470781572d3bc3466a9);
+            
+        
+
+        circle_marker_370d85c74bdf458e7b5ecb556bd6c45a.bindPopup(popup_b3104610676014a3bb1890c7c0aba3cc)
+        ;
+
+        
+    
+    
+            var circle_marker_814c55ffc8edfa9136bb122198d7b402 = L.circleMarker(
+                [48.87551, 2.34609],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_df14d056d81633b0664a42861cfae33f);
+        
+    
+        var popup_651370db02881f306ef8339e3624883a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_184bfab90bc291e4a52ca6af9d44ff80 = $(`<div id="html_184bfab90bc291e4a52ca6af9d44ff80" style="width: 100.0%; height: 100.0%;">Nombre: Acogedor Estudio Cerca De Montmartre <br> Precio Total: 250 € <br> Precio Total por Viajero: 125 € <br> Precio por Noche: 82 € <br> Precio por Noche por Viajero: 41 €  <br> Número de Servicios: 10 <br><a href='https://www.airbnb.es/rooms/873866522383314551?adults=2&check_in=2025-12-19&check_out=2025-12-21&search_mode=regular_search&source_impression_id=p3_1751713841_P38-nyMYBcyKxD6H&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_651370db02881f306ef8339e3624883a.setContent(html_184bfab90bc291e4a52ca6af9d44ff80);
+            
+        
+
+        circle_marker_814c55ffc8edfa9136bb122198d7b402.bindPopup(popup_651370db02881f306ef8339e3624883a)
+        ;
+
+        
+    
+    
+            var circle_marker_9ec1bf07900fdeb46d65e535a76f229b = L.circleMarker(
+                [48.8145, 2.3199],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_df14d056d81633b0664a42861cfae33f);
+        
+    
+        var popup_ef52eda145f85aef4dd808e683020653 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4c42395c39a7ad2f5c665b7f20ccb08c = $(`<div id="html_4c42395c39a7ad2f5c665b7f20ccb08c" style="width: 100.0%; height: 100.0%;">Nombre: Apartamento A 2 Min Del Metro <br> Precio Total: 193 € <br> Precio Total por Viajero: 97 € <br> Precio por Noche: 80 € <br> Precio por Noche por Viajero: 40 €  <br> Número de Servicios: 12 <br><a href='https://www.airbnb.es/rooms/1394838600186316708?adults=2&check_in=2025-12-19&check_out=2025-12-21&search_mode=regular_search&source_impression_id=p3_1751713841_P3L5Fh-yb8yfw_Rg&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_ef52eda145f85aef4dd808e683020653.setContent(html_4c42395c39a7ad2f5c665b7f20ccb08c);
+            
+        
+
+        circle_marker_9ec1bf07900fdeb46d65e535a76f229b.bindPopup(popup_ef52eda145f85aef4dd808e683020653)
+        ;
+
+        
+    
+    
+            var circle_marker_4187c0e40e85ea06ae87b6928da9f513 = L.circleMarker(
+                [48.80469, 2.38481],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_df14d056d81633b0664a42861cfae33f);
+        
+    
+        var popup_b1985d3971596897a861f006a40bdbae = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0d1120b42e19a5f7606f5963ab835b9a = $(`<div id="html_0d1120b42e19a5f7606f5963ab835b9a" style="width: 100.0%; height: 100.0%;">Nombre: Habitación Doble Económica Cerca De París 01 <br> Precio Total: 145 € <br> Precio Total por Viajero: 73 € <br> Precio por Noche: 62 € <br> Precio por Noche por Viajero: 31 €  <br> Número de Servicios: 11 <br><a href='https://www.airbnb.es/rooms/1149076556188846811?adults=2&check_in=2025-12-19&check_out=2025-12-21&search_mode=regular_search&source_impression_id=p3_1751713841_P3uLVbk08sxoGBc7&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_b1985d3971596897a861f006a40bdbae.setContent(html_0d1120b42e19a5f7606f5963ab835b9a);
+            
+        
+
+        circle_marker_4187c0e40e85ea06ae87b6928da9f513.bindPopup(popup_b1985d3971596897a861f006a40bdbae)
+        ;
+
+        
+    
+    
+            var circle_marker_58865ed4e3c4c86a3b381241a7c86942 = L.circleMarker(
+                [48.90992, 2.28413],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_df14d056d81633b0664a42861cfae33f);
+        
+    
+        var popup_0f93cd3f6f57d264d2937a81a3402060 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a3c6f7e760f4b0f0a732117fbdd0f102 = $(`<div id="html_a3c6f7e760f4b0f0a732117fbdd0f102" style="width: 100.0%; height: 100.0%;">Nombre: Encantadora Habitación Tranquila Y Cálida <br> Precio Total: 115 € <br> Precio Total por Viajero: 58 € <br> Precio por Noche: 43 € <br> Precio por Noche por Viajero: 22 €  <br> Número de Servicios: 10 <br><a href='https://www.airbnb.es/rooms/634043436094087880?adults=2&check_in=2025-12-19&check_out=2025-12-21&search_mode=regular_search&category_tag=Tag%3A8678&photo_id=1407658285&source_impression_id=p3_1751713841_P3uicJsGphlcZplZ&previous_page_section_name=1000' target='_blank'>Ver alojamiento</a></div>`)[0];
+                popup_0f93cd3f6f57d264d2937a81a3402060.setContent(html_a3c6f7e760f4b0f0a732117fbdd0f102);
+            
+        
+
+        circle_marker_58865ed4e3c4c86a3b381241a7c86942.bindPopup(popup_0f93cd3f6f57d264d2937a81a3402060)
+        ;
+
+        
+    
+    
+            marker_cluster_df14d056d81633b0664a42861cfae33f.addTo(map_6d3a60dbd7af12751c1e0de734e24600);
+        
+</script>
+</html>
