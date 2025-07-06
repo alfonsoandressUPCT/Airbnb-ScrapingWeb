@@ -1,9 +1,0 @@
-País: Francia
-Ciudad: París
-Número de Adultos: 1
-Número de Niños: 0
-Número de Bebés: 0
-Número de Mascotas: 0
-Número Total de Personas: 1
-Fecha de Entrada: 06-07-2025
-Fecha de Salida: 09-07-2025
