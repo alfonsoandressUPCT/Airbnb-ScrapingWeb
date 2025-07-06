@@ -801,7 +801,7 @@ def comenzar_programa():
     axes[1, 1].set_ylabel('Precio Total por Viajero (€)')
 
     plt.tight_layout()
-    plt.savefig(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Diagrama de Cajas/Diagrama de Cajas - {ciudad}.png')
+    plt.savefig(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Gráficos de Cajas/Gráfico de Cajas - {ciudad}.png')
     plt.close(fig)
 
 
@@ -2013,13 +2013,57 @@ def mostrar_resultados():
     boton_abrir_cajas = Ctk.CTkButton(
         price_output_frame,
         text="Diagramas de Cajas",
-        command=lambda: abrir_archivo(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Diagrama de Cajas/Diagrama de Cajas - {ciudad}.png'),
+        command=lambda: abrir_archivo(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Gráficos de Cajas/Gráfico de Cajas - {ciudad}.png'),
         width=150,
         height=30,
         fg_color="#767676",
         text_color="#FFFFFF"
     )
     boton_abrir_cajas.place(x=22, y=90)
+
+    boton_abrir_dispersion = Ctk.CTkButton(
+        price_output_frame,
+        text="Gráfics de Dispersión",
+        command=lambda: abrir_archivo(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Gráficos de Dispersión/Gráfico de Dispersión - {ciudad}.png'),
+        width=150,
+        height=30,
+        fg_color="#767676",
+        text_color="#FFFFFF"
+    )
+    boton_abrir_dispersion.place(x=22, y=130)
+
+    boton_abrir_lineas = Ctk.CTkButton(
+        price_output_frame,
+        text="Gráficos de Líneas",
+        command=lambda: abrir_archivo(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Gráficos de Líneas/Gráfico de Líneas - {ciudad}.png'),
+        width=150,
+        height=30,
+        fg_color="#767676",
+        text_color="#FFFFFF"
+    )
+    boton_abrir_lineas.place(x=22, y=170)
+
+    boton_abrir_calor = Ctk.CTkButton(
+        price_output_frame,
+        text="Gráficos de Calor",
+        command=lambda: abrir_archivo(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Gráficos de Calor/Gráfico de Calor - {ciudad}.png'),
+        width=150,
+        height=30,
+        fg_color="#767676",
+        text_color="#FFFFFF"
+    )
+    boton_abrir_calor.place(x=22, y=210)
+
+    boton_abrir_barras = Ctk.CTkButton(
+        price_output_frame,
+        text="Gráficos de Barras",
+        command=lambda: abrir_archivo(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Gráficos de Barras/Gráfico de Barras - {ciudad}.png'),
+        width=150,
+        height=30,
+        fg_color="#767676",
+        text_color="#FFFFFF"
+    )
+    boton_abrir_barras.place(x=22, y=250)
 
     boton_abrir_medidas = Ctk.CTkButton(
         price_output_frame,
@@ -2030,7 +2074,7 @@ def mostrar_resultados():
         fg_color="#767676",
         text_color="#FFFFFF"
     )
-    boton_abrir_medidas.place(x=22, y=130)
+    boton_abrir_medidas.place(x=22, y=290)
 
     services_output_frame = Ctk.CTkFrame(output_frame, width=195, height=440, fg_color="#484848", corner_radius=0)
     services_output_frame.place(x=390, y=70)
