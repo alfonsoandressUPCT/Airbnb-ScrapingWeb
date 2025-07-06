@@ -238,8 +238,12 @@ def comenzar_programa():
     directorios.append(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis de Datos')
     directorios.append(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis de Servicios')
     directorios.append(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico')
-    directorios.append(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Diagrama de Cajas')
-    directorios.append(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Histograma')
+    directorios.append(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Gráficos de Cajas')
+    directorios.append(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Histogramas')
+    directorios.append(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Gráficos de Dispersión')
+    directorios.append(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Gráficos de Líneas')
+    directorios.append(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Gráficos de Calor')
+    directorios.append(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Gráficos de Barras')
     directorios.append(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Medidas Descriptivas')
     directorios.append(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Geográfico')
 
@@ -740,25 +744,25 @@ def comenzar_programa():
     fig, axes = plt.subplots(2, 2, figsize=(15, 10))
 
     # Histograma de Precios por Noche
-    sns.histplot(df['Precio por Noche'], bins=20, color='blue', kde=True, ax=axes[0, 0])
+    sns.histplot(df['Precio por Noche'], bins=20, color='#FF5A5F', kde=True, ax=axes[0, 0])
     axes[0, 0].set_title('Histograma de Precios por Noche')
     axes[0, 0].set_xlabel('Precio por Noche (€)')
     axes[0, 0].set_ylabel('Frecuencia')
 
     # Histograma de Precios por Noche por Viajero
-    sns.histplot(df['Precio por Noche por Viajero'], bins=20, color='blue', kde=True, ax=axes[0, 1])
+    sns.histplot(df['Precio por Noche por Viajero'], bins=20, color='#FF5A5F', kde=True, ax=axes[0, 1])
     axes[0, 1].set_title('Histograma de Precios por Noche por Viajero')
     axes[0, 1].set_xlabel('Precio por Noche por Viajero (€)')
     axes[0, 1].set_ylabel('Frecuencia')
 
     # Histograma de Precios Totales
-    sns.histplot(df['Precio Total'], bins=20, color='blue', kde=True, ax=axes[1, 0])
+    sns.histplot(df['Precio Total'], bins=20, color='#FF5A5F', kde=True, ax=axes[1, 0])
     axes[1, 0].set_title('Histograma de Precios Totales')
     axes[1, 0].set_xlabel('Precio Total (€)')
     axes[1, 0].set_ylabel('Frecuencia')
 
     # Histograma de Precios Totales por Viajero
-    sns.histplot(df['Precio Total por Viajero'], bins=20, color='blue', kde=True, ax=axes[1, 1])
+    sns.histplot(df['Precio Total por Viajero'], bins=20, color='#FF5A5F', kde=True, ax=axes[1, 1])
     axes[1, 1].set_title('Histograma de Precios Totales por Viajero')
     axes[1, 1].set_xlabel('Precio Total por Viajero (€)')
     axes[1, 1].set_ylabel('Frecuencia')
@@ -768,7 +772,7 @@ def comenzar_programa():
     plt.close(fig)
 
     # %% [markdown]
-    # ##### **5.1.7.2. Diagramas de Caja**
+    # ##### **5.1.7.2. Diagramas de Cajas**
 
     # %%
     mostrar_mensaje("5.1.7.2. Diagramas de Caja")
@@ -777,12 +781,12 @@ def comenzar_programa():
     fig, axes = plt.subplots(2, 2, figsize=(15, 10))
 
     # Diagrama de caja de Precios por Noche
-    sns.boxplot(data=df, y='Precio por Noche', ax=axes[0, 0], color='blue')
+    sns.boxplot(data=df, y='Precio por Noche', ax=axes[0, 0], color='#FF5A5F')
     axes[0, 0].set_title('Diagrama de Caja de Precios por Noche')
     axes[0, 0].set_ylabel('Precio por Noche (€)')
 
     # Diagrama de caja de Precios por Noche por Viajero
-    sns.boxplot(data=df, y='Precio por Noche por Viajero', ax=axes[0, 1], color='blue')
+    sns.boxplot(data=df, y='Precio por Noche por Viajero', ax=axes[0, 1], color='#FF5A5F')
     axes[0, 1].set_title('Diagrama de Caja de Precios por Noche por Viajero')
     axes[0, 1].set_ylabel('Precio por Noche por Viajero (€)')
 
@@ -792,12 +796,173 @@ def comenzar_programa():
     axes[1, 0].set_ylabel('Precio Total (€)')
 
     # Diagrama de caja de Precios Totales por Viajero
-    sns.boxplot(data=df, y='Precio Total por Viajero', ax=axes[1, 1], color='blue')
+    sns.boxplot(data=df, y='Precio Total por Viajero', ax=axes[1, 1], color='#FF5A5F')
     axes[1, 1].set_title('Diagrama de Caja de Precios Totales por Viajero')
     axes[1, 1].set_ylabel('Precio Total por Viajero (€)')
 
     plt.tight_layout()
     plt.savefig(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Diagrama de Cajas/Diagrama de Cajas - {ciudad}.png')
+    plt.close(fig)
+
+
+    # %% [markdown]
+    ##### **5.1.7.3. Gráficos de Dispersión**
+
+    # %%    
+    mostrar_mensaje("5.2.7.3. Gráficos de Dispersión")
+
+    # %%
+    fig, axes = plt.subplots(2, 2, figsize=(15, 10))
+
+    # Gráfico de dispersión de Precio por Noche vs Precio por Noche por Viajero
+    sns.scatterplot(data=df, x='Precio por Noche', y='Precio por Noche por Viajero', ax=axes[0, 0], color='#FF5A5F')
+    axes[0, 0].set_title('Precio por Noche vs Precio por Noche por Viajero')
+    axes[0, 0].set_xlabel('Precio por Noche (€)')
+    axes[0, 0].set_ylabel('Precio por Noche por Viajero (€)')
+    axes[0, 0].grid(True)
+
+    # Gráfico de dispersión de Precio Total vs Precio Total por Viajero
+    sns.scatterplot(data=df, x='Precio Total', y='Precio Total por Viajero', ax=axes[0, 1], color='#FF5A5F')
+    axes[0, 1].set_title('Precio Total vs Precio Total por Viajero')
+    axes[0, 1].set_xlabel('Precio Total (€)')
+    axes[0, 1].set_ylabel('Precio Total por Viajero (€)')
+    axes[0, 1].grid(True)
+
+    # Gráfico de dispersión de Precio por Noche vs Precio Total
+    sns.scatterplot(data=df, x='Precio por Noche', y='Precio Total', ax=axes[1, 0], color='#FF5A5F')
+    axes[1, 0].set_title('Precio por Noche vs Precio Total')
+    axes[1, 0].set_xlabel('Precio por Noche (€)')
+    axes[1, 0].set_ylabel('Precio Total (€)')
+    axes[1, 0].grid(True)
+
+    # Gráfico de dispersión de Precio por Noche por Viajero vs Precio Total por Viajero
+    sns.scatterplot(data=df, x='Precio por Noche por Viajero', y='Precio Total por Viajero', ax=axes[1, 1], color='#FF5A5F')
+    axes[1, 1].set_title('Precio por Noche por Viajero vs Precio Total por Viajero')
+    axes[1, 1].set_xlabel('Precio por Noche por Viajero (€)')
+    axes[1, 1].set_ylabel('Precio Total por Viajero (€)')
+    axes[1, 1].grid(True)
+
+    plt.tight_layout()
+    plt.savefig(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Gráficos de Dispersión/Gráfico de Dispersión - {ciudad}.png')
+    plt.close(fig)
+
+    # %% [markdown]
+    ##### **5.1.7.4 Gráficos de Línea**
+
+    # %%
+    mostrar_mensaje("5.1.7.4. Gráficos de Línea")
+
+    # %%
+    fig, axes = plt.subplots(2, 2, figsize=(15, 10))
+
+    # Gráfico de línea de Precio por Noche
+    sns.lineplot(data=df, x=df.index, y='Precio por Noche', ax=axes[0, 0], color='#FF5A5F')
+    axes[0, 0].set_title('Precio por Noche a lo largo de los Alojamientos')
+    axes[0, 0].set_xlabel('Alojamientos')
+    axes[0, 0].set_ylabel('Precio por Noche (€)')
+    axes[0, 0].grid(True)
+
+    # Gráfico de línea de Precio por Noche por Viajero
+    sns.lineplot(data=df, x=df.index, y='Precio por Noche por Viajero', ax=axes[0, 1], color='#FF5A5F')
+    axes[0, 1].set_title('Precio por Noche por Viajero a lo largo de los Alojamientos')
+    axes[0, 1].set_xlabel('Alojamientos')
+    axes[0, 1].set_ylabel('Precio por Noche por Viajero (€)')
+    axes[0, 1].grid(True)
+
+    # Gráfico de línea de Precio Total
+    sns.lineplot(data=df, x=df.index, y='Precio Total', ax=axes[1, 0], color='#FF5A5F')
+    axes[1, 0].set_title('Precio Total a lo largo de los Alojamientos')
+    axes[1, 0].set_xlabel('Alojamientos')
+    axes[1, 0].set_ylabel('Precio Total (€)')
+    axes[1, 0].grid(True)
+
+    # Gráfico de línea de Precio Total por Viajero
+    sns.lineplot(data=df, x=df.index, y='Precio Total por Viajero', ax=axes[1, 1], color='#FF5A5F')
+    axes[1, 1].set_title('Precio Total por Viajero a lo largo de los Alojamientos')
+    axes[1, 1].set_xlabel('Alojamientos')
+    axes[1, 1].set_ylabel('Precio Total por Viajero (€)')
+    axes[1, 1].grid(True)
+
+    plt.tight_layout()
+    plt.savefig(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Gráficos de Líneas/Gráfico de Línea - {ciudad}.png')
+    plt.close(fig)
+
+    # %% [markdown]
+    ##### **5.1.7.5 Gráficos de Calor**
+
+    # %%
+    mostrar_mensaje("5.1.7.5 Gráficos de Calor")
+
+    # %%
+    fig, axes = plt.subplots(2, 2, figsize=(15, 10))
+    
+    # Gráfico de calor de Precio por Noche
+    sns.heatmap(df[['Precio por Noche']].corr(), annot=True, cmap='coolwarm', ax=axes[0, 0])
+    axes[0, 0].set_title('Gráfico de Calor de Precio por Noche')
+    axes[0, 0].set_xticklabels(axes[0, 0].get_xticklabels(), rotation=45)
+    axes[0, 0].set_yticklabels(axes[0, 0].get_yticklabels(), rotation=0)
+
+    # Gráfico de calor de Precio por Noche por Viajero
+    sns.heatmap(df[['Precio por Noche por Viajero']].corr(), annot=True, cmap='coolwarm', ax=axes[0, 1])
+    axes[0, 1].set_title('Gráfico de Calor de Precio por Noche por Viajero')
+    axes[0, 1].set_xticklabels(axes[0, 1].get_xticklabels(), rotation=45)
+    axes[0, 1].set_yticklabels(axes[0, 1].get_yticklabels(), rotation=0)
+
+    # Gráfico de calor de Precio Total
+    sns.heatmap(df[['Precio Total']].corr(), annot=True, cmap='coolwarm', ax=axes[1, 0])
+    axes[1, 0].set_title('Gráfico de Calor de Precio Total')
+    axes[1, 0].set_xticklabels(axes[1, 0].get_xticklabels(), rotation=45)
+    axes[1, 0].set_yticklabels(axes[1, 0].get_yticklabels(), rotation=0)
+
+    # Gráfico de calor de Precio Total por Viajero
+    sns.heatmap(df[['Precio Total por Viajero']].corr(), annot=True, cmap='coolwarm', ax=axes[1, 1])
+    axes[1, 1].set_title('Gráfico de Calor de Precio Total por Viajero')
+    axes[1, 1].set_xticklabels(axes[1, 1].get_xticklabels(), rotation=45)
+    axes[1, 1].set_yticklabels(axes[1, 1].get_yticklabels(), rotation=0)
+
+    plt.tight_layout()
+    plt.savefig(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Gráficos de Calor/Gráfico de Calor - {ciudad}.png')
+    plt.close(fig)
+
+    # %% [markdown]
+    ##### **5.1.7.6. Gráficos de Barras**
+
+    # %%
+    mostrar_mensaje("5.1.7.6. Gráficos de Barras")
+
+    # %%
+    fig, axes = plt.subplots(2, 2, figsize=(15, 10))
+
+    # Gráfico de barras de Precio por Noche
+    sns.barplot(data=df, x=df.index, y='Precio por Noche', ax=axes[0, 0], color='#FF5A5F')
+    axes[0, 0].set_title('Precio por Noche a lo largo de los Alojamientos')
+    axes[0, 0].set_xlabel('Alojamientos')
+    axes[0, 0].set_ylabel('Precio por Noche (€)')
+    axes[0, 0].grid(True)
+
+    # Gráfico de barras de Precio por Noche por Viajero
+    sns.barplot(data=df, x=df.index, y='Precio por Noche por Viajero', ax=axes[0, 1], color='#FF5A5F')
+    axes[0, 1].set_title('Precio por Noche por Viajero a lo largo de los Alojamientos')
+    axes[0, 1].set_xlabel('Alojamientos')
+    axes[0, 1].set_ylabel('Precio por Noche por Viajero (€)')
+    axes[0, 1].grid(True)
+
+    # Gráfico de barras de Precio Total
+    sns.barplot(data=df, x=df.index, y='Precio Total', ax=axes[1, 0], color='#FF5A5F')
+    axes[1, 0].set_title('Precio Total a lo largo de los Alojamientos')
+    axes[1, 0].set_xlabel('Alojamientos')
+    axes[1, 0].set_ylabel('Precio Total (€)')
+    axes[1, 0].grid(True)
+
+    # Gráfico de barras de Precio Total por Viajero
+    sns.barplot(data=df, x=df.index, y='Precio Total por Viajero', ax=axes[1, 1], color='#FF5A5F')
+    axes[1, 1].set_title('Precio Total por Viajero a lo largo de los Alojamientos')
+    axes[1, 1].set_xlabel('Alojamientos')
+    axes[1, 1].set_ylabel('Precio Total por Viajero (€)')
+    axes[1, 1].grid(True)
+
+    plt.tight_layout()
+    plt.savefig(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Gráficos de Barras/Gráfico de Barras - {ciudad}.png')
     plt.close(fig)
 
     # %% [markdown]
@@ -922,11 +1087,9 @@ def comenzar_programa():
         tooltip = f"Nombre: {row['Nombre']} <br> Precio Total: {row['Precio Total']} € <br> Precio Total por Viajero: {row['Precio Total por Viajero']} € <br> Precio por Noche: {row['Precio por Noche']} € <br> Precio por Noche por Viajero: {row['Precio por Noche por Viajero']} €  <br> Número de Servicios: {row['Numero de Servicios']} <br><a href='{row['URL']}' target='_blank'>Ver alojamiento</a>"
         
         # Color según precio
-        if row['Precio por Noche'] < 300:
+        if row['Precio por Noche'] < media_precio_noche:
             color = 'green'
-        elif row['Precio por Noche'] < 600:
-            color = 'orange'
-        else:
+        elif row['Precio por Noche'] > media_precio_noche:
             color = 'red'
 
         folium.CircleMarker(
