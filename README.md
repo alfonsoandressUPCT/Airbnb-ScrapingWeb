@@ -28,7 +28,7 @@ Esta aplicación implementa un sistema avanzado de web scraping para la platafor
 
   - **💸 Análisis Económico**: 
     - Estadísticas descriptivas (media, mediana, desviación estándar)
-    - Visualizaciones avanzadas (histogramas, diagramas de caja)
+    - Visualizaciones avanzadas (histogramas, diagramas de caja, diagrmas de dispersión, diagramas de calor, diagramas de barras, diagramas de líneas)
     - Identificación de valores máximos, mínimos y modas
 
   - **🛠️ Análisis de Servicios**: 
