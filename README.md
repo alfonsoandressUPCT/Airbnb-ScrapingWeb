@@ -28,7 +28,7 @@ Esta aplicación implementa un sistema avanzado de web scraping para la platafor
 
   - **💸 Análisis Económico**: 
     - Estadísticas descriptivas (media, mediana, desviación estándar)
-    - Visualizaciones avanzadas (histogramas, diagramas de caja, diagrmas de dispersión, diagramas de calor, diagramas de barras, diagramas de líneas)
+    - Visualizaciones avanzadas (histogramas, diagramas de caja, diagrmas de dispersión, diagramas de barras, diagramas de líneas)
     - Identificación de valores máximos, mínimos y modas
 
   - **🛠️ Análisis de Servicios**: 
@@ -37,7 +37,7 @@ Esta aplicación implementa un sistema avanzado de web scraping para la platafor
 
   - **🌍 Análisis Geográfico**: 
     - Mapa interactivo con clusters de alojamientos
-    - Codificación por colores según nivel de precios
+    - Codificación por colores según nivel de precios. Rojo si es mayor que la media y verde si es menor.
     
 - **💾 Exportación Completa de Resultados**: 
   - Archivos CSV con datos detallados
