@@ -1,0 +1,26 @@
+
+
+Medias de los Precios de Alojamientos en Cádiz:
+----------------------------------------
+Media del Precio por Noche: 89.06 €
+Media del Precio por Noche por Viajero: 44.71 €
+Media del Precio Total: 300.76 €
+Media del Precio Total por Viajero: 150.71 €
+
+
+Medianas de los Precios de Alojamientos en Cádiz:
+----------------------------------------
+Mediana del Precio por Noche: 82.00 €
+Mediana del Precio por Noche por Viajero: 41.00 €
+Mediana del Precio Total: 269.00 €
+Mediana del Precio Total por Viajero: 135.00 €
+
+
+Desviaciones Típicas de los Precios de Alojamientos en Cádiz:
+----------------------------------------
+Desviación Estándar del Precio por Noche: 25.31 €
+Desviación Estándar del Precio por Noche por Viajero: 12.66 €
+Desviación Estándar del Precio Total: 107.71 €
+Desviación Estándar del Precio Total por Viajero: 53.81 €
+
+
