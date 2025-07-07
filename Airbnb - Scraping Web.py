@@ -768,7 +768,7 @@ def comenzar_programa():
     axes[1, 1].set_ylabel('Frecuencia')
 
     plt.tight_layout()
-    plt.savefig(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Histograma/Histograma - {ciudad}.png')
+    plt.savefig(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Histogramas/Histograma - {ciudad}.png')
     plt.close(fig)
 
     # %% [markdown]
@@ -791,7 +791,7 @@ def comenzar_programa():
     axes[0, 1].set_ylabel('Precio por Noche por Viajero (€)')
 
     # Diagrama de caja de Precios Totales
-    sns.boxplot(data=df, y='Precio Total', ax=axes[1, 0], color='blue')
+    sns.boxplot(data=df, y='Precio Total', ax=axes[1, 0], color='#FF5A5F')
     axes[1, 0].set_title('Diagrama de Caja de Precios Totales')
     axes[1, 0].set_ylabel('Precio Total (€)')
 
@@ -812,7 +812,7 @@ def comenzar_programa():
     mostrar_mensaje("5.2.7.3. Gráficos de Dispersión")
 
     # %%
-    fig, axes = plt.subplots(2, 2, figsize=(15, 10))
+    fig, axes = plt.subplots(2, 2, figsize=(15, 10), grid=False)
 
     # Gráfico de dispersión de Precio por Noche vs Precio por Noche por Viajero
     sns.scatterplot(data=df, x='Precio por Noche', y='Precio por Noche por Viajero', ax=axes[0, 0], color='#FF5A5F')
@@ -853,7 +853,7 @@ def comenzar_programa():
     mostrar_mensaje("5.1.7.4. Gráficos de Línea")
 
     # %%
-    fig, axes = plt.subplots(2, 2, figsize=(15, 10))
+    fig, axes = plt.subplots(2, 2, figsize=(15, 10), grid=False)
 
     # Gráfico de línea de Precio por Noche
     sns.lineplot(data=df, x=df.index, y='Precio por Noche', ax=axes[0, 0], color='#FF5A5F')
@@ -884,7 +884,7 @@ def comenzar_programa():
     axes[1, 1].grid(True)
 
     plt.tight_layout()
-    plt.savefig(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Gráficos de Líneas/Gráfico de Línea - {ciudad}.png')
+    plt.savefig(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Gráficos de Líneas/Gráfico de Líneas - {ciudad}.png')
     plt.close(fig)
 
     # %% [markdown]
@@ -897,25 +897,25 @@ def comenzar_programa():
     fig, axes = plt.subplots(2, 2, figsize=(15, 10))
     
     # Gráfico de calor de Precio por Noche
-    sns.heatmap(df[['Precio por Noche']].corr(), annot=True, cmap='coolwarm', ax=axes[0, 0])
+    sns.heatmap(df[['Precio por Noche']], annot=True, cmap='coolwarm', ax=axes[0, 0])
     axes[0, 0].set_title('Gráfico de Calor de Precio por Noche')
     axes[0, 0].set_xticklabels(axes[0, 0].get_xticklabels(), rotation=45)
     axes[0, 0].set_yticklabels(axes[0, 0].get_yticklabels(), rotation=0)
 
     # Gráfico de calor de Precio por Noche por Viajero
-    sns.heatmap(df[['Precio por Noche por Viajero']].corr(), annot=True, cmap='coolwarm', ax=axes[0, 1])
+    sns.heatmap(df[['Precio por Noche por Viajero']], annot=True, cmap='coolwarm', ax=axes[0, 1])
     axes[0, 1].set_title('Gráfico de Calor de Precio por Noche por Viajero')
     axes[0, 1].set_xticklabels(axes[0, 1].get_xticklabels(), rotation=45)
     axes[0, 1].set_yticklabels(axes[0, 1].get_yticklabels(), rotation=0)
 
     # Gráfico de calor de Precio Total
-    sns.heatmap(df[['Precio Total']].corr(), annot=True, cmap='coolwarm', ax=axes[1, 0])
+    sns.heatmap(df[['Precio Total']], annot=True, cmap='coolwarm', ax=axes[1, 0])
     axes[1, 0].set_title('Gráfico de Calor de Precio Total')
     axes[1, 0].set_xticklabels(axes[1, 0].get_xticklabels(), rotation=45)
     axes[1, 0].set_yticklabels(axes[1, 0].get_yticklabels(), rotation=0)
 
     # Gráfico de calor de Precio Total por Viajero
-    sns.heatmap(df[['Precio Total por Viajero']].corr(), annot=True, cmap='coolwarm', ax=axes[1, 1])
+    sns.heatmap(df[['Precio Total por Viajero']], annot=True, cmap='coolwarm', ax=axes[1, 1])
     axes[1, 1].set_title('Gráfico de Calor de Precio Total por Viajero')
     axes[1, 1].set_xticklabels(axes[1, 1].get_xticklabels(), rotation=45)
     axes[1, 1].set_yticklabels(axes[1, 1].get_yticklabels(), rotation=0)
@@ -931,7 +931,7 @@ def comenzar_programa():
     mostrar_mensaje("5.1.7.6. Gráficos de Barras")
 
     # %%
-    fig, axes = plt.subplots(2, 2, figsize=(15, 10))
+    fig, axes = plt.subplots(2, 2, figsize=(15, 10), grid=False)
 
     # Gráfico de barras de Precio por Noche
     sns.barplot(data=df, x=df.index, y='Precio por Noche', ax=axes[0, 0], color='#FF5A5F')
@@ -1027,7 +1027,7 @@ def comenzar_programa():
     # %%
     warnings.simplefilter(action='ignore', category=FutureWarning)
     plt.figure(figsize=(12, 6))
-    sns.barplot(data=servicios_df.head(20), x='Frecuencia', y='Servicio', palette='crest')
+    sns.barplot(data=servicios_df.head(20), x='Frecuencia', y='Servicio', color='#FF5A5F')
     plt.title(f'Servicios más comunes en los alojamientos de {ciudad}')
     plt.xlabel('Número de alojamientos que lo ofrecen')
     plt.ylabel('Servicio')
@@ -2002,7 +2002,7 @@ def mostrar_resultados():
     boton_abrir_histogramas = Ctk.CTkButton(
         price_output_frame,
         text="Histogramas",
-        command=lambda: abrir_archivo(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Histograma/Histograma - {ciudad}.png'),
+        command=lambda: abrir_archivo(f'output/{ciudad}. {numero_total_personas} Personas. {fecha_entrada_str} | {fecha_salida_str}/Análisis Económico/Histogramas/Histograma - {ciudad}.png'),
         width=150,
         height=30,
         fg_color="#767676",
