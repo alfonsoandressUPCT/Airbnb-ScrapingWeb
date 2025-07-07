@@ -115,7 +115,10 @@ python "Airbnb - Scraping Web.py"
     - `Análisis de Datos/:` Datos completos en formato CSV
     - `Análisis de Servicios/:` Gráficos de servicios disponibles
     - `Análisis Económico/:` Estadísticas y visualizaciones de precios
+      - `Gráficos de Barras/:` Comparación de precios por alojamiento
       - `Diagrama de Cajas/:` Visualizaciones de la distribución de precios
+      - `Gráficos de Dispersión/:` Relación entre precios y servicios
+      - `Gráficos de Líneas/:` Evolución de precios
       - `Histograma/:` Distribución de frecuencias de precios
       - `Medidas Descriptivas/:` Estadísticas numéricas en formato texto
     - `Análisis Geográfico/:` Mapas interactivos con ubicaciones codificadas por precio
