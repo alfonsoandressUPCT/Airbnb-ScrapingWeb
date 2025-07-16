@@ -1,0 +1,26 @@
+
+
+Medias de los Precios de Alojamientos en Mazarrón:
+----------------------------------------
+Media del Precio por Noche: 85.57 €
+Media del Precio por Noche por Viajero: 42.96 €
+Media del Precio Total: 102.17 €
+Media del Precio Total por Viajero: 51.35 €
+
+
+Medianas de los Precios de Alojamientos en Mazarrón:
+----------------------------------------
+Mediana del Precio por Noche: 90.00 €
+Mediana del Precio por Noche por Viajero: 45.00 €
+Mediana del Precio Total: 106.00 €
+Mediana del Precio Total por Viajero: 53.00 €
+
+
+Desviaciones Típicas de los Precios de Alojamientos en Mazarrón:
+----------------------------------------
+Desviación Estándar del Precio por Noche: 34.36 €
+Desviación Estándar del Precio por Noche por Viajero: 17.32 €
+Desviación Estándar del Precio Total: 45.69 €
+Desviación Estándar del Precio Total por Viajero: 22.78 €
+
+
